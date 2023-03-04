@@ -15,6 +15,7 @@ Members:
 3. **Arshnoor Kaur Chadha**
 
 4. **Arman Agarwal**
+  | User Name: **arman-agarwal**
 
 # Innovative Idea
 
