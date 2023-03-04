@@ -13,13 +13,14 @@ Members:
   | User Name: **kiratarora**
 
 3. **Arshnoor Kaur Chadha**
+  | User Name: **arshnoorkc13**
 
 4. **Arman Agarwal**
   | User Name: **arman-agarwal**
 
 # Innovative Idea
 
-Our application proposes the creation of a movie watchlist, where users can add recently watched films, rate them, and provide comments. The primary aim is to enable users to maintain a record of the movies they have watched and keep track of their opinions on various visual media.
+Our application proposes the creation of a movie watchlist, where users can add recently watched films, rate them, and provide comments. The primary aim is to enable users to maintain a record of the movies they have watched and keep track of their opinions on various visual media. We were inspired by rotten tomatoes.
 
 # Data
 
@@ -30,5 +31,5 @@ Qur application will support various data types. Among these, we will be utilizi
 We plan to create a login screen that utilizes Firebase auth and features multiple input fields to enable users to add their movie lists. Additionally, we will construct an API for the front-end that retrieves user data from the database and presents it to the user.
 
 # License
-
 [License](./LICENSE)
+[MIT License](https://opensource.org/licenses/MIT)
