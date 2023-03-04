@@ -1,6 +1,6 @@
 # Team 3 Project
 
-Name of the Project: ** Cinemania **
+Name of the Project: **Cinemania**
 
 Members: **Itir Sayar**
 
