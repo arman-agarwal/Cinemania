@@ -17,8 +17,30 @@
 #titleRow{
     display: flex;
     justify-content: space-between;
+    background-color:azure;
 }
 #profileButton{
     align-items: center;
     margin: 30px; 
 }
+#sectionHeader{
+    font-family: 'bradely hand', cursive;
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+
+.card-container {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 25px;
+  }
+  
+.card-container::-webkit-scrollbar {
+    display: none;
+}
+
