@@ -31,5 +31,5 @@ Our application will support various data types. Among these, we will be utilizi
 We plan to create a login screen that utilizes Firebase auth and features multiple input fields to enable users to add their movie lists. Additionally, we will construct an API for the front-end that retrieves user data from the database and presents it to the user.
 
 # License
-[License](./LICENSE)
-[MIT License](https://opensource.org/licenses/MIT)
+[License MIT License](./LICENSE)
+
