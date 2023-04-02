@@ -24,7 +24,7 @@ Our application proposes the creation of a movie watchlist, where users can add 
 
 # Data
 
-Qur application will support various data types. Among these, we will be utilizing images to depict the movie thumbnails selected by users. Additionally, we will be working with strings, specifically for the title and comments, and integers to represent the star rating. The application will also include user data such as usernames, emails.
+Our application will support various data types. Among these, we will be utilizing images to depict the movie thumbnails selected by users. Additionally, we will be working with strings, specifically for the title and comments, and integers to represent the star rating. The application will also include user data such as usernames, emails.
 
 # Functionality
 
