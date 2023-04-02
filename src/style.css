@@ -1,0 +1,24 @@
+.title{
+    /* justify-content: center; */
+    align-items: center;
+    font-size: 62px;
+    font-weight: bold;
+}
+#logo{
+    padding: 2px;
+    width: 100px;
+}
+.Homelink{
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding-left: 20px;
+}
+#titleRow{
+    display: flex;
+    justify-content: space-between;
+}
+#profileButton{
+    align-items: center;
+    margin: 30px;
+}
