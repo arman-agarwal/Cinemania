@@ -27,8 +27,11 @@
     font-family: 'bradely hand', cursive;
     font-size: 32px;
     font-weight: bold;
-    margin-left: 200px;
-    margin-top: 20px;
+    /* margin-left: 200px; */
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -37,10 +40,18 @@
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    margin-top: 25px;
+    margin-top: 20px;
   }
   
 .card-container::-webkit-scrollbar {
     display: none;
 }
 
+#commentButton{
+    text-decoration: none; 
+    color: inherit;
+    
+}
+#commentButton:hover{
+    font-weight: bold;
+}
