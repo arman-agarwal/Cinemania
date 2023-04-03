@@ -38,3 +38,21 @@ window.onload = () => {
     })
   };
   
+  const light = document.getElementById("lightButton");
+  const dark = document.getElementById("darkButton");
+  const sun = document.getElementById("sunImg");
+  const moon = document.getElementById("moonImg");
+  
+  light.addEventListener("click", function() {
+    moon.classList.add("img-faded");
+    moon.classList.remove("img-normal");
+    sun.classList.add("img-normal");
+    sun.classList.remove("img-faded");
+  });
+  
+  dark.addEventListener("click", function() {
+    moon.classList.remove("img-faded");
+    moon.classList.add("img-normal");
+    sun.classList.remove("img-normal");
+    sun.classList.add("img-faded");
+  });
