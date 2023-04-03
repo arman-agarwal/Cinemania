@@ -1,3 +1,14 @@
+body {
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body.dark-mode {
+    background-color: #333333;
+    color: white;
+  }  
+
 .title{
     /* justify-content: center; */
     align-items: center;
@@ -17,7 +28,7 @@
 #titleRow{
     display: flex;
     justify-content: space-between;
-    background-color:azure;
+    background-color:lightblue;
 }
 #profileButton{
     align-items: center;
@@ -82,4 +93,43 @@
     padding: 10px;
     font-size: 22px;  
     color:teal;   
+}
+
+.dark-mode #sunImg {
+    filter: invert(1);
+}
+
+.dark-mode #moonImg {
+    filter: invert(1);
+}
+
+.dark-mode #titleRow{
+    background-color: darkcyan;
+}
+#MovieLogs{
+    color: maroon;
+}
+.dark-mode #MovieLogs{
+    color: rgb(127, 255, 255);
+}
+#Cine{
+    color: green;
+}
+#Mania{
+    color: maroon;
+}
+.dark-mode #Cine{
+    color: rgb(176, 120, 176);
+}
+.dark-mode #Mania{
+    color: rgb(127, 255, 255);
+}
+.dark-mode .movieCard{
+    transition: background-color 1s ease, color 1s ease;
+    background-color: #333333;
+}
+
+.dark-mode .card{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: lavender;
 }

@@ -42,12 +42,20 @@ window.onload = () => {
   const dark = document.getElementById("darkButton");
   const sun = document.getElementById("sunImg");
   const moon = document.getElementById("moonImg");
-  
+  const body = document.body;
+  const profileButton = document.getElementById("profileButton");
+
+
+
   light.addEventListener("click", function() {
     moon.classList.add("img-faded");
     moon.classList.remove("img-normal");
     sun.classList.add("img-normal");
     sun.classList.remove("img-faded");
+    body.classList.remove("dark-mode");
+    profileButton.classList.add("btn-outline-success");
+    profileButton.classList.remove("btn-danger");
+
   });
   
   dark.addEventListener("click", function() {
@@ -55,4 +63,9 @@ window.onload = () => {
     moon.classList.add("img-normal");
     sun.classList.remove("img-normal");
     sun.classList.add("img-faded");
+    body.classList.add("dark-mode");
+    profileButton.classList.remove("btn-outline-success");
+    profileButton.classList.add("btn-danger");
+
   });
+  
