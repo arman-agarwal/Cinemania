@@ -11,9 +11,18 @@ window.onload = () => {
                 .then(response => response.text())
                 .then(html => {
                     // replacing the movie's name, image address, and the comment 
-                    html = html.replace("Image Address", data[i].src);
-                    html = html.replace("Movie Name", data[i].name);
-                    html = html.replace("Comment", data[i].comment_titile);
+                    if(data[i].src != undefined){
+                        html = html.replace("Image Address", data[i].src);
+                    }
+                    else{
+                        html = html.replace("Image Address", "movieImages/placeholder.jpeg");
+                    }
+                    if(data[i].name != undefined){
+                        html = html.replace("Movie Name", data[i].name);
+                    }
+                    if(data[i].comment_titile != undefined){
+                        html = html.replace("Comment", data[i].comment_titile);
+                    }
                     // making a string that holds unicode characters for the number of stars
                     let stars = '';
                     for (let j = 1; j<=5; ++j){
@@ -68,4 +77,3 @@ window.onload = () => {
     profileButton.classList.add("btn-danger");
 
   });
-  
