@@ -77,3 +77,19 @@ window.onload = () => {
     profileButton.classList.add("btn-danger");
 
   });
+let open;
+function toggleNav() {
+    if (!open){
+        document.getElementById("mySidenav").style.width = "250px";
+        open = true;
+    }
+    else{
+        document.getElementById("mySidenav").style.width = "0";
+        open = false;
+    }
+}
+  
+function closeNav(){
+    document.getElementById("mySidenav").style.width = "0";
+    open = false;
+}

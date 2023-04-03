@@ -10,7 +10,6 @@ body {
   }  
 
 .title{
-    /* justify-content: center; */
     align-items: center;
     font-size: 62px;
     font-weight: bold;
@@ -38,7 +37,6 @@ body {
     font-family: 'bradely hand', cursive;
     font-size: 32px;
     font-weight: bold;
-    /* margin-left: 200px; */
     margin-top: 15px;
     display: flex;
     justify-content: center;
@@ -133,4 +131,59 @@ body {
 .dark-mode .card{
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: lavender;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: skyblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.dark-mode .sidenav{
+    background-color: cyan;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: green;
+} 
+
+.dark-mode .sidenav a:hover{
+    color: rgb(176, 120, 176);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-right: 50px;
+}
+
+.sidenav .closebtn:hover {
+    color: white;
+}
+
+.dark-mode .sidenav .closebtn:hover {
+    color: white;
+}
+  
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
