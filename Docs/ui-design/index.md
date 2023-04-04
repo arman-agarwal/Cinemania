@@ -17,7 +17,7 @@ This is our page to create a new account using user's name, email and password, 
 Our third image basically shows the main page of our webapp which shows the list of recently watched movies, has an option to sort this list based on most recent and least recent. It has an option to add more movies, has a functionality to switch between light (represented by sun) and dark mode (represented by moon), and has a profile button as well.
 ![Wireframe (Part 3)](Wireframe3.png)
 
-Our fourth image explains about the dotted menu functionality that allows the user to delete the movie, delete the comment, edit movie name, edit the comment and upload a new image which represents the movie. It also shows the profile, where one can see their name and email linked with that account.
+Our fourth image explains about the dotted menu functionality that allows the user to delete the movie, delete the comment, edit movie name, edit the comment and upload a new image which represents the movie. It also shows the profile, where one can see their name and email linked with that account.<br>
 ![Wireframe (Part 4)](Wireframe4.png)
 
 ## Stories
@@ -38,3 +38,22 @@ When the user succesfully gains access to the web app, they are greeted by a pag
 
 If the user wanted to delete a movie they added previously they would click on the dotted menu that is located
 next to the movie's name. When they click on that button they can see all the options to delete a movie, delete their comments, edit the movie name, edit their previous comment and upload a new movie image. This story gives an example of how the user can use the website based on the Wireframe4.png.
+<br><br>
+
+## HTML and CSS Mockup
+
+## Main Page
+
+This is the main page the user will see when they open our website for the first time.
+![Main Page](MainPage.png)
+
+## Dark Mode
+
+We have also added dark mode to the website. This is an example of how the main page would look like with Dark Mode enabled.
+![Main Page Dark Mode](DarkMode.png)
+
+## Profile
+
+The user can click on the right side to see their profile, add posts, or edit their previous posts.
+
+<img src="Menu.png" alt= “ProfileLight” width="49%" style = "padding-right: 30px"> <img src="MenuDark.png" alt= “ProfileDark” width="49%" >
