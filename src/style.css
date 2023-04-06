@@ -4,10 +4,10 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
   }
   
-  body.dark-mode {
+body.dark-mode {
     background-color: #333333;
     color: white;
-  }  
+}  
 
 .title{
     align-items: center;
@@ -104,25 +104,8 @@ body {
 
 .dark-mode #titleRow{
     background-color: darkcyan;
-}
-#MovieLogs{
-    color: maroon;
-}
-.dark-mode #MovieLogs{
-    color: rgb(127, 255, 255);
-}
-#Cine{
-    color: green;
-}
-#Mania{
-    color: maroon;
-}
-.dark-mode #Cine{
-    color: rgb(176, 120, 176);
-}
-.dark-mode #Mania{
-    color: rgb(127, 255, 255);
-}
+};
+
 .dark-mode .movieCard{
     transition: background-color 0.5s ease, color 0.5s ease;
     transition-delay: 0.5s;
