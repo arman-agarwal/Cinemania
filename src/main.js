@@ -1,4 +1,8 @@
 window.onload = () => {
+    let spanTexts = document.getElementsByClassName("backLetter");
+    for(spanText of spanTexts){
+        spanText.classList.add("active")
+    }
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
     // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable
@@ -20,8 +24,8 @@ window.onload = () => {
                     if(data[i].name != undefined){
                         html = html.replace("Movie Name", data[i].name);
                     }
-                    if(data[i].comment_titile != undefined){
-                        html = html.replace("Comment", data[i].comment_titile);
+                    if(data[i].comment_title != undefined){
+                        html = html.replace("Comment", data[i].comment_title);
                     }
                     // making a string that holds unicode characters for the number of stars
                     let stars = '';
