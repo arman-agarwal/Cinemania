@@ -225,20 +225,20 @@ body {
 }
 #backText .backLetter.active{
     transform: translateY(0px);
-    -webkit-text-stroke: 2px rgba(255, 255, 255,0.3 );
-}
-#backText .backLetter.active :hover{
-    transform: translateY(2px);
-    -webkit-text-stroke: 2px green;
+    -webkit-text-stroke: 2px rgba(255, 255, 255,0.3 );   
 }
 
+#backText .backLetter.activeG{
+    transform: translateY(0px);
+    -webkit-text-stroke: 2px green;   
+}
 
 #backText .backLetter:nth-child(1){transition-delay: 0.1s;}
-#backText .backLetter:nth-child(2){transition-delay: 0.2s;}
-#backText .backLetter:nth-child(3){transition-delay: 0.3s;}
-#backText .backLetter:nth-child(4){transition-delay: 0.4s;}
-#backText .backLetter:nth-child(5){transition-delay: 0.5s;}
-#backText .backLetter:nth-child(6){transition-delay: 0.6s;}
-#backText .backLetter:nth-child(7){transition-delay: 0.7s;}
-#backText .backLetter:nth-child(8){transition-delay: 0.8s;}
-#backText .backLetter:nth-child(9){transition-delay: 0.9s;}
+#backText .backLetter:nth-child(2){transition-delay: 0.15s;}
+#backText .backLetter:nth-child(3){transition-delay: 0.2s;}
+#backText .backLetter:nth-child(4){transition-delay: 0.25s;}
+#backText .backLetter:nth-child(5){transition-delay: 0.3s;}
+#backText .backLetter:nth-child(6){transition-delay: 0.35s;}
+#backText .backLetter:nth-child(7){transition-delay: 0.4s;}
+#backText .backLetter:nth-child(8){transition-delay: 0.45s;}
+#backText .backLetter:nth-child(9){transition-delay: 0.5s;}

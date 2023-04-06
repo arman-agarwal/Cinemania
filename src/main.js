@@ -97,3 +97,21 @@ function closeNav(){
     document.getElementById("mySidenav").style.width = "0";
     open = false;
 }
+
+let spanLetters = document.getElementsByClassName("backLetter");
+let spanTexts = document.getElementById("backText");
+
+spanTexts.addEventListener("mouseover", function() {
+    for(spanLetter of spanLetters){
+        spanLetter.classList.remove("active");
+        spanLetter.classList.add("activeG");
+    }
+});
+  
+  // Add a mouseout event listener to the div element
+spanTexts.addEventListener("mouseout", function() {
+    for(spanLetter of spanLetters){
+        spanLetter.classList.remove("activeG");
+        spanLetter.classList.add("active");
+    }
+});
