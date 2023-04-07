@@ -3,7 +3,6 @@ body {
     color: black;
     transition: background-color 0.5s ease, color 0.5s ease;
   }
-  
 body.dark-mode {
     background-color: #333333;
     color: white;
@@ -58,9 +57,10 @@ body.dark-mode {
 }
 
 #commentButton{
+    background: transparent;
+    border:0;
     text-decoration: none; 
     color: inherit;
-    
 }
 #commentButton:hover{
     font-weight: bold;
@@ -115,58 +115,7 @@ body.dark-mode {
 .dark-mode .card{
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: lavender;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: skyblue;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.dark-mode .sidenav{
-    background-color: cyan;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 8px;
-    text-decoration: none;
-    font-size: 25px;
-    color: black;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: green;
 } 
-
-.dark-mode .sidenav a:hover{
-    color: rgb(176, 120, 176);
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-right: 50px;
-}
-
-.sidenav .closebtn:hover {
-    color: white;
-}
-
-.dark-mode .sidenav .closebtn:hover {
-    color: white;
-}
-  
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
@@ -225,3 +174,15 @@ body.dark-mode {
 #backText .backLetter:nth-child(7){transition-delay: 0.4s;}
 #backText .backLetter:nth-child(8){transition-delay: 0.45s;}
 #backText .backLetter:nth-child(9){transition-delay: 0.5s;}
+
+.changeModalColor{
+    color: black;
+    background-color: #d3dbe2;
+    border-radius: 5px;
+}
+
+.dark-mode .changeModalColor{
+    color: white;
+    background-color: rgb(42, 99, 99);
+    border-radius: 5px;
+} 

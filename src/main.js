@@ -26,7 +26,12 @@ window.onload = () => {
                     }
                     if(data[i].comment_title != undefined){
                         html = html.replace("Comment", data[i].comment_title);
+                        html = html.replace("Comment title", data[i].comment_title);
                     }
+                    if(data[i].cardID != undefined){ //FIXME
+                        html = html.replace("No Comments added yet!", data[i].comment);
+                    }
+                    html = html.replace(/exampleModal/g, "exampleModal"+i);
                     // making a string that holds unicode characters for the number of stars
                     let stars = '';
                     for (let j = 1; j<=5; ++j){
@@ -41,6 +46,7 @@ window.onload = () => {
                     }
                     // removing the last space
                     stars = stars.slice(0, -1);
+                    console.log(html)
                     html = html.replace("Star Rating", stars);
                     const cardComponent = document.createElement("div");
                     cardComponent.innerHTML = html;
@@ -81,22 +87,6 @@ window.onload = () => {
     profileButton.classList.add("btn-danger");
 
   });
-let open;
-function toggleNav() {
-    if (!open){
-        document.getElementById("mySidenav").style.width = "250px";
-        open = true;
-    }
-    else{
-        document.getElementById("mySidenav").style.width = "0";
-        open = false;
-    }
-}
-  
-function closeNav(){
-    document.getElementById("mySidenav").style.width = "0";
-    open = false;
-}
 
 let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
