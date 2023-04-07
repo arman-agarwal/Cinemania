@@ -3,11 +3,10 @@ body {
     color: black;
     transition: background-color 0.5s ease, color 0.5s ease;
   }
-  
-  body.dark-mode {
+body.dark-mode {
     background-color: #333333;
     color: white;
-  }  
+}  
 
 .title{
     align-items: center;
@@ -28,10 +27,11 @@ body {
     display: flex;
     justify-content: space-between;
     background-color:lightblue;
+    height: 150px;
 }
 #profileButton{
     align-items: center;
-    margin: 30px; 
+    margin: 55px; 
 }
 #sectionHeader{
     font-family: 'bradely hand', cursive;
@@ -57,9 +57,10 @@ body {
 }
 
 #commentButton{
+    background: transparent;
+    border:0;
     text-decoration: none; 
     color: inherit;
-    
 }
 #commentButton:hover{
     font-weight: bold;
@@ -103,25 +104,8 @@ body {
 
 .dark-mode #titleRow{
     background-color: darkcyan;
-}
-#MovieLogs{
-    color: maroon;
-}
-.dark-mode #MovieLogs{
-    color: rgb(127, 255, 255);
-}
-#Cine{
-    color: green;
-}
-#Mania{
-    color: maroon;
-}
-.dark-mode #Cine{
-    color: rgb(176, 120, 176);
-}
-.dark-mode #Mania{
-    color: rgb(127, 255, 255);
-}
+};
+
 .dark-mode .movieCard{
     transition: background-color 0.5s ease, color 0.5s ease;
     transition-delay: 0.5s;
@@ -131,59 +115,74 @@ body {
 .dark-mode .card{
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: lavender;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: skyblue;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.dark-mode .sidenav{
-    background-color: cyan;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 8px;
-    text-decoration: none;
-    font-size: 25px;
-    color: black;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: green;
 } 
-
-.dark-mode .sidenav a:hover{
-    color: rgb(176, 120, 176);
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-right: 50px;
-}
-
-.sidenav .closebtn:hover {
-    color: white;
-}
-
-.dark-mode .sidenav .closebtn:hover {
-    color: white;
-}
-  
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+.hero{
+    padding: 20px;
+}
+.MovieLogsTitle{
+    margin:auto;
+    
+    /* font-family: 'bradely hand', cursive; */
+    width: fit-content;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+.MovieLogsTitle h1{
+    font-family: "Poppins", sans-serif;
+    font-size: 70px;
+    z-index: 100;
+}
+#backText{
+    width: max-content;
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+#backText .backLetter{
+    display: inline-block;
+    font-size: 125px;
+    font-weight: 700;
+    -webkit-text-stroke: 2px  rgba(255, 255, 255,0.3 );
+    /* -webkit-text-stroke: 1.25px green; */
+    -webkit-text-fill-color: transparent;
+    transform: translateY(150px);
+    transition: 1s;
+}
+#backText .backLetter.active{
+    transform: translateY(0px);
+    -webkit-text-stroke: 2px rgba(255, 255, 255,0.3 );   
+}
+
+#backText .backLetter.activeG{
+    transform: translateY(0px);
+    -webkit-text-stroke: 2px green;   
+}
+
+#backText .backLetter:nth-child(1){transition-delay: 0.1s;}
+#backText .backLetter:nth-child(2){transition-delay: 0.15s;}
+#backText .backLetter:nth-child(3){transition-delay: 0.2s;}
+#backText .backLetter:nth-child(4){transition-delay: 0.25s;}
+#backText .backLetter:nth-child(5){transition-delay: 0.3s;}
+#backText .backLetter:nth-child(6){transition-delay: 0.35s;}
+#backText .backLetter:nth-child(7){transition-delay: 0.4s;}
+#backText .backLetter:nth-child(8){transition-delay: 0.45s;}
+#backText .backLetter:nth-child(9){transition-delay: 0.5s;}
+
+.changeModalColor{
+    color: black;
+    background-color: #d3dbe2;
+    border-radius: 5px;
+}
+
+.dark-mode .changeModalColor{
+    color: white;
+    background-color: rgb(42, 99, 99);
+    border-radius: 5px;
+} 

@@ -1,4 +1,8 @@
 window.onload = () => {
+    let spanTexts = document.getElementsByClassName("backLetter");
+    for(spanText of spanTexts){
+        spanText.classList.add("active")
+    }
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
     // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable
@@ -20,9 +24,14 @@ window.onload = () => {
                     if(data[i].name != undefined){
                         html = html.replace("Movie Name", data[i].name);
                     }
-                    if(data[i].comment_titile != undefined){
-                        html = html.replace("Comment", data[i].comment_titile);
+                    if(data[i].comment_title != undefined){
+                        html = html.replace("Comment", data[i].comment_title);
+                        html = html.replace("Comment title", data[i].comment_title);
                     }
+                    if(data[i].cardID != undefined){ //FIXME
+                        html = html.replace("No Comments added yet!", data[i].comment);
+                    }
+                    html = html.replace(/exampleModal/g, "exampleModal"+i);
                     // making a string that holds unicode characters for the number of stars
                     let stars = '';
                     for (let j = 1; j<=5; ++j){
@@ -37,6 +46,7 @@ window.onload = () => {
                     }
                     // removing the last space
                     stars = stars.slice(0, -1);
+                    console.log(html)
                     html = html.replace("Star Rating", stars);
                     const cardComponent = document.createElement("div");
                     cardComponent.innerHTML = html;
@@ -77,19 +87,21 @@ window.onload = () => {
     profileButton.classList.add("btn-danger");
 
   });
-let open;
-function toggleNav() {
-    if (!open){
-        document.getElementById("mySidenav").style.width = "250px";
-        open = true;
+
+let spanLetters = document.getElementsByClassName("backLetter");
+let spanTexts = document.getElementById("backText");
+
+spanTexts.addEventListener("mouseover", function() {
+    for(spanLetter of spanLetters){
+        spanLetter.classList.remove("active");
+        spanLetter.classList.add("activeG");
     }
-    else{
-        document.getElementById("mySidenav").style.width = "0";
-        open = false;
-    }
-}
+});
   
-function closeNav(){
-    document.getElementById("mySidenav").style.width = "0";
-    open = false;
-}
+  // Add a mouseout event listener to the div element
+spanTexts.addEventListener("mouseout", function() {
+    for(spanLetter of spanLetters){
+        spanLetter.classList.remove("activeG");
+        spanLetter.classList.add("active");
+    }
+});

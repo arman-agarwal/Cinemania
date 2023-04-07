@@ -14,21 +14,27 @@
     <!-- Title of our application -->
     <div id="titleRow">
         <!-- making the logo clikable, when clicked, goes back to the home page -->
-        <a class = "Homelink" href="#">
-            <img id = "logo" src="./Images/logoTransparent.svg" alt="Logo">
-        </a>
-        <p class = "title"><span id = "Cine">Cine</span><span id="Mania">MaNia</span></p>
-        <!-- Profile button using bootstrap -->
-        <button id="profileButton" type="button" class="btn btn-outline-success" onclick="toggleNav()" >Profile</button>
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Profile</a>
-            <a href="#">Add Post</a>
-            <a href="#">Edit Posts</a>
+        <img class ="Homelink" id = "logo" src="./Images/logoTransparent.svg" alt="Logo">
+        <div class="hero">
+            <div class="MovieLogsTitle">
+                <h1>Movie Logs</h1>
+                    <a href="#">
+                        <div id="backText">
+                            <span class = "backLetter">C</span>
+                            <span class = "backLetter">I</span>
+                            <span class = "backLetter">N</span>
+                            <span class = "backLetter">E</span>
+                            <span class = "backLetter">M</span>
+                            <span class = "backLetter">A</span>
+                            <span class = "backLetter">N</span>
+                            <span class = "backLetter">I</span>
+                            <span class = "backLetter">A</span>
+                        </div>
+                    </a>
+            </div>
         </div>
-    </div>
-    <div id="sectionHeader">
-        <span id='MovieLogs'>Movie Logs...</span>
+        <!-- Profile button using bootstrap -->
+        <button id="profileButton" type="button" class="btn btn-outline-success" >Profile</button>
     </div>
     <!-- Adding the cards that have the posts-->
     <div id="cardsListDiv" class="card-container"> </div>
