@@ -1,3 +1,5 @@
+
+
 window.onload = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
     for(spanText of spanTexts){
@@ -28,7 +30,7 @@ window.onload = () => {
                         html = html.replace("Comment", data[i].comment_title);
                         html = html.replace("Comment title", data[i].comment_title);
                     }
-                    if(data[i].cardID != undefined){ //FIXME
+                    if(data[i].cardID != undefined){
                         html = html.replace("No Comments added yet!", data[i].comment);
                     }
                     html = html.replace(/exampleModal/g, "exampleModal"+i);
