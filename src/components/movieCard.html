@@ -1,19 +1,20 @@
 <center>
-  <div class = "movieCard" style="padding: 5px;">
-    <div style = "width: 250px; height: 525px;" class="card" style="width: 18rem;">
-      <img src="Image Address" style=" width: 250px; height:350px; margin-left: -1px; margin-top: -1px;" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title" >Movie Name</h5>
-        <p class="card-text">Star Rating</p>
-        <button id="commentButton" type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal" >Comment</button>
-        
+  <button id="card_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    <div class = "movieCard" style="padding: 5px;">
+      <div style = "width: 250px; height: 525px;" class="card" style="width: 18rem;">
+        <div id="image_container"><img id = "poster" src="Image Address" style=" width: 250px; height:350px; margin-left: -1px; margin-top: -1px;" class="card-img-top"></div>
+        <div class="card-body">
+          <h5 class="card-title" >Movie Name</h5>
+          <p class="card-text">Star Rating</p>
+          <span id="comment_text">Comment</span>
+          </div>
+        </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="changeModalColor">
                 <div class="modal-header ">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Comment title</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
                   No Comments added yet!
@@ -29,4 +30,5 @@
       </div>
     </div>
   </div>
+
 </center>

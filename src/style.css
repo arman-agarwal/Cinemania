@@ -56,14 +56,30 @@ body.dark-mode {
     display: none;
 }
 
-#commentButton{
+#card_button{
     background: transparent;
     border:0;
     text-decoration: none; 
     color: inherit;
+    padding:0px;
+    
 }
-#commentButton:hover{
+
+#image_container{
+    overflow: hidden;
+}
+
+#card_button:hover #comment_text {
     font-weight: bold;
+}
+#comment_text{
+    transition: transform 0.3s ease;
+}
+#poster{
+    transition: transform 0.3s ease;
+}
+#card_button:hover #poster {
+    transform: scale(1.08);
 }
 
 #themeButtons{
