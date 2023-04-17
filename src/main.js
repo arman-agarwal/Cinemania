@@ -320,13 +320,9 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
         alert("Incomplete Fields!");
         return;
     }
-    await fetch('../data.json')
-    .then(response => response.json())
-    .then(data => {
-        newMovieData["cardID"] = data.length + 1;
-        data.push(newMovieData);
-        console.log(data);
-    })
+    
+    writeMovies(newMovieData).then(data=>{console.log(data)})
+
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";
     document.getElementById("movieCommentTitle").value = "";
@@ -347,6 +343,15 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
 async function getMovies() {
     const response = await fetch(`http://localhost:3000/getAllMovies`, {
       method: 'GET',
+    });
+    const data = await response.json();
+    return data;
+    // console.log(data);
+}
+  
+async function writeMovies(newData) {
+    const response = await fetch(`http://localhost:3000/writeMovie?movie=${JSON.stringify(newData)}`, {
+      method: 'PUT',
     });
     const data = await response.json();
     return data;

@@ -8,6 +8,15 @@ const JSONfile = 'data.json';
 // NOTE: We changed the content type from text/html to application/json.
 const headerFields = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, DELETE, HEAD, OPTIONS, PUT, POST",'Content-Type': 'application/json' };
 
+async function saveMovies() {
+    try {
+      const newData = JSON.stringify(data, null, 2);
+      await writeFile(JSONfile, newData, { encoding: 'utf8' });
+    } catch (err) {
+      console.log(err);
+    }
+}
+
 async function reload(filename) {
   try {
     const input = await readFile(filename, { encoding: 'utf8' });
@@ -16,11 +25,24 @@ async function reload(filename) {
     data = {};
   }
 }
+
 await reload(JSONfile);
 
 async function readAllMovies(response) {
     response.writeHead(200, headerFields);
     response.write(JSON.stringify(data));
+    response.end();
+}
+
+async function writeNewMovie(response, newData) {
+    newData = JSON.parse(newData);
+    console.log("Hello " , newData);
+    newData["cardID"] = data.length + 1;
+    data.push(newData);
+    console.log(data)
+    await saveMovies();
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify({ success: true }));
     response.end();
 }
 
@@ -35,7 +57,10 @@ async function basicServer(request, response) {
     response.end();
   } else if (method == 'GET' && pathname.startsWith('/getAllMovies')) {
     await readAllMovies(response);
-  }else {
+  } else if (method == 'PUT' && pathname.startsWith('/writeMovie')){
+    console.log(options);
+    await writeNewMovie(response, options.movie);
+  } else {
     response.writeHead(404, headerFields);
     response.write(JSON.stringify({ error: 'Not Found' }));
     response.end();
