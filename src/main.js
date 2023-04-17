@@ -46,7 +46,6 @@ window.onload = () => {
                     }
                     // removing the last space
                     stars = stars.slice(0, -1);
-                    console.log(html)
                     html = html.replace("Star Rating", stars);
                     const cardComponent = document.createElement("div");
                     cardComponent.innerHTML = html;
@@ -98,10 +97,252 @@ spanTexts.addEventListener("mouseover", function() {
     }
 });
   
-  // Add a mouseout event listener to the div element
 spanTexts.addEventListener("mouseout", function() {
     for(spanLetter of spanLetters){
         spanLetter.classList.remove("activeG");
         spanLetter.classList.add("active");
     }
 });
+
+let newMovieData = {}
+
+document.getElementById("moviePoster").addEventListener("input",function(){
+    let imagedAddress = document.getElementById("moviePoster").value;
+    if(imagedAddress == ''){delete newMovieData["src"]}
+    else{newMovieData["src"] = imagedAddress;}
+})
+
+document.getElementById("movieName").addEventListener("input",function(){
+    let movieName = document.getElementById("movieName").value;
+    if(movieName == ''){delete newMovieData["name"]}
+    else{newMovieData["name"] = movieName;}
+})
+
+document.getElementById("movieCommentTitle").addEventListener("input",function(){
+    let commentTitle = document.getElementById("movieCommentTitle").value;
+    if(commentTitle == ''){delete newMovieData["comment_title"]}
+    else{newMovieData["comment_title"] = commentTitle;}
+})
+
+document.getElementById("commentAddMovie").addEventListener("input",function(){
+    let movieComment = document.getElementById("commentAddMovie").value;
+    if(movieComment == ''){delete newMovieData["comment"]}
+    else{newMovieData["comment"] = movieComment;}
+})
+
+let star1Selected = false;
+let star2Selected = false;
+let star3Selected = false;
+let star4Selected = false;
+let star5Selected = false;
+
+document.getElementById("addStar1").addEventListener('mouseover',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9733; ";
+    }
+})
+document.getElementById("addStar1").addEventListener('mouseout',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9734; ";
+    }
+})
+document.getElementById("addStar2").addEventListener('mouseover',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9733; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9733; ";
+    }
+})
+    
+document.getElementById("addStar2").addEventListener('mouseout',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9734; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9734; ";
+    }
+})
+document.getElementById("addStar3").addEventListener('mouseover',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9733; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9733; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9733; ";
+    }
+})
+document.getElementById("addStar3").addEventListener('mouseout',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9734; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9734; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9734; ";
+    }
+    
+})
+document.getElementById("addStar4").addEventListener('mouseover',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9733; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9733; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9733; ";
+    }
+    if(!star4Selected){
+        document.getElementById("addStar4").innerHTML = "&#9733; ";
+    }
+})
+document.getElementById("addStar4").addEventListener('mouseout',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9734; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9734; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9734; ";
+    }
+    if(!star4Selected){
+        document.getElementById("addStar4").innerHTML = "&#9734; ";
+    }
+})
+document.getElementById("addStar5").addEventListener('mouseover',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9733; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9733; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9733; ";
+    }
+    if(!star4Selected){
+        document.getElementById("addStar4").innerHTML = "&#9733; ";
+    }
+    if(!star5Selected){
+        document.getElementById("addStar5").innerHTML = "&#9733; ";
+    }
+    
+    
+})
+document.getElementById("addStar5").addEventListener('mouseout',function(){
+    if(!star1Selected){
+        document.getElementById("addStar1").innerHTML = "&#9734; ";
+    }
+    if(!star2Selected){
+        document.getElementById("addStar2").innerHTML = "&#9734; ";
+    }
+    if(!star3Selected){
+        document.getElementById("addStar3").innerHTML = "&#9734; ";
+    }
+    if(!star4Selected){
+        document.getElementById("addStar4").innerHTML = "&#9734; ";
+    }
+    if(!star5Selected){
+        document.getElementById("addStar5").innerHTML = "&#9734; ";
+    }
+})
+
+document.getElementById("addStar1").addEventListener('click',function(){
+    document.getElementById("addStar1").innerHTML = "&#9733; ";
+    document.getElementById("addStar2").innerHTML = "&#9734; ";
+    document.getElementById("addStar3").innerHTML = "&#9734; ";
+    document.getElementById("addStar4").innerHTML = "&#9734; ";
+    document.getElementById("addStar5").innerHTML = "&#9734; ";
+    star1Selected = true;
+    star2Selected = false;
+    star3Selected = false;
+    star4Selected = false;
+    star5Selected = false;
+    newMovieData["stars"] = 1;
+})
+document.getElementById("addStar2").addEventListener('click',function(){
+    document.getElementById("addStar1").innerHTML = "&#9733; ";
+    document.getElementById("addStar2").innerHTML = "&#9733; ";
+    document.getElementById("addStar3").innerHTML = "&#9734; ";
+    document.getElementById("addStar4").innerHTML = "&#9734; ";
+    document.getElementById("addStar5").innerHTML = "&#9734; ";
+    star1Selected = true;
+    star2Selected = true;
+    star3Selected = false;
+    star4Selected = false;
+    star5Selected = false;
+    newMovieData["stars"] = 2;
+})
+document.getElementById("addStar3").addEventListener('click',function(){
+    document.getElementById("addStar1").innerHTML = "&#9733; ";
+    document.getElementById("addStar2").innerHTML = "&#9733; ";
+    document.getElementById("addStar3").innerHTML = "&#9733; ";
+    document.getElementById("addStar4").innerHTML = "&#9734; ";
+    document.getElementById("addStar5").innerHTML = "&#9734; ";
+    star1Selected = true;
+    star2Selected = true;
+    star3Selected = true;
+    star4Selected = false;
+    star5Selected = false;
+    newMovieData["stars"] = 3;
+})
+document.getElementById("addStar4").addEventListener('click',function(){
+    document.getElementById("addStar1").innerHTML = "&#9733; ";
+    document.getElementById("addStar2").innerHTML = "&#9733; ";
+    document.getElementById("addStar3").innerHTML = "&#9733; ";
+    document.getElementById("addStar4").innerHTML = "&#9733; ";
+    document.getElementById("addStar5").innerHTML = "&#9734; ";
+    star1Selected = true;
+    star2Selected = true;
+    star3Selected = true;
+    star4Selected = true;
+    star5Selected = false;
+    newMovieData["stars"] = 4;
+})
+document.getElementById("addStar5").addEventListener('click',function(){
+    document.getElementById("addStar1").innerHTML = "&#9733; ";
+    document.getElementById("addStar2").innerHTML = "&#9733; ";
+    document.getElementById("addStar3").innerHTML = "&#9733; ";
+    document.getElementById("addStar4").innerHTML = "&#9733; ";
+    document.getElementById("addStar5").innerHTML = "&#9733; ";
+    star1Selected = true;
+    star2Selected = true;
+    star3Selected = true;
+    star4Selected = true;
+    star5Selected = true;
+    newMovieData["stars"] = 5;
+})
+
+document.getElementById("addNewMovie").addEventListener('click',async function(){
+    if(newMovieData["src"]==undefined || newMovieData["name"]==undefined || newMovieData["stars"]==undefined || newMovieData["comment_title"]==undefined){
+        alert("Incomplete Fields!");
+        return;
+    }
+    await fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+        newMovieData["cardID"] = data.length + 1;
+        data.push(newMovieData);
+        console.log(data);
+    })
+    document.getElementById("moviePoster").value = "";
+    document.getElementById("movieName").value = "";
+    document.getElementById("movieCommentTitle").value = "";
+    document.getElementById("commentAddMovie").value = "";
+    document.getElementById("addStar1").innerHTML = "&#9734; ";
+    document.getElementById("addStar2").innerHTML = "&#9734; ";
+    document.getElementById("addStar3").innerHTML = "&#9734; ";
+    document.getElementById("addStar4").innerHTML = "&#9734; ";
+    document.getElementById("addStar5").innerHTML = "&#9734; ";
+    star1Selected = false;
+    star2Selected = false;
+    star3Selected = false;
+    star4Selected = false;
+    star5Selected = false;
+    newMovieData = {};
+})
+

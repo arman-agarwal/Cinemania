@@ -202,3 +202,7 @@ body.dark-mode {
     background-color: rgb(42, 99, 99);
     border-radius: 5px;
 } 
+#addingStars:hover {
+    padding: auto;
+    cursor: pointer;
+}
