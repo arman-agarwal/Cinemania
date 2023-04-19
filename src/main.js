@@ -104,30 +104,6 @@ spanTexts.addEventListener("mouseout", function() {
 
 let newMovieData = {}
 
-document.getElementById("moviePoster").addEventListener("input",function(){
-    let imagedAddress = document.getElementById("moviePoster").value;
-    if(imagedAddress == ''){delete newMovieData["src"]}
-    else{newMovieData["src"] = imagedAddress;}
-})
-
-document.getElementById("movieName").addEventListener("input",function(){
-    let movieName = document.getElementById("movieName").value;
-    if(movieName == ''){delete newMovieData["name"]}
-    else{newMovieData["name"] = movieName;}
-})
-
-document.getElementById("movieCommentTitle").addEventListener("input",function(){
-    let commentTitle = document.getElementById("movieCommentTitle").value;
-    if(commentTitle == ''){delete newMovieData["comment_title"]}
-    else{newMovieData["comment_title"] = commentTitle;}
-})
-
-document.getElementById("commentAddMovie").addEventListener("input",function(){
-    let movieComment = document.getElementById("commentAddMovie").value;
-    if(movieComment == ''){delete newMovieData["comment"]}
-    else{newMovieData["comment"] = movieComment;}
-})
-
 let star1Selected = false;
 let star2Selected = false;
 let star3Selected = false;
@@ -315,12 +291,29 @@ document.getElementById("addStar5").addEventListener('click',function(){
     newMovieData["stars"] = 5;
 })
 
+document.getElementById("movieName").addEventListener("input",function(){
+    let movieName = document.getElementById("movieName").value;
+    if(movieName == ''){delete newMovieData["name"]}
+    else{newMovieData["name"] = movieName;}
+})
+
+document.getElementById("movieCommentTitle").addEventListener("input",function(){
+    let commentTitle = document.getElementById("movieCommentTitle").value;
+    if(commentTitle == ''){delete newMovieData["comment_title"]}
+    else{newMovieData["comment_title"] = commentTitle;}
+})
+
+document.getElementById("commentAddMovie").addEventListener("input",function(){
+    let movieComment = document.getElementById("commentAddMovie").value;
+    if(movieComment == ''){delete newMovieData["comment"]}
+    else{newMovieData["comment"] = movieComment;}
+})
+
+
 document.getElementById("addNewMovie").addEventListener('click',async function(){
-    if(newMovieData["src"]==undefined || newMovieData["name"]==undefined || newMovieData["stars"]==undefined || newMovieData["comment_title"]==undefined){
-        alert("Incomplete Fields!");
-        return;
-    }
-    
+    // const fileInput = document.getElementById('moviePoster').value;
+    // newMovieData["src"]=fileInput;
+
     writeMovies(newMovieData).then(data=>{console.log(data)})
 
     document.getElementById("moviePoster").value = "";
@@ -355,6 +348,5 @@ async function writeMovies(newData) {
     });
     const data = await response.json();
     return data;
-    // console.log(data);
 }
   

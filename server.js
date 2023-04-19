@@ -36,10 +36,8 @@ async function readAllMovies(response) {
 
 async function writeNewMovie(response, newData) {
     newData = JSON.parse(newData);
-    console.log("Hello " , newData);
     newData["cardID"] = data.length + 1;
     data.push(newData);
-    console.log(data)
     await saveMovies();
     response.writeHead(200, headerFields);
     response.write(JSON.stringify({ success: true }));
@@ -58,7 +56,6 @@ async function basicServer(request, response) {
   } else if (method == 'GET' && pathname.startsWith('/getAllMovies')) {
     await readAllMovies(response);
   } else if (method == 'PUT' && pathname.startsWith('/writeMovie')){
-    console.log(options);
     await writeNewMovie(response, options.movie);
   } else {
     response.writeHead(404, headerFields);

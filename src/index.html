@@ -67,6 +67,7 @@
                             <div>
                             <label for="moviePoster">Select an image to upload: </label> 
                             <input type="file" id="moviePoster" name="image">
+                            <!-- needs to be fixed because it gives a fake path -->
                             </div> <br> 
                             <div>    
                                 <label for="movieName">Name of the Movie: </label>
@@ -88,9 +89,10 @@
                             </div> 
                         </div>
                         <div class="modal-footer">
-                          <button id="saveNewMovie" type="button" class="btn btn-secondary">Save</button>
-                          <button id="addNewMovie" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                        <button id="saveNewMovie" type="button" class="btn btn-secondary">Save</button>
+                        <button id="addNewMovie" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
                         </div>
+                        
                       </div>
                     </div>
                   </div>
