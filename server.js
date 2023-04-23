@@ -37,8 +37,28 @@ async function readAllMovies(response) {
 async function writeNewMovie(response, newData) {
     newData = JSON.parse(newData);
     newData["cardID"] = data.length + 1;
+    if(newData['name']==undefined){
+        newData['name'] = '';
+    }
+    if(newData['stars']==undefined){
+        newData['stars'] = 0;
+    }
+    if(newData['comment_title']==undefined){
+        newData['comment_title'] = '';
+    }
+    if(newData['comment']==undefined){
+        newData['comment'] = '';
+    }
     data.push(newData);
     await saveMovies();
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify({ success: true }));
+    response.end();
+}
+
+async function uploadImage(response, formData){
+    formData = JSON.parse(formData);
+    console.log(formData);
     response.writeHead(200, headerFields);
     response.write(JSON.stringify({ success: true }));
     response.end();
@@ -57,6 +77,8 @@ async function basicServer(request, response) {
     await readAllMovies(response);
   } else if (method == 'PUT' && pathname.startsWith('/writeMovie')){
     await writeNewMovie(response, options.movie);
+  } else if (method == 'PUT' && pathname.startsWith('/uploadImage')){
+    await uploadImage(response, options.movie);
   } else {
     response.writeHead(404, headerFields);
     response.write(JSON.stringify({ error: 'Not Found' }));

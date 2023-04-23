@@ -22,11 +22,14 @@ window.onload = () => {
                     if(data[i].name != undefined){
                         html = html.replace("Movie Name", data[i].name);
                     }
+                    if(data[i].cardID != undefined){
+                        html = html.replace("functionCardIDValue", data[i].cardID);
+                    }
                     if(data[i].comment_title != undefined){
                         html = html.replace("Comment", data[i].comment_title);
                         html = html.replace("Comment title", data[i].comment_title);
                     }
-                    if(data[i].cardID != undefined){
+                    if(data[i].comment != undefined || data[i].comment != ""){
                         html = html.replace("No Comments added yet!", data[i].comment);
                     }
                     html = html.replace(/exampleModal/g, "exampleModal"+i);
@@ -45,6 +48,7 @@ window.onload = () => {
                     // removing the last space
                     stars = stars.slice(0, -1);
                     html = html.replace("Star Rating", stars);
+                    console.log(html);
                     const cardComponent = document.createElement("div");
                     cardComponent.innerHTML = html;
                     cardsDiv.appendChild(cardComponent);
@@ -54,14 +58,108 @@ window.onload = () => {
     })
 };
 
+const EditMovies = document.getElementById("EditMovies");
+const cancelMovies = document.getElementById("cancelEdit");
+
+EditMovies.addEventListener("click",function(){
+    const cardsDiv = document.getElementById("cardsListDiv");
+    cardsDiv.innerHTML = '';
+    getMovies().then(data=>{
+    for (let i = 0; i < data.length; i++) {
+        fetch('components/movieCard.html')
+            .then(response => response.text())
+            .then(html => {
+                if(data[i].src != undefined){
+                    html = html.replace("Image Address", data[i].src);
+                }
+                else{
+                    html = html.replace("Image Address", "movieImages/placeholder.jpeg");
+                }
+                if(data[i].name != undefined){
+                    html = html.replace("Movie Name", data[i].name);
+                }
+                if(data[i].comment_title != undefined){
+                    html = html.replace("Comment", data[i].comment_title);
+                    html = html.replace("Comment title", data[i].comment_title);
+                }
+                if(data[i].comment != undefined || data[i].comment != ""){
+                    html = html.replace("No Comments added yet!", data[i].comment);
+                }
+                html = html.replace(/exampleModal/g, "exampleModal"+i);
+                let stars = '';
+                for (let j = 1; j<=5; ++j){
+                    if(j<=data[i].stars){
+                        stars += "&#9733; ";
+                    }
+                    else{
+                        stars += "&#9734; ";
+                    }
+                }
+                stars = stars.slice(0, -1);
+                html = html.replace("Star Rating", stars);
+                html = html.replace("display: none;", "display:block;");
+                const cardComponent = document.createElement("div");
+                cardComponent.innerHTML = html;
+                cardsDiv.appendChild(cardComponent);
+            })
+            .catch(error => console.error(error));
+        }
+    })
+})
+
+cancelMovies.addEventListener("click",function(){
+    const cardsDiv = document.getElementById("cardsListDiv");
+    cardsDiv.innerHTML = '';
+    getMovies().then(data=>{
+    for (let i = 0; i < data.length; i++) {
+        fetch('components/movieCard.html')
+            .then(response => response.text())
+            .then(html => {
+                if(data[i].src != undefined){
+                    html = html.replace("Image Address", data[i].src);
+                }
+                else{
+                    html = html.replace("Image Address", "movieImages/placeholder.jpeg");
+                }
+                if(data[i].name != undefined){
+                    html = html.replace("Movie Name", data[i].name);
+                }
+                if(data[i].comment_title != undefined){
+                    html = html.replace("Comment", data[i].comment_title);
+                    html = html.replace("Comment title", data[i].comment_title);
+                }
+                if(data[i].comment != undefined || data[i].comment != ""){
+                    html = html.replace("No Comments added yet!", data[i].comment);
+                }
+
+                html = html.replace(/exampleModal/g, "exampleModal"+i);
+                let stars = '';
+                for (let j = 1; j<=5; ++j){
+                    if(j<=data[i].stars){
+                        stars += "&#9733; ";
+                    }
+                    else{
+                        stars += "&#9734; ";
+                    }
+                }
+                stars = stars.slice(0, -1);
+                html = html.replace("Star Rating", stars);
+                const cardComponent = document.createElement("div");
+                cardComponent.innerHTML = html;
+                cardsDiv.appendChild(cardComponent);
+            })
+            .catch(error => console.error(error));
+        }
+    })
+})
+
+
 const light = document.getElementById("lightButton");
 const dark = document.getElementById("darkButton");
 const sun = document.getElementById("sunImg");
 const moon = document.getElementById("moonImg");
 const body = document.body;
 const profileButton = document.getElementById("profileButton");
-
-
 
 light.addEventListener("click", function() {
 moon.classList.add("img-faded");
@@ -102,7 +200,7 @@ spanTexts.addEventListener("mouseout", function() {
     }
 });
 
-let newMovieData = {}
+let newMovieData = {};
 
 let star1Selected = false;
 let star2Selected = false;
@@ -236,6 +334,7 @@ document.getElementById("addStar1").addEventListener('click',function(){
     star3Selected = false;
     star4Selected = false;
     star5Selected = false;
+    // newMovieData.append('stars', 1);
     newMovieData["stars"] = 1;
 })
 document.getElementById("addStar2").addEventListener('click',function(){
@@ -249,6 +348,7 @@ document.getElementById("addStar2").addEventListener('click',function(){
     star3Selected = false;
     star4Selected = false;
     star5Selected = false;
+    // newMovieData.append('stars', 2);
     newMovieData["stars"] = 2;
 })
 document.getElementById("addStar3").addEventListener('click',function(){
@@ -262,6 +362,7 @@ document.getElementById("addStar3").addEventListener('click',function(){
     star3Selected = true;
     star4Selected = false;
     star5Selected = false;
+    // newMovieData.append('stars', 3);
     newMovieData["stars"] = 3;
 })
 document.getElementById("addStar4").addEventListener('click',function(){
@@ -275,6 +376,7 @@ document.getElementById("addStar4").addEventListener('click',function(){
     star3Selected = true;
     star4Selected = true;
     star5Selected = false;
+    // newMovieData.append('stars', 4);
     newMovieData["stars"] = 4;
 })
 document.getElementById("addStar5").addEventListener('click',function(){
@@ -309,11 +411,10 @@ document.getElementById("commentAddMovie").addEventListener("input",function(){
     else{newMovieData["comment"] = movieComment;}
 })
 
-
 document.getElementById("addNewMovie").addEventListener('click',async function(){
-    // const fileInput = document.getElementById('moviePoster').value;
-    // newMovieData["src"]=fileInput;
-
+    const file = document.getElementById('moviePoster').files[0];
+    const formData = new FormData();
+    formData.append('image', file);
     writeMovies(newMovieData).then(data=>{console.log(data)})
 
     document.getElementById("moviePoster").value = "";
@@ -338,8 +439,8 @@ async function getMovies() {
       method: 'GET',
     });
     const data = await response.json();
-    return data;
     // console.log(data);
+    return data;
 }
   
 async function writeMovies(newData) {
@@ -349,4 +450,5 @@ async function writeMovies(newData) {
     const data = await response.json();
     return data;
 }
-  
+
+
