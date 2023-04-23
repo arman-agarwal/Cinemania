@@ -1,13 +1,12 @@
 body {
-    background-color: white;
-    color: black;
+    background-color: rgba(218, 214, 214, 0.596);
+    color: #151414f6;
     transition: background-color 0.5s ease, color 0.5s ease;
-  }
+}
 body.dark-mode {
-    background-color: #333333;
-    color: white;
+    background-color: #151414f6; /*black*/
+    color: rgba(218, 214, 214, 0.596); /*white*/
 }  
-
 .title{
     align-items: center;
     font-size: 62px;
@@ -26,7 +25,7 @@ body.dark-mode {
 #titleRow{
     display: flex;
     justify-content: space-between;
-    background-color:lightblue;
+    background-color: #a3ac88a1;
     height: 150px;
 }
 #profileButton{
@@ -42,23 +41,21 @@ body.dark-mode {
     justify-content: center;
     align-items: center;
 }
-
-
 .card-container {
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
     margin-top: 20px;
-  }
-  
+}
+
 .card-container::-webkit-scrollbar {
     display: none;
 }
 
 #card_button{
     background: transparent;
-    border:0;
+    border: 0;
     text-decoration: none; 
     color: inherit;
     padding:0px;
@@ -107,7 +104,7 @@ body.dark-mode {
 #addButtonText{
     padding: 10px;
     font-size: 22px;  
-    color:teal;   
+    color: black;  
 }
 
 .dark-mode #sunImg {
@@ -119,7 +116,7 @@ body.dark-mode {
 }
 
 .dark-mode #titleRow{
-    background-color: darkcyan;
+    background-color: #e1dbd6;
 };
 
 .dark-mode .movieCard{
