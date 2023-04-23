@@ -19,13 +19,11 @@ window.onload = () => {
                     else{
                         html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                     }
-                    if(data[i].name != undefined){
+                    if(data[i].name != undefined || data[i].name != ""){
                         html = html.replace("Movie Name", data[i].name);
                     }
-                    if(data[i].cardID != undefined){
-                        html = html.replace("functionCardIDValue", data[i].cardID);
-                    }
-                    if(data[i].comment_title != undefined){
+                    html = html.replace(/cardIDNumberValue/g, data[i].cardID);
+                    if(data[i].comment_title != undefined || data[i].comment_title != ""){
                         html = html.replace("Comment", data[i].comment_title);
                         html = html.replace("Comment title", data[i].comment_title);
                     }
@@ -48,7 +46,6 @@ window.onload = () => {
                     // removing the last space
                     stars = stars.slice(0, -1);
                     html = html.replace("Star Rating", stars);
-                    console.log(html);
                     const cardComponent = document.createElement("div");
                     cardComponent.innerHTML = html;
                     cardsDiv.appendChild(cardComponent);
@@ -75,10 +72,11 @@ EditMovies.addEventListener("click",function(){
                 else{
                     html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                 }
-                if(data[i].name != undefined){
+                if(data[i].name != undefined || data[i].name != ""){
                     html = html.replace("Movie Name", data[i].name);
                 }
-                if(data[i].comment_title != undefined){
+                html = html.replace(/cardIDNumberValue/g, data[i].cardID);
+                if(data[i].comment_title != undefined || data[i].comment_title != ""){
                     html = html.replace("Comment", data[i].comment_title);
                     html = html.replace("Comment title", data[i].comment_title);
                 }
@@ -121,10 +119,11 @@ cancelMovies.addEventListener("click",function(){
                 else{
                     html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                 }
-                if(data[i].name != undefined){
+                if(data[i].name != undefined || data[i].name != ""){
                     html = html.replace("Movie Name", data[i].name);
                 }
-                if(data[i].comment_title != undefined){
+                html = html.replace(/cardIDNumberValue/g, data[i].cardID);
+                if(data[i].comment_title != undefined || data[i].comment_title != ""){
                     html = html.replace("Comment", data[i].comment_title);
                     html = html.replace("Comment title", data[i].comment_title);
                 }
@@ -451,4 +450,6 @@ async function writeMovies(newData) {
     return data;
 }
 
-
+function deletePost(cardID){
+    console.log(cardID);
+}

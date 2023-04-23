@@ -6,18 +6,13 @@
         <div class="card-body">
           <h5 class="card-title" >Movie Name</h5>
           <p class="card-text">Star Rating</p>
-          <span id="comment_text">Comment</span>
+          <span id="comment_text">Comment</span><br>
+          <span id="cardIDNum">cardIDNumberValue</span>
         </div>
       </div>
     </div>
   </button>
-  <button id="deletePost" class="btn btn-danger" style="display: none;" >Delete Post</button>
-  <script>
-  let functionCardID = "functionCardIDValue";        
-  document.getElementById("deletePost").addEventListener("click", function() {
-    console.log(functionCardID);
-  })
-  </script>
+  <button onclick="deletePost(`cardIDNumberValue`)" class="btn btn-danger" style="display: none;">Delete Post</button>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
