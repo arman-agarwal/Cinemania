@@ -189,13 +189,13 @@ body.dark-mode {
 #backText .backLetter:nth-child(9){transition-delay: 0.5s;}
 
 .changeModalColor{
-    color: rgb(208, 24, 24);
+    color: #e1dbd6;
     background-color: #a3ac88a1;
     border-radius: 5px;
 }
 
 .dark-mode .changeModalColor{
     color: #a3ac88a1;
-    background-color: rgb(42, 99, 99);
+    background-color: #e1dbd6;
     border-radius: 5px;
 } 
