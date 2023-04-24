@@ -439,6 +439,11 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
     newMovieData = {};
 })
 
+function confirmDelete(cardID){
+    crud.deleteMovie(cardID).then(data=>{console.log(data)})
+}
+
+window.confirmDelete = confirmDelete;
 
 // async function getMovies() {
 //     const response = await fetch(`http://localhost:3000/getAllMovies`, {
