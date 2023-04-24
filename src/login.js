@@ -1,5 +1,6 @@
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
+let signupButton, loginButton;
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
@@ -34,10 +35,18 @@ spanTexts.addEventListener("mouseout", function () {
     spanLetter.classList.add("active");
   }
 });
-let signupButton, loginButton;
+
 function refreshButtons() {
   signupButton = document.getElementById("signupButton");
   loginButton = document.getElementById("loginButton");
+  let submitButton =  document.getElementById("submit");
+  if(submitButton!=undefined){
+  submitButton.addEventListener("click",()=>{
+    console.log("here");
+    location.href='index.html';
+    refreshFields();
+  });
+  }
   if (signupButton != undefined) {
     signupButton.addEventListener("click", () => {
       loginPage.removeChild(document.getElementById("replace"));
@@ -55,6 +64,7 @@ function refreshButtons() {
       refreshButtons();
     });
   }
+  
 }
 
 function refreshFields() {
@@ -93,3 +103,4 @@ function setDefault() {
 setTimeout(() => {
   refreshButtons();
 }, 50);
+

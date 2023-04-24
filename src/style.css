@@ -239,9 +239,14 @@ body.dark-mode {
 .input::placeholder, .input{
    width: auto;
     background-color: inherit ;
-    color: white;
     font-size: 15px;
     border-width: 1px;
     padding-left: 5px;
     border-color: rgba(0,0,0,0.5);
+    border-radius: 10% / 80%;
+}
+
+.input{
+    color:white;
+    font-size: 18px;
 }
