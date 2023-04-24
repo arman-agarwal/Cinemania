@@ -237,7 +237,7 @@ body.dark-mode {
 }
 
 .input::placeholder, .input{
-    width: fit-content;
+   width: auto;
     background-color: inherit ;
     color: white;
     font-size: 15px;
