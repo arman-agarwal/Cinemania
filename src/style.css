@@ -250,9 +250,20 @@ body.dark-mode {
     color:white;
 }
 .input:focus{
-    font-size: 16px;
+    transition: transform .3s ease;
+    transform: translate(3px,3px);
+    outline: none;
 }
 
 #submit,#loginButton,#signupButton{
-    
+    background-color: white;
+    border: none;
+    margin: 5px;
+    padding: 4px 7px;
+}
+#submit{
+    border-radius: 40%/80%;
+}
+#loginButton,#signupButton{
+border-radius: 15%/80%;
 }

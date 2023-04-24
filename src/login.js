@@ -40,24 +40,11 @@ function refreshButtons() {
   signupButton = document.getElementById("signupButton");
   loginButton = document.getElementById("loginButton");
   submitButton = document.getElementById("submit");
+  console.log("here");
   submitButton.addEventListener("click", () => {
-    let email = document.getElementById("email");
-    if (email != null) {
-      let regex = /\S+@\S+\.\S+$/;
-      if (!regex.test(email.value)) {
-        alert("invalid email");
-        return;
-      }
+    if (checkData() != false) {
+      location.href = "index.html";
     }
-    let password = document.getElementById("password").value;
-      if(document.getElementById("login")===null){
-    if (!checkStrength(password)) {
-      alert("weak password");
-      return;
-    }
-  }
-    location.href = "index.html";
-    refreshFields();
   });
 
   if (signupButton != undefined) {
@@ -119,11 +106,30 @@ function checkStrength(password) {
   if (
     "string" !== typeof password ||
     password.length < 5 ||
-    (firstName != undefined && password.includes(firstName.value)) ||
-    (lastName != undefined && password.includes(lastName.value)) ||
-    (username != undefined && password.includes(username.value))
+    (firstName !== undefined && firstName.value.length!==0 && password.includes(firstName.value)) ||
+    (lastName !== undefined && lastName.value.length!==0 && password.includes(lastName.value)) ||
+    (username !== undefined && username.value.length!==0 &&  password.includes(username.value))
   ) {
     return false;
+  }
+  return true;
+}
+
+function checkData() {
+  let email = document.getElementById("email");
+  if (email != null) {
+    let regex = /\S+@\S+\.\S+$/;
+    if (!regex.test(email.value)) {
+      alert("invalid email");
+      return false;
+    }
+  }
+  let password = document.getElementById("password").value;
+  if (document.getElementById("login") === null) {
+    if (!checkStrength(password)) {
+      alert("weak password");
+      return false;
+    }
   }
   return true;
 }
