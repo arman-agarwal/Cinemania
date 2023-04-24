@@ -5,7 +5,6 @@ import { readFile, writeFile } from 'fs/promises';
 let data = {};
 const JSONfile = 'data.json';
 
-// NOTE: We changed the content type from text/html to application/json.
 const headerFields = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, DELETE, HEAD, OPTIONS, PUT, POST",'Content-Type': 'application/json' };
 
 async function saveMovies() {

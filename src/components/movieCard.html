@@ -1,4 +1,5 @@
 <center>
+  <!-- main button itself  -->
   <button id="card_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
     <div class = "movieCard" style="padding: 5px;">
       <div style = "width: 250px; height: 525px;" class="card" style="width: 18rem;">
@@ -11,6 +12,7 @@
       </div>
     </div>
   </button>
+  <!-- modal to show the comment of a movie  -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -28,7 +30,9 @@
       </div>
     </div>
   </div>
+  <!-- button that deletes a post  -->
   <button type="button" data-bs-toggle="modal" data-bs-target="#confirmPostStatus" class="btn btn-danger" style="display: none;">Delete Post</button>
+  <!-- modal to confirm deleting post  -->
   <div class="modal fade" id="confirmPostStatus" tabindex="-1" aria-labelledby="confirmPostStatusLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">

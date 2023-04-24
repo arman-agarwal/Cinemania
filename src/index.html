@@ -13,8 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <!-- Title of our application -->
     <div id="titleRow">
-        <!-- making the logo clikable, when clicked, goes back to the home page -->
+        <!-- Logo -->
         <img class ="Homelink" id = "logo" src="./Images/logoTransparent.svg" alt="Logo">
+        <!-- the cinemania effect of the title bar-->
         <div class="hero">
             <div class="MovieLogsTitle">
                 <h1>Movie Logs</h1>
@@ -40,6 +41,7 @@
     <div style = "margin-left: 10px; margin-right: 10px;" id="cardsListDiv" class="card-container"> </div>
     <!-- Adding the row of buttons for theme and making a new post -->
     <div style="display: flex; justify-content: space-between;">
+        <!-- theme buttons -->
         <div id = 'themeButtons'>
             <img id="sunImg" src="./Images/icons8-light-mode-78.png">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -52,12 +54,14 @@
             <img id="moonImg" src="./Images/icons8-moon-symbol-50.png"> 
         </div>
         <div id = 'addButton'>
+            <!-- add new movie button  -->
             <div style="display: flex; justify-content: center; align-items: center;">
-                <button id="cancelEdit">cancel</button>
-                <button id="EditMovies">Delete</button>
+                <!-- could make this a toggle in the profile section, and would also have to edit the main.js for the buttons respectively -->
+                <button id="cancelEdit">cancel</button> <!-- Need to delete and include in the profile section -->
+                <button id="EditMovies">Delete</button> <!-- Need to delete and include in the profile section -->
                 <span id="addButtonText">New Movie</span>
                 <button type="button" class=" w3-button w3-large w3-circle w3-teal" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >+</button>
-            
+                <!-- modal to add the new button  -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">

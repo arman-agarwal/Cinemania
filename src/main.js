@@ -14,7 +14,7 @@ const main = () => {
             fetch('components/movieCard.html')
                 .then(response => response.text())
                 .then(html => {
-                    // replacing the movie's name, image address, and the comment 
+                    // replacing the movie's name, image address, the comment_title, the starts and the cardID  
                     if(data[i].src != undefined){
                         html = html.replace("Image Address", data[i].src);
                     }
@@ -59,6 +59,7 @@ const main = () => {
 };
 window.addEventListener('load', main);
 
+// functions to handle the delete post and canel buttons, that simply unhide the delete post buttons in the movieCard component. 
 const EditMovies = document.getElementById("EditMovies");
 const cancelMovies = document.getElementById("cancelEdit");
 
@@ -157,7 +158,7 @@ cancelMovies.addEventListener("click",function(){
         }
     })
 })
-
+// functions to change the button colors when in dark and light mode. 
 const light = document.getElementById("lightButton");
 const dark = document.getElementById("darkButton");
 const sun = document.getElementById("sunImg");
@@ -187,6 +188,8 @@ profileButton.classList.add("btn-danger");
 
 });
 
+// functions to handle the CINEMANIA entry and hover effects
+
 let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
 
@@ -204,6 +207,8 @@ spanTexts.addEventListener("mouseout", function() {
     }
 });
 
+// making a new object to store the new movie data
+
 let newMovieData = {};
 
 let star1Selected = false;
@@ -211,6 +216,8 @@ let star2Selected = false;
 let star3Selected = false;
 let star4Selected = false;
 let star5Selected = false;
+
+// functions to make the starts dynamic when hovered over and cliclked
 
 document.getElementById("addStar1").addEventListener('mouseover',function(){
     if(!star1Selected){
@@ -338,7 +345,6 @@ document.getElementById("addStar1").addEventListener('click',function(){
     star3Selected = false;
     star4Selected = false;
     star5Selected = false;
-    // newMovieData.append('stars', 1);
     newMovieData["stars"] = 1;
 })
 document.getElementById("addStar2").addEventListener('click',function(){
@@ -352,7 +358,6 @@ document.getElementById("addStar2").addEventListener('click',function(){
     star3Selected = false;
     star4Selected = false;
     star5Selected = false;
-    // newMovieData.append('stars', 2);
     newMovieData["stars"] = 2;
 })
 document.getElementById("addStar3").addEventListener('click',function(){
@@ -366,7 +371,6 @@ document.getElementById("addStar3").addEventListener('click',function(){
     star3Selected = true;
     star4Selected = false;
     star5Selected = false;
-    // newMovieData.append('stars', 3);
     newMovieData["stars"] = 3;
 })
 document.getElementById("addStar4").addEventListener('click',function(){
@@ -380,7 +384,6 @@ document.getElementById("addStar4").addEventListener('click',function(){
     star3Selected = true;
     star4Selected = true;
     star5Selected = false;
-    // newMovieData.append('stars', 4);
     newMovieData["stars"] = 4;
 })
 document.getElementById("addStar5").addEventListener('click',function(){
@@ -397,23 +400,24 @@ document.getElementById("addStar5").addEventListener('click',function(){
     newMovieData["stars"] = 5;
 })
 
+// functions to store data in the object
+
 document.getElementById("movieName").addEventListener("input",function(){
     let movieName = document.getElementById("movieName").value;
-    if(movieName == ''){delete newMovieData["name"]}
-    else{newMovieData["name"] = movieName;}
+    if(movieName != ''){newMovieData["name"] = movieName;}
 })
 
 document.getElementById("movieCommentTitle").addEventListener("input",function(){
     let commentTitle = document.getElementById("movieCommentTitle").value;
-    if(commentTitle == ''){delete newMovieData["comment_title"]}
-    else{newMovieData["comment_title"] = commentTitle;}
+    if(commentTitle != ''){newMovieData["comment_title"] = commentTitle;}
 })
 
 document.getElementById("commentAddMovie").addEventListener("input",function(){
     let movieComment = document.getElementById("commentAddMovie").value;
-    if(movieComment == ''){delete newMovieData["comment"]}
-    else{newMovieData["comment"] = movieComment;}
+    if(movieComment != ''){newMovieData["comment"] = movieComment;}
 })
+
+// Event listener that sends the data of a new movie to the server to add it to the data base
 
 document.getElementById("addNewMovie").addEventListener('click',async function(){
     crud.writeMovies(newMovieData).then(data=>{console.log(data)});
@@ -439,6 +443,8 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
     star5Selected = false;
     newMovieData = {};
 })
+
+// functions that sends the cardID to the server to delete that card
 
 function confirmDelete(cardID){
     crud.deleteMovie(cardID).then(data=>{console.log(data)})
