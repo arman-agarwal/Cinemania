@@ -78,7 +78,6 @@ body.dark-mode {
 #card_button:hover #poster {
     transform: scale(1.08);
 }
-
 #themeButtons{
     margin-top: 40px;
     margin-left: 25px;
@@ -127,8 +126,9 @@ body.dark-mode {
 
 .dark-mode .card{
     transition: background-color 0.5s ease, color 0.5s ease;
-    background-color: lavender;
+    background-color: #e1dbd6;
 } 
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
