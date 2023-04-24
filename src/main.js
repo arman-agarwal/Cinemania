@@ -21,15 +21,15 @@ const main = () => {
                     else{
                         html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                     }
-                    if(data[i].name != undefined || data[i].name != ""){
+                    if(data[i].name != undefined && data[i].name != ""){
                         html = html.replace("Movie Name", data[i].name);
                     }
                     html = html.replace(/cardIDNumberValue/g, data[i].cardID);
-                    if(data[i].comment_title != undefined || data[i].comment_title != ""){
+                    if(data[i].comment_title != undefined && data[i].comment_title != ""){
                         html = html.replace("Comment", data[i].comment_title);
                         html = html.replace("Comment title", data[i].comment_title);
                     }
-                    if(data[i].comment != undefined || data[i].comment != ""){
+                    if(data[i].comment != undefined && data[i].comment != ""){
                         html = html.replace("No Comments added yet!", data[i].comment);
                     }
                     html = html.replace(/exampleModal/g, "exampleModal"+i);
@@ -77,15 +77,15 @@ EditMovies.addEventListener("click",function(){
                 else{
                     html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                 }
-                if(data[i].name != undefined || data[i].name != ""){
+                if(data[i].name != undefined && data[i].name != ""){
                     html = html.replace("Movie Name", data[i].name);
                 }
                 html = html.replace(/cardIDNumberValue/g, data[i].cardID);
-                if(data[i].comment_title != undefined || data[i].comment_title != ""){
+                if(data[i].comment_title != undefined && data[i].comment_title != ""){
                     html = html.replace("Comment", data[i].comment_title);
                     html = html.replace("Comment title", data[i].comment_title);
                 }
-                if(data[i].comment != undefined || data[i].comment != ""){
+                if(data[i].comment != undefined && data[i].comment != ""){
                     html = html.replace("No Comments added yet!", data[i].comment);
                 }
                 html = html.replace(/exampleModal/g, "exampleModal"+i);
@@ -126,15 +126,15 @@ cancelMovies.addEventListener("click",function(){
                 else{
                     html = html.replace("Image Address", "movieImages/placeholder.jpeg");
                 }
-                if(data[i].name != undefined || data[i].name != ""){
+                if(data[i].name != undefined && data[i].name != ""){
                     html = html.replace("Movie Name", data[i].name);
                 }
                 html = html.replace(/cardIDNumberValue/g, data[i].cardID);
-                if(data[i].comment_title != undefined || data[i].comment_title != ""){
+                if(data[i].comment_title != undefined && data[i].comment_title != ""){
                     html = html.replace("Comment", data[i].comment_title);
                     html = html.replace("Comment title", data[i].comment_title);
                 }
-                if(data[i].comment != undefined || data[i].comment != ""){
+                if(data[i].comment != undefined && data[i].comment != ""){
                     html = html.replace("No Comments added yet!", data[i].comment);
                 }
                 html = html.replace(/exampleModal/g, "exampleModal"+i);

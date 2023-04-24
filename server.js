@@ -3,66 +3,60 @@ import * as url from 'url';
 import PouchDB from 'pouchdb';
 import { readFile, writeFile } from 'fs/promises';
 
-let data = {};
-const JSONfile = 'data.json';
+let dbLen = 0;
 
 let db = new PouchDB('movieStorage');
 
 const headerFields = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, DELETE, HEAD, OPTIONS, PUT, POST",'Content-Type': 'application/json' };
 
-async function saveMovies() {
-    try {
-      const newData = JSON.stringify(data, null, 2);
-      await writeFile(JSONfile, newData, { encoding: 'utf8' });
-    } catch (err) {
-      console.log(err);
-    }
+async function reload() {
+  db.allDocs({
+    include_docs: true, 
+    attachments: true 
+  }).then(function (result) {
+    dbLen = result.rows.length;
+  }).catch(function (err) {
+    console.log(err);
+  });
 }
 
-async function reload(filename) {
-  try {
-    const input = await readFile(filename, { encoding: 'utf8' });
-    data = JSON.parse(input);
-  } catch (err) {
-    data = {};
-  }
-}
-
-await reload(JSONfile);
+await reload();
 
 async function readAllMovies(response) {
-  // db.allDocs({
-  //   include_docs: true, 
-  //   attachments: true 
-  // }).then(function (result) {
-  //   response.writeHead(200, headerFields);
-  //   response.write(JSON.stringify(result.rows));
-  //   response.end();
-  // }).catch(function (err) {
-  //   console.log(err);
-  // });
-  response.writeHead(200, headerFields);
-  response.write(JSON.stringify(data));
-  response.end();
+  db.allDocs({
+    include_docs: true, 
+    attachments: true 
+  }).then(function (result) {
+    console.log(result.rows);
+    let data = [];
+    for (let i = 0; i<result.rows.length; ++i){
+      let temp = {
+        "cardID":result.rows[i].id,
+        "src":result.rows[i].doc.src,
+        "name":result.rows[i].doc.name,
+        "stars":result.rows[i].doc.stars,
+        "comment_title":result.rows[i].doc.comment_title,
+        "comment":result.rows[i].doc.comment
+      };
+      data.push(temp);
+    }
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify(data));
+    response.end();
+  }).catch(function (err) {
+    console.log(err);
+  });
 }
 
 async function writeNewMovie(response, newData) {
     newData = JSON.parse(newData);
-    newData["id"] = data.length + 1;
-    if(newData['name']==undefined){
-        newData['name'] = '';
-    }
+    let id = dbLen + 1;
+    newData["_id"] = id.toString();
+    dbLen = dbLen + 1;
     if(newData['stars']==undefined){
         newData['stars'] = 0;
     }
-    if(newData['comment_title']==undefined){
-        newData['comment_title'] = '';
-    }
-    if(newData['comment']==undefined){
-        newData['comment'] = '';
-    }
-    data.push(newData);
-    await saveMovies();
+    db.put(newData);
     response.writeHead(200, headerFields);
     response.write(JSON.stringify({ success: true }));
     response.end();
@@ -76,10 +70,9 @@ async function writeNewMovie(response, newData) {
 // }
 
 async function deleteMovie(response, cardID){
-    cardID = parseInt(cardID);
-    let index = data.findIndex(obj => obj.cardID === cardID);
-    data.splice(index, 1);
-    await saveMovies();
+    db.get(cardID).then(function (doc) {
+      return db.remove(doc);
+    });
     response.writeHead(200, headerFields);
     response.write(JSON.stringify({ success: true }));
     response.end();
