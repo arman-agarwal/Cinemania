@@ -25,7 +25,7 @@ body.dark-mode {
 #titleRow{
     display: flex;
     justify-content: space-between;
-    background-color: #a3ac88a1;
+    background-color: #a3ac88a1;  /*in white banner*/
     height: 150px;
 }
 #profileButton{
