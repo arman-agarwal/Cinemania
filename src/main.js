@@ -1,12 +1,15 @@
-window.onload = () => {
+// import {deleteMovie, getMovies, writeMovies} from "./api_methods.js";
+import * as crud from './api_methods.js';
+
+const main = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
-    for(spanText of spanTexts){
+    for(let spanText of spanTexts){
         spanText.classList.add("active")
     }
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
     // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable
-    getMovies().then(data=>{
+    crud.getMovies().then(data=>{
         // for all the objects in the json file, we make a new component and append it to the main div
         for (let i = 0; i < data.length; i++) {
             fetch('components/movieCard.html')
@@ -55,6 +58,7 @@ window.onload = () => {
         }
     })
 };
+window.addEventListener('load', main);
 
 const EditMovies = document.getElementById("EditMovies");
 const cancelMovies = document.getElementById("cancelEdit");
@@ -62,7 +66,7 @@ const cancelMovies = document.getElementById("cancelEdit");
 EditMovies.addEventListener("click",function(){
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
-    getMovies().then(data=>{
+    crud.getMovies().then(data=>{
     for (let i = 0; i < data.length; i++) {
         fetch('components/movieCard.html')
             .then(response => response.text())
@@ -111,7 +115,7 @@ EditMovies.addEventListener("click",function(){
 cancelMovies.addEventListener("click",function(){
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
-    getMovies().then(data=>{
+    crud.getMovies().then(data=>{
     for (let i = 0; i < data.length; i++) {
         fetch('components/movieCard.html')
             .then(response => response.text())
@@ -155,7 +159,6 @@ cancelMovies.addEventListener("click",function(){
     })
 })
 
-
 const light = document.getElementById("lightButton");
 const dark = document.getElementById("darkButton");
 const sun = document.getElementById("sunImg");
@@ -189,14 +192,14 @@ let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
 
 spanTexts.addEventListener("mouseover", function() {
-    for(spanLetter of spanLetters){
+    for(let spanLetter of spanLetters){
         spanLetter.classList.remove("active");
         spanLetter.classList.add("activeG");
     }
 });
   
 spanTexts.addEventListener("mouseout", function() {
-    for(spanLetter of spanLetters){
+    for(let spanLetter of spanLetters){
         spanLetter.classList.remove("activeG");
         spanLetter.classList.add("active");
     }
@@ -417,7 +420,7 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
     const file = document.getElementById('moviePoster').files[0];
     const formData = new FormData();
     formData.append('image', file);
-    writeMovies(newMovieData).then(data=>{console.log(data)})
+    crud.writeMovies(newMovieData).then(data=>{console.log(data)})
 
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";
@@ -436,30 +439,27 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
     newMovieData = {};
 })
 
-function confirmDelete(cardID){
-    deleteMovie(cardID).then(data=>{console.log(data)});
-}
 
-async function getMovies() {
-    const response = await fetch(`http://localhost:3000/getAllMovies`, {
-      method: 'GET',
-    });
-    const data = await response.json();
-    return data;
-}
+// async function getMovies() {
+//     const response = await fetch(`http://localhost:3000/getAllMovies`, {
+//       method: 'GET',
+//     });
+//     const data = await response.json();
+//     return data;
+// }
   
-async function writeMovies(newData) {
-    const response = await fetch(`http://localhost:3000/writeMovie?movie=${JSON.stringify(newData)}`, {
-      method: 'PUT',
-    });
-    const data = await response.json();
-    return data;
-}
+// async function writeMovies(newData) {
+//     const response = await fetch(`http://localhost:3000/writeMovie?movie=${JSON.stringify(newData)}`, {
+//       method: 'PUT',
+//     });
+//     const data = await response.json();
+//     return data;
+// }
 
-async function deleteMovie(cardID){
-    const response = await fetch(`http://localhost:3000/deleteMovie?cardID=${cardID}`, {
-        method: 'DELETE',
-      }); 
-    const data = await response.json();
-    return data;
-}
+// async function deleteMovie(cardID){
+//     const response = await fetch(`http://localhost:3000/deleteMovie?cardID=${cardID}`, {
+//         method: 'DELETE',
+//       }); 
+//     const data = await response.json();
+//     return data;
+// }

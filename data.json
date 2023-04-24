@@ -30,5 +30,12 @@
     "stars": 3,
     "comment_title": "Could be better",
     "comment": "Great movie 4"
+  },
+  {
+    "cardID": 5,
+    "name": "",
+    "stars": 0,
+    "comment_title": "",
+    "comment": ""
   }
 ]
