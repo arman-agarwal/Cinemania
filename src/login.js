@@ -41,35 +41,41 @@ function refreshButtons() {
   loginButton = document.getElementById("loginButton");
   submitButton = document.getElementById("submit");
   submitButton.addEventListener("click", () => {
-    let email = document.getElementById("email").value;
-    let regex = /\S+@\S+\.\S+$/;
-    if (!regex.test(email)) {
-      alert("invalid email");
+    let email = document.getElementById("email");
+    if (email != null) {
+      let regex = /\S+@\S+\.\S+$/;
+      if (!regex.test(email.value)) {
+        alert("invalid email");
+        return;
+      }
+    }
+    let password = document.getElementById("password").value;
+    if (!checkStrength(password)) {
+      alert("weak password");
       return;
     }
     location.href = "index.html";
     refreshFields();
   });
 
-if (signupButton != undefined) {
-  signupButton.addEventListener("click", () => {
-    loginPage.removeChild(document.getElementById("replace"));
-    loginPage.appendChild(signupBody);
-    refreshButtons();
-    setTimeout(() => {
-      refreshFields();
-    }, 50);
-  });
-}
+  if (signupButton != undefined) {
+    signupButton.addEventListener("click", () => {
+      loginPage.removeChild(document.getElementById("replace"));
+      loginPage.appendChild(signupBody);
+      refreshButtons();
+      setTimeout(() => {
+        refreshFields();
+      }, 50);
+    });
+  }
 
-if (loginButton != undefined) {
-  loginButton.addEventListener("click", () => {
-    loginPage.removeChild(document.getElementById("replace"));
-    loginPage.appendChild(loginBody);
-    refreshButtons();
-  });
-}
-
+  if (loginButton != undefined) {
+    loginButton.addEventListener("click", () => {
+      loginPage.removeChild(document.getElementById("replace"));
+      loginPage.appendChild(loginBody);
+      refreshButtons();
+    });
+  }
 }
 
 function refreshFields() {
@@ -104,7 +110,22 @@ function setDefault() {
   document.getElementById("email").placeholder = "email@gmail.com";
 }
 
+function checkStrength(password) {
+  let firstName = document.getElementById("firstName");
+  let lastName = document.getElementById("lastName");
+  let username = document.getElementById("username");
+  if (
+    "string" !== typeof password ||
+    password.length < 5 ||
+    (firstName != undefined && password.includes(firstName.value)) ||
+    (lastName != undefined && password.includes(lastName.value)) ||
+    (username != undefined && password.includes(username.value))
+  ) {
+    return false;
+  }
+  return true;
+}
+
 setTimeout(() => {
   refreshButtons();
 }, 50);
-  
