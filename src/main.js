@@ -416,11 +416,13 @@ document.getElementById("commentAddMovie").addEventListener("input",function(){
 })
 
 document.getElementById("addNewMovie").addEventListener('click',async function(){
-    const file = document.getElementById('moviePoster').files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    crud.writeMovies(newMovieData).then(data=>{console.log(data)})
-
+    crud.writeMovies(newMovieData).then(data=>{console.log(data)});
+    // const file = document.getElementById('moviePoster').files[0];
+    // const formData = new FormData();
+    // formData.append('image', file);
+    // if(document.getElementById('moviePoster').value != 0){
+    //     crud.uploadPoster(formData).then(data=>{console.log(data)});
+    // }
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";
     document.getElementById("movieCommentTitle").value = "";

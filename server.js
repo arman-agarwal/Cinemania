@@ -56,13 +56,12 @@ async function writeNewMovie(response, newData) {
     response.end();
 }
 
-async function uploadImage(response, formData){
-    formData = JSON.parse(formData);
-    console.log(formData);
-    response.writeHead(200, headerFields);
-    response.write(JSON.stringify({ success: true }));
-    response.end();
-}
+// async function uploadImage(response, formData){
+//     console.log(formData);
+//     response.writeHead(200, headerFields);
+//     response.write(JSON.stringify({ success: true }));
+//     response.end();
+// }
 
 async function deleteMovie(response, cardID){
     cardID = parseInt(cardID);
@@ -85,10 +84,10 @@ async function basicServer(request, response) {
     response.end();
   } else if (method == 'GET' && pathname.startsWith('/getAllMovies')) {
     await readAllMovies(response);
-  } else if (method == 'PUT' && pathname.startsWith('/writeMovie')){
+  } else if (method == 'POST' && pathname.startsWith('/writeMovie')){
     await writeNewMovie(response, options.movie);
-  } else if (method == 'PUT' && pathname.startsWith('/uploadImage')){
-    await uploadImage(response, options.movie);
+  } else if (method == 'POST' && pathname.startsWith('/uploadPoster')){
+    await uploadImage(response, options.formData);
   } else if (method == 'DELETE' && pathname.startsWith('/deleteMovie')){
     await deleteMovie(response, options.cardID);
   } else {
