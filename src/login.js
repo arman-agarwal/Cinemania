@@ -50,10 +50,12 @@ function refreshButtons() {
       }
     }
     let password = document.getElementById("password").value;
+      if(document.getElementById("login")===null){
     if (!checkStrength(password)) {
       alert("weak password");
       return;
     }
+  }
     location.href = "index.html";
     refreshFields();
   });
