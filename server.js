@@ -1,9 +1,12 @@
 import * as http from 'http';
 import * as url from 'url';
+import PouchDB from 'pouchdb';
 import { readFile, writeFile } from 'fs/promises';
 
 let data = {};
 const JSONfile = 'data.json';
+
+let db = new PouchDB('movieStorage');
 
 const headerFields = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, DELETE, HEAD, OPTIONS, PUT, POST",'Content-Type': 'application/json' };
 
@@ -28,14 +31,24 @@ async function reload(filename) {
 await reload(JSONfile);
 
 async function readAllMovies(response) {
-    response.writeHead(200, headerFields);
-    response.write(JSON.stringify(data));
-    response.end();
+  // db.allDocs({
+  //   include_docs: true, 
+  //   attachments: true 
+  // }).then(function (result) {
+  //   response.writeHead(200, headerFields);
+  //   response.write(JSON.stringify(result.rows));
+  //   response.end();
+  // }).catch(function (err) {
+  //   console.log(err);
+  // });
+  response.writeHead(200, headerFields);
+  response.write(JSON.stringify(data));
+  response.end();
 }
 
 async function writeNewMovie(response, newData) {
     newData = JSON.parse(newData);
-    newData["cardID"] = data.length + 1;
+    newData["id"] = data.length + 1;
     if(newData['name']==undefined){
         newData['name'] = '';
     }
