@@ -56,15 +56,6 @@ body.dark-mode {
     display: none;
 }
 
-#card_button{
-    background: transparent;
-    border:0;
-    text-decoration: none; 
-    color: inherit;
-    padding:0px;
-    
-}
-
 #image_container{
     overflow: hidden;
 }
@@ -81,6 +72,15 @@ body.dark-mode {
 #card_button:hover #poster {
     transform: scale(1.08);
 }
+
+#card_button{
+    background: transparent;
+    border:0;
+    text-decoration: none; 
+    color: inherit;
+    padding:0px;
+}
+
 
 #themeButtons{
     margin-top: 40px;
@@ -202,3 +202,7 @@ body.dark-mode {
     background-color: rgb(42, 99, 99);
     border-radius: 5px;
 } 
+#addingStars:hover {
+    padding: auto;
+    cursor: pointer;
+}
