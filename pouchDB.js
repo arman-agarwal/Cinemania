@@ -42,10 +42,10 @@ db2.put(c);
 db2.put(d);
 let results = [];
 db.allDocs({
-        include_docs: true, // Include the full document in the result
-        attachments: true // Include any attachments in the result
+        include_docs: true, 
+        attachments: true 
     }).then(function (result) {
-        console.log(result.rows); // An array of documents
+        console.log(result.rows); 
     }).catch(function (err) {
         console.log(err);
     });
