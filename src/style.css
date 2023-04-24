@@ -115,7 +115,7 @@ body.dark-mode {
 }
 
 .dark-mode #titleRow{
-    background-color: #e1dbd6;
+    background-color: #e1dbd6; /*in black banner*/
 };
 
 .dark-mode .movieCard{
@@ -126,7 +126,7 @@ body.dark-mode {
 
 .dark-mode .card{
     transition: background-color 0.5s ease, color 0.5s ease;
-    background-color: #e1dbd6;
+    background-color: #e1dbd6; /*in black movie card*/
 } 
 
 @media screen and (max-height: 450px) {
