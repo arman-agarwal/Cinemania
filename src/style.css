@@ -254,6 +254,5 @@ body.dark-mode {
 }
 
 #submit,#loginButton,#signupButton{
-    background-color: white
-    border: none;
+    
 }

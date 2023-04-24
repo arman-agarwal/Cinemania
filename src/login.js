@@ -1,6 +1,6 @@
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
-let signupButton, loginButton;
+let signupButton, loginButton, submitButton;
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
@@ -39,38 +39,42 @@ spanTexts.addEventListener("mouseout", function () {
 function refreshButtons() {
   signupButton = document.getElementById("signupButton");
   loginButton = document.getElementById("loginButton");
-  let submitButton =  document.getElementById("submit");
-  if(submitButton!=undefined){
-  submitButton.addEventListener("click",()=>{
-    console.log("here");
-    location.href='index.html';
+  submitButton = document.getElementById("submit");
+  submitButton.addEventListener("click", () => {
+    let email = document.getElementById("email").value;
+    let regex = /\S+@\S+\.\S+$/;
+    if (!regex.test(email)) {
+      alert("invalid email");
+      return;
+    }
+    location.href = "index.html";
     refreshFields();
   });
-  }
-  if (signupButton != undefined) {
-    signupButton.addEventListener("click", () => {
-      loginPage.removeChild(document.getElementById("replace"));
-      loginPage.appendChild(signupBody);
-      refreshButtons();
-      setTimeout(() => {
-        refreshFields();
-      }, 50);
-    });
-  }
-  if (loginButton != undefined) {
-    loginButton.addEventListener("click", () => {
-      loginPage.removeChild(document.getElementById("replace"));
-      loginPage.appendChild(loginBody);
-      refreshButtons();
-    });
-  }
-  
+
+if (signupButton != undefined) {
+  signupButton.addEventListener("click", () => {
+    loginPage.removeChild(document.getElementById("replace"));
+    loginPage.appendChild(signupBody);
+    refreshButtons();
+    setTimeout(() => {
+      refreshFields();
+    }, 50);
+  });
+}
+
+if (loginButton != undefined) {
+  loginButton.addEventListener("click", () => {
+    loginPage.removeChild(document.getElementById("replace"));
+    loginPage.appendChild(loginBody);
+    refreshButtons();
+  });
+}
+
 }
 
 function refreshFields() {
   let LastName = document.getElementById("lastName");
   let firstName = document.getElementById("firstName");
-  let emailFormat = "@gmail.com";
   if (LastName != null) {
     LastName.addEventListener("keyup", () => {
       if (firstName.value == "" || LastName.value == "") setDefault();
@@ -78,18 +82,18 @@ function refreshFields() {
         document.getElementById("username").placeholder =
           firstName.value + LastName.value;
         document.getElementById("email").placeholder =
-          firstName.value + LastName.value + emailFormat;
+          firstName.value + LastName.value + "@gmail.com";
       }
     });
   }
   if (firstName != null) {
     firstName.addEventListener("keyup", () => {
-            if (firstName.value == "" || LastName.value == "") setDefault();
-      else{
-      document.getElementById("username").placeholder =
-        firstName.value + LastName.value;
-      document.getElementById("email").placeholder =
-        firstName.value + LastName.value + "@gmail.com";
+      if (firstName.value == "" || LastName.value == "") setDefault();
+      else {
+        document.getElementById("username").placeholder =
+          firstName.value + LastName.value;
+        document.getElementById("email").placeholder =
+          firstName.value + LastName.value + "@gmail.com";
       }
     });
   }
@@ -103,4 +107,4 @@ function setDefault() {
 setTimeout(() => {
   refreshButtons();
 }, 50);
-
+  
