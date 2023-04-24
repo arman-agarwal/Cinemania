@@ -31,8 +31,9 @@ body.dark-mode {
 #profileButton{
     align-items: center;
     margin: 55px; 
-    color:rgba(218, 214, 214, 0.596);
-    background-color:rgb(32, 143, 99);
+    color: lightgrey; /*change*/
+    background-color: teal;
+    border-color: teal;
 }
 #sectionHeader{
     font-family: 'bradely hand', cursive;
@@ -105,7 +106,7 @@ body.dark-mode {
 #addButtonText{
     padding: 10px;
     font-size: 22px;  
-    color: black;  
+    color: grey;  
 }
 
 .dark-mode #sunImg {
@@ -177,7 +178,7 @@ body.dark-mode {
 
 #backText .backLetter.activeG{
     transform: translateY(0px);
-    -webkit-text-stroke: 2px rgb(32, 143, 99);   /*green*/
+    -webkit-text-stroke: 2px teal;   /*green rgb(32, 143, 99)*/
 }
 
 #backText .backLetter:nth-child(1){transition-delay: 0.1s;}
@@ -191,13 +192,13 @@ body.dark-mode {
 #backText .backLetter:nth-child(9){transition-delay: 0.5s;}
 
 .changeModalColor{
-    color: rgb(32, 143, 99);
+    color: teal;
     background-color: #a3ac88a1;
     border-radius: 5px;
 }
 
 .dark-mode .changeModalColor{
-    color: rgb(32, 143, 99);
+    color: teal;
     background-color: #e1dbd6;
     border-radius: 5px;
 } 
