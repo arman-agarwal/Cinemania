@@ -248,5 +248,12 @@ body.dark-mode {
 
 .input{
     color:white;
-    font-size: 18px;
+}
+.input:focus{
+    font-size: 16px;
+}
+
+#submit,#loginButton,#signupButton{
+    background-color: white
+    border: none;
 }
