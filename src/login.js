@@ -16,7 +16,7 @@ window.onload = () => {
   fetch("components/signUp.html")
     .then((response) => response.text())
     .then((html) => (signupBody.innerHTML = html.trim()));
-  loginPage.appendChild(loginBody);
+  loginPage.children[1].insertAdjacentElement("beforebegin",loginBody);
 };
 let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
@@ -40,28 +40,29 @@ function refreshButtons() {
   signupButton = document.getElementById("signupButton");
   loginButton = document.getElementById("loginButton");
   submitButton = document.getElementById("submit");
-  console.log("here");
+  if(submitButton!=undefined){
   submitButton.addEventListener("click", () => {
     if (checkData() != false) {
       location.href = "index.html";
     }
   });
+  }
 
   if (signupButton != undefined) {
     signupButton.addEventListener("click", () => {
       loginPage.removeChild(document.getElementById("replace"));
-      loginPage.appendChild(signupBody);
+      loginPage.children[1].insertAdjacentElement("beforebegin",signupBody);
       refreshButtons();
       setTimeout(() => {
         refreshFields();
-      }, 50);
+      }, 10);
     });
   }
 
   if (loginButton != undefined) {
     loginButton.addEventListener("click", () => {
       loginPage.removeChild(document.getElementById("replace"));
-      loginPage.appendChild(loginBody);
+      loginPage.children[1].insertAdjacentElement("beforebegin",loginBody);
       refreshButtons();
     });
   }
@@ -137,3 +138,37 @@ function checkData() {
 setTimeout(() => {
   refreshButtons();
 }, 50);
+
+
+//dark Mode code
+const light = document.getElementById("lightButton");
+  const dark = document.getElementById("darkButton");
+  const sun = document.getElementById("sunImg");
+  const moon = document.getElementById("moonImg");
+  const body = document.body;
+  const profileButton = document.getElementById("profileButton");
+
+
+
+  light.addEventListener("click", function() {
+    moon.classList.add("img-faded");
+    moon.classList.remove("img-normal");
+    sun.classList.add("img-normal");
+    sun.classList.remove("img-faded");
+    body.classList.remove("dark-mode");
+    profileButton.classList.add("btn-outline-success");
+    profileButton.classList.remove("btn-danger");
+
+  });
+  
+  dark.addEventListener("click", function() {
+    moon.classList.remove("img-faded");
+    moon.classList.add("img-normal");
+    sun.classList.remove("img-normal");
+    sun.classList.add("img-faded");
+    body.classList.add("dark-mode");
+    profileButton.classList.remove("btn-outline-success");
+    profileButton.classList.add("btn-danger");
+
+  });
+

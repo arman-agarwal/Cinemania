@@ -20,7 +20,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body id="loginPage" style="background-color: lightblue;">
+  <body id="loginPage">
     <div id="titleRow">
       <!-- making the logo clikable, when clicked, goes back to the home page -->
       <img
@@ -49,5 +49,16 @@
       </div>
       <div></div>
     </div>
+    <div id = 'themeButtons'>
+      <img id="sunImg" src="./Images/icons8-light-mode-78.png">
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="lightButton" autocomplete="off" checked>
+          <label class="btn btn-outline-secondary" for="lightButton">Light</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="darkButton" autocomplete="off">
+          <label class="btn btn-outline-secondary" for="darkButton">Dark</label>
+      </div>
+      <img id="moonImg" src="./Images/icons8-moon-symbol-50.png"> 
+  </div>
   </body>
 </html>

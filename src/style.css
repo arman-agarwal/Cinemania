@@ -229,6 +229,7 @@ body.dark-mode {
 .LoginTitle{
     margin:auto;
     margin-top: 3.5rem;
+    margin-right: 5rem;
     /* font-family: 'bradely hand', cursive; */
     width: fit-content;
     text-align: center;
@@ -255,15 +256,19 @@ body.dark-mode {
     outline: none;
 }
 
-#submit,#loginButton,#signupButton{
-    background-color: white;
+#submit,#loginButton,#signupButton,#forgotPass{
+    background-color: teal;
+    color: white;
     border: none;
     margin: 5px;
-    padding: 4px 7px;
+    padding: 4px 10px;
 }
 #submit{
     border-radius: 40%/80%;
 }
 #loginButton,#signupButton{
-border-radius: 15%/80%;
+border-radius: 10%/80%;
+}
+#forgotPass{
+    border-radius: 20%/80%;
 }
