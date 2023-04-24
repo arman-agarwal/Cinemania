@@ -1,4 +1,4 @@
-let formBox = document.getElementById("loginBody");
+let formBox = document.getElementById("loginPage");
 let x = document.createElement("div");
 fetch("components/loginForm.html")
   .then((response) => response.text())

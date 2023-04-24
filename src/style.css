@@ -202,3 +202,28 @@ body.dark-mode {
     background-color: rgb(42, 99, 99);
     border-radius: 5px;
 } 
+
+.loginBody{
+    width: fit-content;
+    height: fit-content;
+    padding:15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+}
+
+.loginHead{
+    font: bold 24px "Poppins";
+    text-decoration: underline;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.form-entry{
+    margin-bottom: 20px;
+}
+
+#submitButton{
+    
+}
