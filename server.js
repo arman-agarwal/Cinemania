@@ -64,6 +64,16 @@ async function uploadImage(response, formData){
     response.end();
 }
 
+async function deleteMovie(response, cardID){
+    cardID = parseInt(cardID);
+    let index = data.findIndex(obj => obj.cardID === cardID);
+    data.splice(index, 1);
+    await saveMovies();
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify({ success: true }));
+    response.end();
+}
+
 async function basicServer(request, response) {
   const parsedURL = url.parse(request.url, true);
   const options = parsedURL.query;
@@ -79,6 +89,8 @@ async function basicServer(request, response) {
     await writeNewMovie(response, options.movie);
   } else if (method == 'PUT' && pathname.startsWith('/uploadImage')){
     await uploadImage(response, options.movie);
+  } else if (method == 'DELETE' && pathname.startsWith('/deleteMovie')){
+    await deleteMovie(response, options.cardID);
   } else {
     response.writeHead(404, headerFields);
     response.write(JSON.stringify({ error: 'Not Found' }));

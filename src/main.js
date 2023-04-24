@@ -31,6 +31,7 @@ window.onload = () => {
                         html = html.replace("No Comments added yet!", data[i].comment);
                     }
                     html = html.replace(/exampleModal/g, "exampleModal"+i);
+                    html = html.replace(/confirmPostStatus/g, "confirmPostStatus"+i);
                     // making a string that holds unicode characters for the number of stars
                     let stars = '';
                     for (let j = 1; j<=5; ++j){
@@ -84,6 +85,7 @@ EditMovies.addEventListener("click",function(){
                     html = html.replace("No Comments added yet!", data[i].comment);
                 }
                 html = html.replace(/exampleModal/g, "exampleModal"+i);
+                html = html.replace(/confirmPostStatus/g, "confirmPostStatus"+i);
                 let stars = '';
                 for (let j = 1; j<=5; ++j){
                     if(j<=data[i].stars){
@@ -95,6 +97,7 @@ EditMovies.addEventListener("click",function(){
                 }
                 stars = stars.slice(0, -1);
                 html = html.replace("Star Rating", stars);
+
                 html = html.replace("display: none;", "display:block;");
                 const cardComponent = document.createElement("div");
                 cardComponent.innerHTML = html;
@@ -130,8 +133,8 @@ cancelMovies.addEventListener("click",function(){
                 if(data[i].comment != undefined || data[i].comment != ""){
                     html = html.replace("No Comments added yet!", data[i].comment);
                 }
-
                 html = html.replace(/exampleModal/g, "exampleModal"+i);
+                html = html.replace(/confirmPostStatus/g, "confirmPostStatus"+i);
                 let stars = '';
                 for (let j = 1; j<=5; ++j){
                     if(j<=data[i].stars){
@@ -433,12 +436,15 @@ document.getElementById("addNewMovie").addEventListener('click',async function()
     newMovieData = {};
 })
 
+function confirmDelete(cardID){
+    deleteMovie(cardID).then(data=>{console.log(data)});
+}
+
 async function getMovies() {
     const response = await fetch(`http://localhost:3000/getAllMovies`, {
       method: 'GET',
     });
     const data = await response.json();
-    // console.log(data);
     return data;
 }
   
@@ -450,6 +456,10 @@ async function writeMovies(newData) {
     return data;
 }
 
-function deletePost(cardID){
-    console.log(cardID);
+async function deleteMovie(cardID){
+    const response = await fetch(`http://localhost:3000/deleteMovie?cardID=${cardID}`, {
+        method: 'DELETE',
+      }); 
+    const data = await response.json();
+    return data;
 }
