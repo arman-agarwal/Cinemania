@@ -32,7 +32,7 @@ body.dark-mode {
     align-items: center;
     margin: 55px; 
     color: lightgrey; /*change*/
-    background-color: teal;
+    background-color: teal; 
     border-color: teal;
 }
 #sectionHeader{
@@ -50,10 +50,12 @@ body.dark-mode {
     scrollbar-width: none;
     -ms-overflow-style: none;
     margin-top: 20px;
+    
 }
 
 .card-container::-webkit-scrollbar {
     display: none;
+    
 }
 
 #card_button{
