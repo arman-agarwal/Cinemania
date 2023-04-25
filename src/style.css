@@ -39,16 +39,9 @@ body.dark-mode {
 
 #profileButton {
     align-items: center;
-<<<<<<< HEAD
     margin: 55px; 
     color: lightgrey; /*change*/
-    background-color: teal; 
-=======
-    margin: 55px;
-    color: lightgrey;
-    /*change*/
     background-color: teal;
->>>>>>> d9350ef0c421a4085b89c21ee0b17370be84b0a3
     border-color: teal;
 }
 
