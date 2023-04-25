@@ -18,8 +18,12 @@ body.dark-mode {
 }
 
 #logo {
-    padding: 2px;
-    width: 100px;
+    padding: 8px;
+    width:192px;
+    height: 150px;
+    float: right;
+    align-items: center;
+    justify-content: center;
 }
 
 .Homelink {
@@ -66,7 +70,6 @@ body.dark-mode {
 
 .card-container::-webkit-scrollbar {
     display: none;
-    
 }
 
 #card_button {
