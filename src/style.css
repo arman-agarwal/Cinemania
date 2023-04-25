@@ -248,9 +248,10 @@ body.dark-mode {
 }
 
 .input{
-    color:white;
+    color:black;
 }
 .input:focus{
+    background-color: white;
     transition: transform .3s ease;
     transform: translate(3px,3px);
     outline: none;
