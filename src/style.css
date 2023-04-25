@@ -56,15 +56,6 @@ body.dark-mode {
     display: none;
 }
 
-#card_button{
-    background: transparent;
-    border:0;
-    text-decoration: none; 
-    color: inherit;
-    padding:0px;
-    
-}
-
 #image_container{
     overflow: hidden;
 }
@@ -81,6 +72,15 @@ body.dark-mode {
 #card_button:hover #poster {
     transform: scale(1.08);
 }
+
+#card_button{
+    background: transparent;
+    border:0;
+    text-decoration: none; 
+    color: inherit;
+    padding:0px;
+}
+
 
 #themeButtons{
     margin-top: 40px;
@@ -203,6 +203,11 @@ body.dark-mode {
     border-radius: 5px;
 } 
 
+#addingStars:hover {
+    padding: auto;
+    cursor: pointer;
+}
+
 .loginBody{
     width: fit-content;
     height: fit-content;
@@ -272,4 +277,4 @@ border-radius: 10%/80%;
 }
 #forgotPass{
     border-radius: 20%/80%;
-}
+ }
