@@ -1,111 +1,124 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Cinemania</title>
     <script type="module" src="main.js" defer></script>
     <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
-    <link rel="shortcut icon" type="image/svg+xml" href="./Images/faviconTransparent.svg">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    </head>
+    <link rel="shortcut icon" type="image/svg+xml" href="./Images/faviconTransparent.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+  </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <!-- Title of our application -->
     <div id="titleRow">
-        <!-- making the logo clikable, when clicked, goes back to the home page -->
-        <img class ="Homelink" id = "logo" src="./Images/FinalLogo.png" alt="Logo">
-        <!-- the cinemania effect of the title bar-->
-        <div class="hero">
-            <div class="MovieLogsTitle">
-                <h1>Movie Logs</h1>
-                    <a href="#">
-                        <div id="backText">
-                            <span class = "backLetter">C</span>
-                            <span class = "backLetter">I</span>
-                            <span class = "backLetter">N</span>
-                            <span class = "backLetter">E</span>
-                            <span class = "backLetter">M</span>
-                            <span class = "backLetter">A</span>
-                            <span class = "backLetter">N</span>
-                            <span class = "backLetter">I</span>
-                            <span class = "backLetter">A</span>
-                        </div>
-                    </a>
+      <!-- making the logo clikable, when clicked, goes back to the home page -->
+      <img class ="Homelink" id = "logo" src="./Images/FinalLogo.png" alt="Logo">
+      <!-- the cinemania effect of the title bar-->
+      <div class="hero">
+        <div class="MovieLogsTitle">
+          <h1>Movie Logs</h1>
+          <a href="#">
+            <div id="backText">
+                <span class = "backLetter">C</span>
+                <span class = "backLetter">I</span>
+                <span class = "backLetter">N</span>
+                <span class = "backLetter">E</span>
+                <span class = "backLetter">M</span>
+                <span class = "backLetter">A</span>
+                <span class = "backLetter">N</span>
+                <span class = "backLetter">I</span>
+                <span class = "backLetter">A</span>
             </div>
+          </a>
         </div>
-        <!-- Profile button using bootstrap -->
-        <button id="profileButton" type="button" class="btn btn-outline-success" >Profile</button>
+      </div>
+      <!-- Profile button using bootstrap -->
+      <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"> Profile </button>
+        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="#">Name</a></li>
+          <li><a class="dropdown-item" href="#">Email</a></li>
+          <li><button id="EditMovies" class="dropdown-item">Delete</button></li>
+          <li><button id="cancelEdit" class="dropdown-item">cancel</button></li>
+        </ul>
+      </div>
     </div>
-    <!-- Adding the cards that have the posts-->
-    <div style = "margin-left: 10px; margin-right: 10px;" id="cardsListDiv" class="card-container"> </div>
-    <!-- Adding the row of buttons for theme and making a new post -->
-    <div style="display: flex; justify-content: space-between;">
-        <!-- theme buttons -->
-        <div id = 'themeButtons'>
-            <img id="sunImg" src="./Images/icons8-light-mode-78.png">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="lightButton" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="lightButton">Light</label>
-              
-                <input type="radio" class="btn-check" name="btnradio" id="darkButton" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="darkButton">Dark</label>
-            </div>
-            <img id="moonImg" src="./Images/icons8-moon-symbol-50.png"> 
-        </div>
-        <div id = 'addButton'>
-            <!-- add new movie button  -->
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <!-- could make this a toggle in the profile section, and would also have to edit the main.js for the buttons respectively -->
-                <button id="cancelEdit">cancel</button> <!-- Need to delete and include in the profile section -->
-                <button id="EditMovies">Delete</button> <!-- Need to delete and include in the profile section -->
-                <span id="addButtonText">New Movie</span>
-                <button type="button" class=" w3-button w3-large w3-circle w3-teal" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >+</button>
-                <!-- modal to add the new button  -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="staticBackdropLabel" stlye="text-align: center;">Add Movie</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                            <label for="moviePoster">Select an image to upload: </label> 
-                            <input type="file" id="moviePoster"/>
-                            </div> <br> 
-                            <div>    
-                                <label for="movieName">Name of the Movie: </label>
-                                <input id="movieName">
-                            </div> <br>
-                            <div id="addingStars">
-                                <lable for="stars">Rating: </lable>
-                                <span id="addStar1" >&#9734; </span> 
-                                <span id="addStar2" >&#9734; </span> 
-                                <span id="addStar3" >&#9734; </span> 
-                                <span id="addStar4" >&#9734; </span> 
-                                <span id="addStar5" >&#9734; </span> 
-                            </div> <br>
-                            <div>
-                                <label for="movieCommentTitle">Comment Title: </label>
-                                <input id="movieCommentTitle" maxlength="30" placeholder="30 Characters"> <br> <br>
-                                <label for="commentAddMovie">Enter your message:</label> <br>
-                                <textarea id="commentAddMovie" name="message" rows="5" cols="30"></textarea>
-                            </div> 
-                        </div>
-                        <div class="modal-footer">
-                        <button id="saveNewMovie" type="button" class="btn btn-secondary">Save</button>
-                        <button id="addNewMovie" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
 
-            </div>
+    <!-- Adding the cards that have the posts-->
+    <div style="margin-left: 10px; margin-right: 10px" id="cardsListDiv" class="card-container" ></div>
+    <!-- Adding the row of buttons for theme and making a new post -->
+    <div style="display: flex; justify-content: space-between">
+      <!-- theme buttons -->
+      <div id="themeButtons">
+        <img id="sunImg" src="./Images/icons8-light-mode-78.png" />
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="lightButton" autocomplete="off" checked />
+          <label class="btn btn-outline-secondary" for="lightButton">Light</label>
+          <input type="radio" class="btn-check" name="btnradio" id="darkButton" autocomplete="off"/>
+          <label class="btn btn-outline-secondary" for="darkButton">Dark</label>
         </div>
+        <img id="moonImg" src="./Images/icons8-moon-symbol-50.png" />
+      </div>
+      <div id="addButton">
+        <!-- add new movie button  -->
+        <div style="display: flex; justify-content: center; align-items: center" >
+          <!-- could make this a toggle in the profile section, and would also have to edit the main.js for the buttons respectively -->
+          <!-- <button id="cancelEdit">cancel</button> -->
+          <!-- Need to delete and include in the profile section -->
+          <!-- <button id="EditMovies">Delete</button> -->
+          <!-- Need to delete and include in the profile section -->
+          <span id="addButtonText">New Movie</span>
+          <button type="button" class="w3-button w3-large w3-circle w3-teal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> + </button>
+          <!-- modal to add the new button  -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel" stlye="text-align: center;"> Add Movie </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"x></button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <label for="moviePoster">Select an image to upload: </label>
+                    <input type="file" id="moviePoster" />
+                  </div>
+                  <br />
+                  <div>
+                    <label for="movieName">Name of the Movie: </label>
+                    <input id="movieName" />
+                  </div>
+                  <br />
+                  <div id="addingStars">
+                    <lable for="stars">Rating: </lable>
+                    <span id="addStar1">&#9734; </span>
+                    <span id="addStar2">&#9734; </span>
+                    <span id="addStar3">&#9734; </span>
+                    <span id="addStar4">&#9734; </span>
+                    <span id="addStar5">&#9734; </span>
+                  </div>
+                  <br />
+                  <div>
+                    <label for="movieCommentTitle">Comment Title: </label>
+                    <input id="movieCommentTitle" maxlength="30" placeholder="30 Characters"/>
+                    <br />
+                    <br />
+                    <label for="commentAddMovie">Enter your message:</label>
+                    <br />
+                    <textarea id="commentAddMovie" name="message" rows="5" cols="30"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button id="saveNewMovie" type="button" class="btn btn-secondary" > Save </button>
+                  <button id="addNewMovie" type="button" class="btn btn-primary" data-bs-dismiss="modal"> Add </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
-
