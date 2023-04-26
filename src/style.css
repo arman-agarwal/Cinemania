@@ -5,7 +5,7 @@ body {
 }
 body.dark-mode {
   background-color: #333333;
-  color: white;
+  color: rgb(101, 98, 98);
 }
 
 .title {
