@@ -181,7 +181,7 @@ body.dark-mode {
 
 #backText .backLetter.activeG {
   transform: translateY(0px);
-  -webkit-text-stroke: 2px green;
+  -webkit-text-stroke: 2px rgb(69, 98, 185);
 }
 
 #backText .backLetter:nth-child(1) {
