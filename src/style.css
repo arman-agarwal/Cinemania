@@ -68,6 +68,7 @@ body.dark-mode {
 #poster {
   transition: transform 0.3s ease;
 }
+
 #card_button:hover #poster {
   transform: scale(1.08);
 }
@@ -92,6 +93,7 @@ body.dark-mode {
   margin-left: 5px;
   transform: scaleX(-1);
 }
+
 .img-normal {
   opacity: 1;
 }
