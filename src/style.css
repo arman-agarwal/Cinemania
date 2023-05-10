@@ -15,7 +15,6 @@ body.dark-mode {
 }
 #logo {
   padding: 2px;
-  width: 100px;
 }
 .Homelink {
   align-items: center;
@@ -27,7 +26,7 @@ body.dark-mode {
   display: flex;
   justify-content: space-between;
   /* background-color: lightblue; */
-  background-color: #a3ac88a1;
+  background-color: #a2ab87;
   height: 150px;
 }
 #profileButton {
@@ -120,7 +119,7 @@ body.dark-mode {
 }
 
 .dark-mode #titleRow {
-  background-color: darkcyan;
+  background-color: #008b8b;
 }
 
 .dark-mode .movieCard {
@@ -182,9 +181,8 @@ body.dark-mode {
 
 #backText .backLetter.activeG {
   transform: translateY(0px);
-  -webkit-text-stroke: 2px green;
-  /* -webkit-text-stroke: 2px rgb(69, 98, 185); */
-
+  /* -webkit-text-stroke: 2px green; */
+  -webkit-text-stroke: 2px black;
 }
 
 #backText .backLetter:nth-child(1) {

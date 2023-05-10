@@ -28,7 +28,7 @@
     <!-- Title of our application -->
     <div id="titleRow">
       <!-- making the logo clikable, when clicked, goes back to the home page -->
-      <img class="Homelink" id="logo" src="./Images/FinalLogo.png" alt="Logo" />
+      <img class="Homelink" id="logo" src="Images/1.png" alt="Logo" />
       <!-- the cinemania effect of the title bar-->
       <div class="hero">
         <div class="MovieLogsTitle">
@@ -50,7 +50,8 @@
       </div>
       <!-- Profile button using bootstrap -->
       <div id="dropdown">
-        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"> Settings </button>
+        <!-- <button class="btn btn-outline-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"> Settings </button> -->
+        <button class="btn btn-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"> Settings </button>
         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <!-- <li><a class="dropdown-item" href="#">Email</a></li> -->
@@ -143,10 +144,11 @@
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <div>
+                  <form action="/upload" method="POST" enctype="multipart/form-data">
                     <label for="moviePoster">Select an image to upload: </label>
-                    <input type="file" id="moviePoster" />
-                  </div>
+                    <input type="file" id="moviePoster" name="image" />
+                    <button type="submit" class="btn btn-secondary" >Confirm Upload</button>
+                  </form>
                   <br />
                   <div>
                     <label for="movieName">Name of the Movie: </label>

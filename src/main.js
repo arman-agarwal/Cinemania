@@ -165,7 +165,8 @@ const dark = document.getElementById("darkButton");
 const sun = document.getElementById("sunImg");
 const moon = document.getElementById("moonImg");
 const body = document.body;
-const profileButton = document.getElementById("profileButton");
+const profileButton = document.getElementById("profileDropdown");
+const logo = document.getElementById("logo");
 
 light.addEventListener("click", function() {
 moon.classList.add("img-faded");
@@ -173,9 +174,10 @@ moon.classList.remove("img-normal");
 sun.classList.add("img-normal");
 sun.classList.remove("img-faded");
 body.classList.remove("dark-mode");
-profileButton.classList.add("btn-outline-success");
+// profileButton.classList.add("btn-outline-success");/
+profileButton.classList.add("btn-success");
 profileButton.classList.remove("btn-danger");
-
+logo.src = "Images/1.png";
 });
 
 dark.addEventListener("click", function() {
@@ -184,9 +186,10 @@ moon.classList.add("img-normal");
 sun.classList.remove("img-normal");
 sun.classList.add("img-faded");
 body.classList.add("dark-mode");
-profileButton.classList.remove("btn-outline-success");
+// profileButton.classList.remove("btn-outline-success");
+profileButton.classList.remove("btn-success");
 profileButton.classList.add("btn-danger");
-
+logo.src = "Images/2.png";
 });
 
 // functions to handle the CINEMANIA entry and hover effects
@@ -422,12 +425,6 @@ document.getElementById("commentAddMovie").addEventListener("input",function(){
 
 document.getElementById("addNewMovie").addEventListener('click',async function(){
     crud.writeMovies(newMovieData).then(data=>{console.log(data)});
-    // const file = document.getElementById('moviePoster').files[0];
-    // const formData = new FormData();
-    // formData.append('image', file);
-    // if(document.getElementById('moviePoster').value != 0){
-    //     crud.uploadPoster(formData).then(data=>{console.log(data)});
-    // }
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";
     document.getElementById("movieCommentTitle").value = "";
