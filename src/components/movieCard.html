@@ -49,18 +49,49 @@
   </div>
 
   <!-- button that edits a post  -->
-  <button type="button" data-bs-toggle="modal" data-bs-target="#confirmPostStatus" class="btn btn-danger" style="display: none;">Delete Post</button>
+  <button type="button" data-bs-toggle="modal" id="editPostInfo" data-bs-target="#confirmEditStatus" class="btn btn-warning" style="display: none;">Edit Post</button>
   <!-- modal to post editing  -->
-  <div class="modal fade" id="confirmPostStatus" tabindex="-1" aria-labelledby="confirmPostStatusLabel" aria-hidden="true">
+  <div class="modal fade" id="confirmEditStatus" tabindex="-1" aria-labelledby="confirmEditStatusLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="confirmPostStatusLabel">Are you sure you want to delete this post?</h1>
+          <h1 class="modal-title fs-5" id="confirmEditStatusLabel">Edit This Post</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
+        <div class="modal-body">
+          <div>
+            <label for="movieName_cardIDNumberValue">Name of the Movie: </label>
+            <input id="movieName_cardIDNumberValue" />
+          </div>
+          <br />
+          <div id="addingStars">
+            <lable for="stars">Rating: </lable>
+            <input id="addStar_cardIDNumberValue">
+          </div>
+          <br />
+          <div>
+            <label for="movieCommentTitle_cardIDNumberValue">Comment Title: </label>
+            <input
+              id="movieCommentTitle_cardIDNumberValue"
+              maxlength="30"
+              placeholder="30 Characters"
+            />
+            <br />
+            <br />
+            <label for="commentAddMovie_cardIDNumberValue">Enter your message:</label>
+            <br />
+            <textarea
+              id="commentAddMovie_cardIDNumberValue"
+              name="message"
+              rows="5"
+              cols="30"
+            ></textarea>
+          </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirmDelete(`cardIDNumberValue`)">Confirm</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirmEdit(`cardIDNumberValue`)">Confirm</button>
         </div>
       </div>
     </div>

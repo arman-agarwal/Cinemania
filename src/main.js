@@ -90,6 +90,7 @@ EditMovies.addEventListener("click",function(){
                 }
                 html = html.replace(/exampleModal/g, "exampleModal"+i);
                 html = html.replace(/confirmPostStatus/g, "confirmPostStatus"+i);
+                html = html.replace(/confirmEditStatus/g, "confirmEditStatus"+i);
                 let stars = '';
                 for (let j = 1; j<=5; ++j){
                     if(j<=data[i].stars){
@@ -102,7 +103,7 @@ EditMovies.addEventListener("click",function(){
                 stars = stars.slice(0, -1);
                 html = html.replace("Star Rating", stars);
 
-                html = html.replace("display: none;", "display:block;");
+                html = html.replace(/display: none;/g, "display:block;");
                 const cardComponent = document.createElement("div");
                 cardComponent.innerHTML = html;
                 cardsDiv.appendChild(cardComponent);
@@ -450,4 +451,18 @@ function confirmDelete(cardID){
     crud.deleteMovie(cardID).then(data=>{console.log(data)})
 }
 
+function confirmEdit(cardID){
+    let newEdit = {}
+    newEdit["name"] = document.getElementById('movieName_'+cardID).value;
+    if(parseInt(document.getElementById('addStar_'+cardID).value) <= 5){
+        newEdit["stars"] = document.getElementById('addStar_'+cardID).value;
+    }
+    newEdit["comment_title"] = document.getElementById('movieCommentTitle_'+cardID).value;
+    newEdit["comment"] = document.getElementById('commentAddMovie_'+cardID).value;
+    newEdit["cardID"] = cardID;
+    console.log(newEdit);
+    crud.updateMovie(newEdit).then(data=>{console.log(data)});
+}
+
 window.confirmDelete = confirmDelete;
+window.confirmEdit = confirmEdit;

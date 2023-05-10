@@ -69,6 +69,26 @@ async function writeNewMovie(response, newData) {
 //     response.end();
 // }
 
+async function updateMovie(response, movie){
+  movie = JSON.parse(movie);
+  db.get(movie["cardID"]).then((doc)=>{
+    doc["name"] = movie.name;
+    doc["stars"] = movie.stars;
+    doc["comment_title"] = movie.comment_title;
+    doc["comment"] = movie.comment;
+    console.log(doc);
+    return db.put(doc);
+  }).then(function(response) {
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify({ success: true }));
+    response.end();
+  }).catch(function(error) {
+    response.writeHead(400, headerFields);
+    response.write(JSON.stringify({ success: false }));
+    response.end();
+  });
+}
+
 async function deleteMovie(response, cardID){
     db.get(cardID).then(function (doc) {
       return db.remove(doc);
@@ -95,6 +115,8 @@ async function basicServer(request, response) {
     await uploadImage(response, options.formData);
   } else if (method == 'DELETE' && pathname.startsWith('/deleteMovie')){
     await deleteMovie(response, options.cardID);
+  } else if (method == 'PUT' && pathname.startsWith('/updateMovie')){
+    await updateMovie(response, options.movie);
   } else {
     response.writeHead(404, headerFields);
     response.write(JSON.stringify({ error: 'Not Found' }));
