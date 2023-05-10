@@ -29,6 +29,24 @@ body.dark-mode {
   background-color: #a2ab87;
   height: 150px;
 }
+
+#cancelEdit{
+  margin-top: 7.5px;
+}
+
+#cancelEditText{
+  padding: 5px;
+  color: red;
+}
+
+#cancelEdit:hover #cancelEditText{
+  font-weight: bold;
+}
+
+#cancelEdit:hover #cancelEditImg{
+  transform: scale(1.08);
+}
+
 #profileButton {
   align-items: center;
   margin: 55px;

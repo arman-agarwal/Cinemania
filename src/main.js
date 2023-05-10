@@ -64,6 +64,7 @@ const EditMovies = document.getElementById("EditMovies");
 const cancelMovies = document.getElementById("cancelEdit");
 
 EditMovies.addEventListener("click",function(){
+    cancelMovies.style = "display:block";
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
     crud.getMovies().then(data=>{
@@ -114,6 +115,7 @@ EditMovies.addEventListener("click",function(){
 })
 
 cancelMovies.addEventListener("click",function(){
+    cancelMovies.style = "display:none";
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
     crud.getMovies().then(data=>{
