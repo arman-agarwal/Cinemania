@@ -452,15 +452,23 @@ function confirmDelete(cardID){
 
 function confirmEdit(cardID){
     let newEdit = {}
-    newEdit["name"] = document.getElementById('movieName_'+cardID).value;
-    if(parseInt(document.getElementById('addStar_'+cardID).value) <= 5){
-        newEdit["stars"] = document.getElementById('addStar_'+cardID).value;
+    if(document.getElementById('movieName_'+cardID).value != ""){
+        newEdit["name"] = document.getElementById('movieName_'+cardID).value;
     }
-    else{
-        newEdit["stars"] = 5;
+    if(document.getElementById('addStar_'+cardID).value != ""){
+        if( parseInt(document.getElementById('addStar_'+cardID).value) <= 5 ){
+            newEdit["stars"] = document.getElementById('addStar_'+cardID).value;
+        }
+        else{
+            newEdit["stars"] = 5;
+        }
     }
-    newEdit["comment_title"] = document.getElementById('movieCommentTitle_'+cardID).value;
-    newEdit["comment"] = document.getElementById('commentAddMovie_'+cardID).value;
+    if(document.getElementById('movieCommentTitle_'+cardID).value != ""){
+        newEdit["comment_title"] = document.getElementById('movieCommentTitle_'+cardID).value;
+    }
+    if(document.getElementById('commentAddMovie_'+cardID).value != ""){
+        newEdit["comment"] = document.getElementById('commentAddMovie_'+cardID).value;
+    }
     newEdit["cardID"] = cardID;
     console.log(newEdit);
     crud.updateMovie(newEdit).then(data=>{console.log(data)});

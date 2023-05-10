@@ -71,11 +71,20 @@ async function writeNewMovie(response, newData) {
 
 async function updateMovie(response, movie){
   movie = JSON.parse(movie);
+  console.log(movie);
   db.get(movie["cardID"]).then((doc)=>{
-    doc["name"] = movie.name;
-    doc["stars"] = movie.stars;
-    doc["comment_title"] = movie.comment_title;
-    doc["comment"] = movie.comment;
+    if( movie["name"] != undefined){
+      doc["name"] = movie.name;
+    }
+    if( movie["stars"] != undefined){
+      doc["stars"] = movie.stars;
+    }
+    if( movie["comment_title"] != undefined){
+      doc["comment_title"] = movie.comment_title;
+    }
+    if(movie["comment"] != undefined){
+      doc["comment"] = movie.comment;
+    }
     console.log(doc);
     return db.put(doc);
   }).then(function(response) {
