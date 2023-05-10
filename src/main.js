@@ -457,6 +457,9 @@ function confirmEdit(cardID){
     if(parseInt(document.getElementById('addStar_'+cardID).value) <= 5){
         newEdit["stars"] = document.getElementById('addStar_'+cardID).value;
     }
+    else{
+        newEdit["stars"] = 5;
+    }
     newEdit["comment_title"] = document.getElementById('movieCommentTitle_'+cardID).value;
     newEdit["comment"] = document.getElementById('commentAddMovie_'+cardID).value;
     newEdit["cardID"] = cardID;
