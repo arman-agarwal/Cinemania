@@ -15,22 +15,35 @@ app.use(
 // Add this line to serve our index.html page
 app.use(express.static('../src/index.html'));
 
-app.post('/upload', (req, res) => {
-    // Get the file that was set to our field named "image"
-    const { image } = req.files;
-
-    // If no image submitted, exit
-    if (!image) return res.sendStatus(400);
-
-    // If does not have image mime type prevent from uploading
-    if (/^image/.test(image.mimetype)) return res.sendStatus(400);
-
-    // Move the uploaded image to our upload folder
-    image.mv(__dirname + '/upload/' + image.name);
-
-    // All good
-    res.sendStatus(200);
+app.get('/', (req, res) => {
+    res.send("Server Online");
 });
+
+app.post('/upload', (req, res) => {
+    console.log("Got something");
+    const { image } = req.files;
+  
+    if (!image) {
+      return res.status(400).send('No image uploaded');
+    }
+  
+    const allowedTypes = /^image\/(jpeg|png|gif)$/;
+  
+    if (!allowedTypes.test(image.mimetype)) {
+      return res.status(400).send('Invalid image type');
+    }
+  
+    image.mv(__dirname + '/../src/movieImages/' + image.name, function(err) {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+  
+      console.log('Image uploaded successfully');
+      return res.sendStatus(200);
+    });
+  });
+  
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

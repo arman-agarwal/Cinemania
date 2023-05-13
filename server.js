@@ -62,13 +62,6 @@ async function writeNewMovie(response, newData) {
     response.end();
 }
 
-// async function uploadImage(response, formData){
-//     console.log(formData);
-//     response.writeHead(200, headerFields);
-//     response.write(JSON.stringify({ success: true }));
-//     response.end();
-// }
-
 async function updateMovie(response, movie){
   movie = JSON.parse(movie);
   console.log(movie);
