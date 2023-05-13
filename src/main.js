@@ -426,6 +426,11 @@ document.getElementById("commentAddMovie").addEventListener("input",function(){
 // Event listener that sends the data of a new movie to the server to add it to the data base
 
 document.getElementById("addNewMovie").addEventListener('click',async function(){
+    const formData = new FormData();
+    const imageInput = document.getElementById('moviePoster');
+    formData.append('file', imageInput.files[0]);
+    let src = await crud.uploadImage(formData);
+    newMovieData["src"] = `movieImages/${src.srcPath}`;
     crud.writeMovies(newMovieData).then(data=>{console.log(data)});
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";

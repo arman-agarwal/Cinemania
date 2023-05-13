@@ -31,6 +31,16 @@ export async function updateMovie(newData){
   return data;
 }
 
+export async function uploadImage(formData){
+  const response = await fetch(`http://localhost:3001/upload`, {
+      method: 'POST',
+      body: formData
+    }); 
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
 // export async function uploadPoster(formData){
 //     const response = await fetch(`http://localhost:3000/uploadPoster?formData=${formData}`, {
 //         method: 'POST',
