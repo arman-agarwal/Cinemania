@@ -2,7 +2,6 @@ import * as loginAuth from "./loginAuth.js";
 let auth;
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
-// let signupButton, loginButton, submitButton;
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
@@ -191,6 +190,7 @@ dark.addEventListener("click", function () {
 });
 
 async function handleGoogleSignIn() {
-  const result = await loginAuth.google(auth).catch((e) => console.log(e));
-  console.log(result);
+  const result = await loginAuth.google(auth).catch(e=>-1);
+  if(result==-1)alert(error);
+  else location.href = "index.html";
 }
