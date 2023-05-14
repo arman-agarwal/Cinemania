@@ -32,10 +32,8 @@ window.onload = async () => {
     if (!x) refreshFields();
     x = true;
   });
-
-  document.getElementById("googleSign").addEventListener("click", async () => {
-    const result = await loginAuth.google(auth).catch(e=>console.log(e));
-  });
+  loginButtonList.children[6].addEventListener("click", handleGoogleSignIn);
+  signupButtonList.children[8].addEventListener("click", handleGoogleSignIn);
 
   signupButtonList.children[7].addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
@@ -175,3 +173,8 @@ dark.addEventListener("click", function () {
   sun.classList.add("img-faded");
   body.classList.add("dark-mode");
 });
+
+async function handleGoogleSignIn() {
+  const result = await loginAuth.google(auth).catch((e) => console.log(e));
+  console.log(result);
+}

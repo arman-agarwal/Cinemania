@@ -249,8 +249,12 @@ body.dark-mode {
   text-decoration: underline;
   padding-bottom: 20px;
   text-align: center;
+  color: black;
 }
 
+.dark-mode .loginHead{
+  color: white;
+}
 .form-entry {
   margin-bottom: 20px;
 }
@@ -290,7 +294,8 @@ body.dark-mode {
 #submit,
 #loginButton,
 #signupButton,
-#forgotPass {
+#forgotPass,
+#googleSign {
   background-color: teal;
   color: white;
   border: none;
@@ -304,7 +309,8 @@ body.dark-mode {
 #submit:hover,
 #loginButton:hover,
 #signupButton:hover,
-#forgotPass:hover {
+#forgotPass:hover,
+#googleSign:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(18, 152, 176);
   border: none;
@@ -315,21 +321,20 @@ body.dark-mode {
   border-radius: 0;
 }
 .dark-mode #submit:hover,
-#loginButton:hover,
-#signupButton:hover,
-#forgotPass:hover {
+.dark-mode #loginButton:hover,
+.dark-mode #signupButton:hover,
+.dark-mode #forgotPass:hover,
+.dark-mode #googleSign:hover {
   background-color: rgba(119, 119, 119, 0);
-  color: rgb(18, 152, 176);
+  color: white;
 }
-#submit {
-  border-radius: 40%/80%;
-}
+
 #loginButton,
-#signupButton {
+#signupButton,
+#googleSign,
+#submit,
+#forgotPass{
   border-radius: 10%/80%;
-}
-#forgotPass {
-  border-radius: 20%/80%;
 }
 
 #dropdown{
