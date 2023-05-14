@@ -33,8 +33,8 @@ window.onload = async () => {
     x = true;
   });
 
-  document.getElementById("googleLogin").addEventListener("click",()=>{
-
+  document.getElementById("googleSign").addEventListener("click", async () => {
+    const result = await loginAuth.google(auth).catch(e=>console.log(e));
   });
 
   signupButtonList.children[7].addEventListener("click", () => {
