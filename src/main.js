@@ -1,5 +1,5 @@
 import * as crud from './api_methods.js';
-
+import * as keyFuncs from '../env.js';
 const main = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
     for(let spanText of spanTexts){
@@ -64,6 +64,7 @@ const EditMovies = document.getElementById("EditMovies");
 const cancelMovies = document.getElementById("cancelEdit");
 
 EditMovies.addEventListener("click",function(){
+    cancelMovies.style = "display:block";
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
     crud.getMovies().then(data=>{
@@ -90,6 +91,7 @@ EditMovies.addEventListener("click",function(){
                 }
                 html = html.replace(/exampleModal/g, "exampleModal"+i);
                 html = html.replace(/confirmPostStatus/g, "confirmPostStatus"+i);
+                html = html.replace(/confirmEditStatus/g, "confirmEditStatus"+i);
                 let stars = '';
                 for (let j = 1; j<=5; ++j){
                     if(j<=data[i].stars){
@@ -102,7 +104,7 @@ EditMovies.addEventListener("click",function(){
                 stars = stars.slice(0, -1);
                 html = html.replace("Star Rating", stars);
 
-                html = html.replace("display: none;", "display:block;");
+                html = html.replace(/display: none;/g, "display:block;");
                 const cardComponent = document.createElement("div");
                 cardComponent.innerHTML = html;
                 cardsDiv.appendChild(cardComponent);
@@ -113,6 +115,7 @@ EditMovies.addEventListener("click",function(){
 })
 
 cancelMovies.addEventListener("click",function(){
+    cancelMovies.style = "display:none";
     const cardsDiv = document.getElementById("cardsListDiv");
     cardsDiv.innerHTML = '';
     crud.getMovies().then(data=>{
@@ -164,7 +167,8 @@ const dark = document.getElementById("darkButton");
 const sun = document.getElementById("sunImg");
 const moon = document.getElementById("moonImg");
 const body = document.body;
-const profileButton = document.getElementById("profileButton");
+const profileButton = document.getElementById("profileDropdown");
+const logo = document.getElementById("logo");
 
 light.addEventListener("click", function() {
 moon.classList.add("img-faded");
@@ -172,9 +176,10 @@ moon.classList.remove("img-normal");
 sun.classList.add("img-normal");
 sun.classList.remove("img-faded");
 body.classList.remove("dark-mode");
-profileButton.classList.add("btn-outline-success");
+// profileButton.classList.add("btn-outline-success");/
+profileButton.classList.add("btn-success");
 profileButton.classList.remove("btn-danger");
-
+logo.src = "Images/1.png";
 });
 
 dark.addEventListener("click", function() {
@@ -183,9 +188,10 @@ moon.classList.add("img-normal");
 sun.classList.remove("img-normal");
 sun.classList.add("img-faded");
 body.classList.add("dark-mode");
-profileButton.classList.remove("btn-outline-success");
+// profileButton.classList.remove("btn-outline-success");
+profileButton.classList.remove("btn-success");
 profileButton.classList.add("btn-danger");
-
+logo.src = "Images/2.png";
 });
 
 // functions to handle the CINEMANIA entry and hover effects
@@ -420,13 +426,12 @@ document.getElementById("commentAddMovie").addEventListener("input",function(){
 // Event listener that sends the data of a new movie to the server to add it to the data base
 
 document.getElementById("addNewMovie").addEventListener('click',async function(){
+    const formData = new FormData();
+    const imageInput = document.getElementById('moviePoster');
+    formData.append('file', imageInput.files[0]);
+    let src = await crud.uploadImage(formData);
+    newMovieData["src"] = `movieImages/${src.srcPath}`;
     crud.writeMovies(newMovieData).then(data=>{console.log(data)});
-    // const file = document.getElementById('moviePoster').files[0];
-    // const formData = new FormData();
-    // formData.append('image', file);
-    // if(document.getElementById('moviePoster').value != 0){
-    //     crud.uploadPoster(formData).then(data=>{console.log(data)});
-    // }
     document.getElementById("moviePoster").value = "";
     document.getElementById("movieName").value = "";
     document.getElementById("movieCommentTitle").value = "";
@@ -450,4 +455,56 @@ function confirmDelete(cardID){
     crud.deleteMovie(cardID).then(data=>{console.log(data)})
 }
 
+function confirmEdit(cardID){
+    let newEdit = {}
+    if(document.getElementById('movieName_'+cardID).value != ""){
+        newEdit["name"] = document.getElementById('movieName_'+cardID).value;
+    }
+    if(document.getElementById('addStar_'+cardID).value != ""){
+        if( parseInt(document.getElementById('addStar_'+cardID).value) <= 5 ){
+            newEdit["stars"] = document.getElementById('addStar_'+cardID).value;
+        }
+        else{
+            newEdit["stars"] = 5;
+        }
+    }
+    if(document.getElementById('movieCommentTitle_'+cardID).value != ""){
+        newEdit["comment_title"] = document.getElementById('movieCommentTitle_'+cardID).value;
+    }
+    if(document.getElementById('commentAddMovie_'+cardID).value != ""){
+        newEdit["comment"] = document.getElementById('commentAddMovie_'+cardID).value;
+    }
+    newEdit["cardID"] = cardID;
+    console.log(newEdit);
+    crud.updateMovie(newEdit).then(data=>{console.log(data)});
+}
+
 window.confirmDelete = confirmDelete;
+window.confirmEdit = confirmEdit;
+
+
+document.getElementById("addIMDbMovie").addEventListener("click", async function(){
+    let title = document.getElementById("movieNameAPI").value;
+    await fetch(`https://www.omdbapi.com/?apikey=${keyFuncs.getKey()}&t=${title}`)
+    .then(response => response.json())
+    .then(data => {
+        let newData = {
+            "src":data["Poster"],
+            "name":data["Title"],
+            "stars":data["imdbRating"]/2,
+        };
+        if(document.getElementById("movieCommentTitleAPI").value != ""){
+            newData["comment_title"] = document.getElementById("movieCommentTitleAPI").value;
+        }
+        if(document.getElementById("commentAddMovieAPI").value != ""){
+            newData["comment"] = document.getElementById("commentAddMovieAPI").value;
+        }
+        console.log(newData);
+        crud.writeMovies(newData).then(data=>{console.log(data)});
+
+    })
+    .catch(error => {
+        console.error(error); // Log any errors to the console
+    }); 
+    // console.log(response);
+})
