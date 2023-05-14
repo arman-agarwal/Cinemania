@@ -1,3 +1,5 @@
+import * as loginAuth  from "./loginAuth.js";
+let auth;
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
 let signupButton, loginButton, submitButton;
@@ -7,10 +9,10 @@ signupBody.setAttribute("id", "replace");
 let x = false;
 window.onload = async () => {
   let spanTexts = document.getElementsByClassName("backLetter");
-  for (spanText of spanTexts) {
+  for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-
+  auth=loginAuth.init();
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -36,7 +38,8 @@ window.onload = async () => {
   });
 
   loginButtonList.children[3].addEventListener("click", () => {
-    // location.href = "index.html";
+    let temp = loginBody.children[0].children[0].children;
+    loginAuth.loginUser(auth,temp[1].children[1].value,temp[2].children[1].value);
   });
   console.log(signupButtonList.children[4].children[1]);
   signupButtonList.children[6].addEventListener("click", () => {
@@ -53,7 +56,7 @@ let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
 
 spanTexts.addEventListener("mouseover", function () {
-  for (spanLetter of spanLetters) {
+  for (let spanLetter of spanLetters) {
     spanLetter.classList.remove("active");
     spanLetter.classList.add("activeG");
   }
@@ -61,7 +64,7 @@ spanTexts.addEventListener("mouseover", function () {
 
 // Add a mouseout event listener to the div element
 spanTexts.addEventListener("mouseout", function () {
-  for (spanLetter of spanLetters) {
+  for (let spanLetter of spanLetters) {
     spanLetter.classList.remove("activeG");
     spanLetter.classList.add("active");
   }

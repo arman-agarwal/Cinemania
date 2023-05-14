@@ -1,7 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import  {initializeApp}  from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 import { getAuth, onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 
 // user authentication code
+export function init(){
 const firebaseConfig = {
     apiKey: "AIzaSyBwJ6TJKefFoPEU0IZ4zc0kHz57vVnX2Ws",
     authDomain: "cinemania-89b4f.firebaseapp.com",
@@ -21,8 +22,9 @@ onAuthStateChanged(auth, (user) => {
     console.log("no user");
   }
 });
-
-function signupUser(email, password){
+return auth;
+}
+export function signupUser(auth,email, password){
     createUserWithEmailAndPassword(auth,email,password).then(cred=>{
         console.log('created user');
         console.log('signed in');
@@ -33,7 +35,7 @@ function signupUser(email, password){
     });
 }
 
-function loginUser(email,password){
+export function loginUser(auth,email,password){
     signInWithEmailAndPassword(auth,email,password).then(cred=>{
         console.log("signed in");
         // console.log(cred.user);
