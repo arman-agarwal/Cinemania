@@ -14,7 +14,13 @@ async function reload() {
     include_docs: true, 
     attachments: true 
   }).then(function (result) {
-    dbLen = result.rows.length;
+    let tempLen = -1;
+    for (let i = 0; i<result.rows.length; ++ i){
+      if(parseInt(result.rows[i].id) > tempLen){
+        tempLen = parseInt(result.rows[i].id);
+      }
+    }
+    dbLen = ++tempLen;
   }).catch(function (err) {
     console.log(err);
   });

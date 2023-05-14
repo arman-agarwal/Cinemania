@@ -1,5 +1,5 @@
 import * as crud from './api_methods.js';
-
+import * as keyFuncs from '../env.js';
 const main = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
     for(let spanText of spanTexts){
@@ -481,3 +481,30 @@ function confirmEdit(cardID){
 
 window.confirmDelete = confirmDelete;
 window.confirmEdit = confirmEdit;
+
+
+document.getElementById("addIMDbMovie").addEventListener("click", async function(){
+    let title = document.getElementById("movieNameAPI").value;
+    await fetch(`https://www.omdbapi.com/?apikey=${keyFuncs.getKey()}&t=${title}`)
+    .then(response => response.json())
+    .then(data => {
+        let newData = {
+            "src":data["Poster"],
+            "name":data["Title"],
+            "stars":data["imdbRating"]/2,
+        };
+        if(document.getElementById("movieCommentTitleAPI").value != ""){
+            newData["comment_title"] = document.getElementById("movieCommentTitleAPI").value;
+        }
+        if(document.getElementById("commentAddMovieAPI").value != ""){
+            newData["comment"] = document.getElementById("commentAddMovieAPI").value;
+        }
+        console.log(newData);
+        crud.writeMovies(newData).then(data=>{console.log(data)});
+
+    })
+    .catch(error => {
+        console.error(error); // Log any errors to the console
+    }); 
+    // console.log(response);
+})
