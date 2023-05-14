@@ -36,7 +36,7 @@ window.onload = async () => {
   });
 
   loginButtonList.children[3].addEventListener("click", () => {
-    location.href = "index.html";
+    // location.href = "index.html";
   });
   console.log(signupButtonList.children[4].children[1]);
   signupButtonList.children[6].addEventListener("click", () => {
