@@ -295,7 +295,8 @@ body.dark-mode {
 #loginButton,
 #signupButton,
 #forgotPass,
-#googleSign {
+#googleSign,
+#resetButton {
   background-color: teal;
   color: white;
   border: none;
@@ -310,7 +311,8 @@ body.dark-mode {
 #loginButton:hover,
 #signupButton:hover,
 #forgotPass:hover,
-#googleSign:hover {
+#googleSign:hover,
+#resetButton :hover{
   background-color: rgb(255, 255, 255);
   color: rgb(18, 152, 176);
   border: none;
@@ -324,7 +326,8 @@ body.dark-mode {
 .dark-mode #loginButton:hover,
 .dark-mode #signupButton:hover,
 .dark-mode #forgotPass:hover,
-.dark-mode #googleSign:hover {
+.dark-mode #googleSign:hover,
+.dark-mode #resetButton:hover {
   background-color: rgba(119, 119, 119, 0);
   color: white;
 }
@@ -335,6 +338,15 @@ body.dark-mode {
 #submit,
 #forgotPass{
   border-radius: 10%/80%;
+}
+
+#resetButton{
+  width:100px;
+  border-radius: 20%/80%;
+}
+
+#resetButton:hover{
+  width: 120px;
 }
 
 #dropdown{

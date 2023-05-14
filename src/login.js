@@ -33,9 +33,11 @@ window.onload = async () => {
     x = true;
   });
   loginButtonList.children[6].addEventListener("click", handleGoogleSignIn);
-  signupButtonList.children[8].addEventListener("click", handleGoogleSignIn);
+  signupButtonList.children[7].addEventListener("click", handleGoogleSignIn);
+loginButtonList.children[5].addEventListener("click", ()=>{
 
-  signupButtonList.children[7].addEventListener("click", () => {
+});
+  signupButtonList.children[6].addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
   });
@@ -50,20 +52,42 @@ window.onload = async () => {
     if ((status = 1)) location.href = "index.html";
     else alert("error logging in");
   });
-  signupButtonList.children[6].addEventListener("click", () => {
+  signupButtonList.children[5].addEventListener("click", () => {
     if (
       checkData(
-        signupButtonList.children[4].children[1],
-        signupButtonList.children[5].children[1].value
+        signupButtonList.children[3].children[1],
+        signupButtonList.children[4].children[1].value
       )
     ) {
-      let email = signupButtonList.children[4].children[1].value;
-      let pass = signupButtonList.children[5].children[1].value;
+      let email = signupButtonList.children[3].children[1].value;
+      let pass = signupButtonList.children[4].children[1].value;
       let status = loginAuth.signupUser(auth, email, pass);
       location.href = "index.html";
       if ((status = 1)) location.href = "index.html";
       else alert("error signing up in");
     }
+  });
+
+
+  loginButtonList.children[5].addEventListener("click",()=>{
+    const resetEmail = document.createElement("div");
+    resetEmail.innerHTML = `<input required type="email" id="email" class="input" placeholder="email" />
+    <button type="button" id="resetButton" value="">Submit</button><span></span>`;
+    resetEmail.children[1].addEventListener("click",async ()=>{
+      let res = await loginAuth.resetPass(auth, resetEmail.children[0].value);
+
+      console.log(res);
+      if (res == 1){
+        resetEmail.children[2].innerHTML="Email Sent!";
+        setTimeout(() => {
+          resetEmail.innerHTML="";
+        }, 200);
+      }
+      else{
+        resetEmail.children[2].innerHTML="Error";
+      }
+    });
+    loginButtonList.children[5].insertAdjacentElement("afterend",resetEmail);
   });
 };
 let spanLetters = document.getElementsByClassName("backLetter");
@@ -91,8 +115,6 @@ function refreshFields() {
     lastName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
-        document.getElementById("username").placeholder =
-          firstName.value + lastName.value;
         document.getElementById("email").placeholder =
           firstName.value + lastName.value + "@gmail.com";
       }
@@ -102,8 +124,6 @@ function refreshFields() {
     firstName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
-        document.getElementById("username").placeholder =
-          firstName.value + lastName.value;
         document.getElementById("email").placeholder =
           firstName.value + lastName.value + "@gmail.com";
       }
@@ -112,7 +132,6 @@ function refreshFields() {
 }
 
 function setDefault() {
-  document.getElementById("username").placeholder = "username";
   document.getElementById("email").placeholder = "email@gmail.com";
 }
 
@@ -128,10 +147,7 @@ function checkStrength(password) {
       password.includes(firstName.value)) ||
     (lastName !== undefined &&
       lastName.value.length !== 0 &&
-      password.includes(lastName.value)) ||
-    (username !== undefined &&
-      username.value.length !== 0 &&
-      password.includes(username.value))
+      password.includes(lastName.value))
   ) {
     return false;
   }

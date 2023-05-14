@@ -6,9 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
   signInWithPopup,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 
 // user authentication code
@@ -66,4 +65,10 @@ export function signoutUser(auth) {
 export async function google(auth) {
   const provider = await new GoogleAuthProvider();
   return await signInWithPopup(auth, provider);
+}
+
+export async function resetPass(auth,email){
+   let res = await sendPasswordResetEmail(auth,email).catch(e=>-1);
+   if(res==undefined)return 1;
+   return res;
 }
