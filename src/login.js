@@ -1,8 +1,8 @@
-import * as loginAuth  from "./loginAuth.js";
+import * as loginAuth from "./loginAuth.js";
 let auth;
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
-let signupButton, loginButton, submitButton;
+// let signupButton, loginButton, submitButton;
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
@@ -12,7 +12,8 @@ window.onload = async () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  auth=loginAuth.init();
+  auth = loginAuth.init();
+  loginAuth.signoutUser(auth);
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -32,6 +33,10 @@ window.onload = async () => {
     x = true;
   });
 
+  document.getElementById("googleLogin").addEventListener("click",()=>{
+
+  });
+
   signupButtonList.children[7].addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
@@ -39,17 +44,28 @@ window.onload = async () => {
 
   loginButtonList.children[3].addEventListener("click", () => {
     let temp = loginBody.children[0].children[0].children;
-    loginAuth.loginUser(auth,temp[1].children[1].value,temp[2].children[1].value);
+    let status = loginAuth.loginUser(
+      auth,
+      temp[1].children[1].value,
+      temp[2].children[1].value
+    );
+    if ((status = 1)) location.href = "index.html";
+    else alert("error logging in");
   });
-  console.log(signupButtonList.children[4].children[1]);
   signupButtonList.children[6].addEventListener("click", () => {
     if (
       checkData(
         signupButtonList.children[4].children[1],
         signupButtonList.children[5].children[1].value
       )
-    )
+    ) {
+      let email = signupButtonList.children[4].children[1].value;
+      let pass = signupButtonList.children[5].children[1].value;
+      let status = loginAuth.signupUser(auth, email, pass);
       location.href = "index.html";
+      if ((status = 1)) location.href = "index.html";
+      else alert("error signing up in");
+    }
   });
 };
 let spanLetters = document.getElementsByClassName("backLetter");
