@@ -7,10 +7,6 @@ const main = () => {
     }
     let name = sessionStorage.getItem('name');
     let email = sessionStorage.getItem('email');
-    function profileReplace(){
-        let profileButton = document.getElementById("profile");
-        profileButton.innerText = email;
-      }
     console.log(name,email);
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
@@ -515,3 +511,9 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
     }); 
     // console.log(response);
 })
+
+document.getElementById("profile").addEventListener("click", profileReplace);
+function profileReplace(){
+    let profileButton = document.getElementById("profile");
+    profileButton.innerText = email;
+  }
