@@ -8,8 +8,6 @@ const main = () => {
     for(let spanText of spanTexts){
         spanText.classList.add("active")
     }
-
-    
     console.log(name,email);
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
