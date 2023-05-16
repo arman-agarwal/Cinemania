@@ -1,16 +1,18 @@
+import * as loginAuth from "./loginAuth.js";
+let auth;
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
-let signupButton, loginButton, submitButton;
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
 let x = false;
 window.onload = async () => {
   let spanTexts = document.getElementsByClassName("backLetter");
-  for (spanText of spanTexts) {
+  for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-
+  auth = await loginAuth.init();
+  await loginAuth.signoutUser(auth);
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -19,90 +21,93 @@ window.onload = async () => {
     .then((html) => (signupBody.innerHTML = html.trim()));
 
   loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
-
   let loginButtonList = loginBody.children[0].children[0];
   let signupButtonList = signupBody.children[0].children[0];
-
-  loginButtonList.children[4].addEventListener("click", () => {
+  document
+    .getElementById("googleSign")
+    .addEventListener("click", handleGoogleSignIn);
+  document.getElementById("signupButton").addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", signupBody);
     if (!x) refreshFields();
     x = true;
   });
-
-  signupButtonList.children[7].addEventListener("click", () => {
-    loginPage.removeChild(document.getElementById("replace"));
-    loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
+  document.getElementById("submit").addEventListener("click", async () => {
+    let status = await loginAuth.loginUser(
+      auth,
+      document.getElementById("username"),
+      document.getElementById("password")
+    );
+    if (status === 1) location.href = "index.html";
+    else alert("error logging in");
   });
 
-  loginButtonList.children[3].addEventListener("click", () => {
-    location.href = "index.html";
-  });
-  console.log(signupButtonList.children[4].children[1]);
-  signupButtonList.children[6].addEventListener("click", () => {
-    if (
-      checkData(
-        signupButtonList.children[4].children[1],
-        signupButtonList.children[5].children[1].value
-      )
-    )
-      location.href = "index.html";
+  document.getElementById("forgotPass").addEventListener("click", () => {
+    const resetBox = document.getElementById("resetBox");
+    resetBox.innerHTML = `<input required type="email" id="resetEmail" class="input" placeholder="email" />
+    <button type="button" id="resetButton" value="">Submit</button>`;
+    resetBox.children[1].addEventListener("click", async () => {
+      let res = await loginAuth.resetPass(auth, resetBox.children[0].value);
+      if (res === 1) {
+        alert("Email Sent!");
+        setTimeout(() => {
+         document.getElementById("resetBox").innerHTML="";
+        }, 300);
+      } else {
+        alert("Error Sending Email");
+      }
+    });
   });
 };
-let spanLetters = document.getElementsByClassName("backLetter");
-let spanTexts = document.getElementById("backText");
-
-spanTexts.addEventListener("mouseover", function () {
-  for (spanLetter of spanLetters) {
-    spanLetter.classList.remove("active");
-    spanLetter.classList.add("activeG");
-  }
-});
-
-// Add a mouseout event listener to the div element
-spanTexts.addEventListener("mouseout", function () {
-  for (spanLetter of spanLetters) {
-    spanLetter.classList.remove("activeG");
-    spanLetter.classList.add("active");
-  }
-});
 
 function refreshFields() {
   let lastName = document.getElementById("lastName");
   let firstName = document.getElementById("firstName");
-  if (lastName != null) {
+  if (lastName !== null) {
     lastName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
-        document.getElementById("username").placeholder =
-          firstName.value + lastName.value;
         document.getElementById("email").placeholder =
           firstName.value + lastName.value + "@gmail.com";
       }
     });
   }
-  if (firstName != null) {
+  if (firstName !== null) {
     firstName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
-        document.getElementById("username").placeholder =
-          firstName.value + lastName.value;
         document.getElementById("email").placeholder =
           firstName.value + lastName.value + "@gmail.com";
       }
     });
   }
+  document
+    .getElementById("googleSign")
+    .addEventListener("click", handleGoogleSignIn);
+  document.getElementById("loginButton").addEventListener("click", () => {
+    loginPage.removeChild(document.getElementById("replace"));
+    loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
+  });
+
+  document.getElementById("submit").addEventListener("click", async () => {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    if (checkData(email, password)) {
+      let status = await loginAuth.signupUser(auth, email, password);
+      if (status === 1) {
+        console.log("logged in new user");
+      } else alert("error signing up");
+    }
+  });
 }
 
 function setDefault() {
-  document.getElementById("username").placeholder = "username";
   document.getElementById("email").placeholder = "email@gmail.com";
 }
 
 function checkStrength(password) {
   let firstName = document.getElementById("firstName");
   let lastName = document.getElementById("lastName");
-  let username = document.getElementById("username");
   if (
     "string" !== typeof password ||
     password.length < 5 ||
@@ -111,10 +116,7 @@ function checkStrength(password) {
       password.includes(firstName.value)) ||
     (lastName !== undefined &&
       lastName.value.length !== 0 &&
-      password.includes(lastName.value)) ||
-    (username !== undefined &&
-      username.value.length !== 0 &&
-      password.includes(username.value))
+      password.includes(lastName.value))
   ) {
     return false;
   }
@@ -123,7 +125,7 @@ function checkStrength(password) {
 
 function checkData(email, password) {
   let regex = /\S+@\S+\.\S+$/;
-  if (!regex.test(email.value)) {
+  if (!regex.test(email)) {
     alert("invalid email");
     return false;
   }
@@ -133,6 +135,36 @@ function checkData(email, password) {
   }
   return true;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+let spanLetters = document.getElementsByClassName("backLetter");
+let spanTexts = document.getElementById("backText");
+
+spanTexts.addEventListener("mouseover", function () {
+  for (let spanLetter of spanLetters) {
+    spanLetter.classList.remove("active");
+    spanLetter.classList.add("activeG");
+  }
+});
+
+// Add a mouseout event listener to the div element
+spanTexts.addEventListener("mouseout", function () {
+  for (let spanLetter of spanLetters) {
+    spanLetter.classList.remove("activeG");
+    spanLetter.classList.add("active");
+  }
+});
 
 //dark Mode code
 const light = document.getElementById("lightButton");
@@ -156,3 +188,9 @@ dark.addEventListener("click", function () {
   sun.classList.add("img-faded");
   body.classList.add("dark-mode");
 });
+
+async function handleGoogleSignIn() {
+  const result = await loginAuth.google(auth).catch((e) => -1);
+  if (result === -1) alert("error");
+  else location.href = "index.html";
+}
