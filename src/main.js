@@ -1,12 +1,16 @@
 import * as crud from './api_methods.js';
 import * as keyFuncs from '../env.js';
+
+let email = sessionStorage.getItem('email');
+console.log(name,email);
+
 const main = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
     for(let spanText of spanTexts){
         spanText.classList.add("active")
     }
     let name = sessionStorage.getItem('name');
-    let email = sessionStorage.getItem('email');
+    
     console.log(name,email);
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
@@ -513,7 +517,7 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
 })
 
 document.getElementById("profile").addEventListener("click", profileReplace);
-function profileReplace(email){
+function profileReplace(){
     let profileButton = document.getElementById("profile");
     profileButton.innerText = email;
   }
