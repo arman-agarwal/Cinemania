@@ -21,26 +21,20 @@ window.onload = async () => {
     .then((html) => (signupBody.innerHTML = html.trim()));
 
   loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
-
   let loginButtonList = loginBody.children[0].children[0];
   let signupButtonList = signupBody.children[0].children[0];
-
+  document.getElementById("googleSign").addEventListener("click",handleGoogleSignIn);
   loginButtonList.children[4].addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", signupBody);
     if (!x) refreshFields();
     x = true;
   });
-  loginButtonList.children[6].addEventListener("click", handleGoogleSignIn);
-  signupButtonList.children[7].addEventListener("click", handleGoogleSignIn);
-loginButtonList.children[5].addEventListener("click", ()=>{
 
-});
   signupButtonList.children[6].addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
   });
-
   loginButtonList.children[3].addEventListener("click", () => {
     let temp = loginBody.children[0].children[0].children;
     let status = loginAuth.loginUser(
@@ -71,7 +65,7 @@ loginButtonList.children[5].addEventListener("click", ()=>{
   loginButtonList.children[5].addEventListener("click",()=>{
     const resetEmail = document.createElement("div");
     resetEmail.innerHTML = `<input required type="email" id="email" class="input" placeholder="email" />
-    <button type="button" id="resetButton" value="">Submit</button><span></span>`;
+    <button type="button" id="resetButton" value="">Submit</button>`;
     resetEmail.children[1].addEventListener("click",async ()=>{
       let res = await loginAuth.resetPass(auth, resetEmail.children[0].value);
 
@@ -86,7 +80,7 @@ loginButtonList.children[5].addEventListener("click", ()=>{
         resetEmail.children[2].innerHTML="Error";
       }
     });
-    loginButtonList.children[5].insertAdjacentElement("afterend",resetEmail);
+    loginButtonList.children[5].children[0].insertAdjacentElement("afterend",resetEmail);
   });
 };
 let spanLetters = document.getElementsByClassName("backLetter");
@@ -128,6 +122,7 @@ function refreshFields() {
       }
     });
   }
+  document.getElementById("googleSign").addEventListener("click", handleGoogleSignIn);
 }
 
 function setDefault() {
@@ -191,6 +186,6 @@ dark.addEventListener("click", function () {
 
 async function handleGoogleSignIn() {
   const result = await loginAuth.google(auth).catch(e=>-1);
-  if(result==-1)alert(error);
+  if(result==-1)alert("error");
   else location.href = "index.html";
 }
