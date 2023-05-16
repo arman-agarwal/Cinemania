@@ -39,7 +39,7 @@ window.onload = async () => {
       document.getElementById("password")
     );
     if (status === 1){
-      sessionStorage.setItem('name', auth.currentUser.displayName);
+      sessionStorage.setItem('uid', auth.currentUser.uid);
       sessionStorage.setItem('email', auth.currentUser.email);
       location.href = "index.html";
     } 
@@ -99,6 +99,9 @@ function refreshFields() {
     if (checkData(email, password)) {
       let status = await loginAuth.signupUser(auth, email, password);
       if (status === 1) {
+        location.href = "index.html";
+        sessionStorage.setItem('uid', auth.currentUser.uid);
+        sessionStorage.setItem('email', auth.currentUser.email);
         console.log("logged in new user");
       } else alert("error signing up");
     }
@@ -184,5 +187,9 @@ dark.addEventListener("click", function () {
 async function handleGoogleSignIn() {
   const result = await loginAuth.google(auth).catch((e) => -1);
   if (result === -1) alert("error");
-  else location.href = "index.html";
+  else{
+    sessionStorage.setItem('uid', auth.currentUser.uid);
+    sessionStorage.setItem('email', auth.currentUser.email);
+    location.href = "index.html";
+  } 
 }
