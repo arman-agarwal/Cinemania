@@ -513,7 +513,7 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
 })
 
 document.getElementById("profile").addEventListener("click", profileReplace);
-function profileReplace(){
+function profileReplace(email){
     let profileButton = document.getElementById("profile");
     profileButton.innerText = email;
   }
