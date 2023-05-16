@@ -33,7 +33,6 @@ window.onload = async () => {
     x = true;
   });
   document.getElementById("submit").addEventListener("click", async () => {
-    console.log("triggered login submit");
     let status = await loginAuth.loginUser(
       auth,
       document.getElementById("username"),
@@ -91,7 +90,6 @@ function refreshFields() {
   });
 
   document.getElementById("submit").addEventListener("click", async () => {
-    console.log("triggered signup submit");
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     if (checkData(email, password)) {

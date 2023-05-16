@@ -26,7 +26,6 @@ export function init() {
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
       console.log("logged in");
-      console.log(user.uid);
     } else {
       console.log("no user");
     }
