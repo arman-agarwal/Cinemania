@@ -14,7 +14,13 @@ async function reload() {
     include_docs: true, 
     attachments: true 
   }).then(function (result) {
-    dbLen = result.rows.length;
+    let tempLen = -1;
+    for (let i = 0; i<result.rows.length; ++ i){
+      if(parseInt(result.rows[i].id) > tempLen){
+        tempLen = parseInt(result.rows[i].id);
+      }
+    }
+    dbLen = ++tempLen;
   }).catch(function (err) {
     console.log(err);
   });
@@ -62,12 +68,34 @@ async function writeNewMovie(response, newData) {
     response.end();
 }
 
-// async function uploadImage(response, formData){
-//     console.log(formData);
-//     response.writeHead(200, headerFields);
-//     response.write(JSON.stringify({ success: true }));
-//     response.end();
-// }
+async function updateMovie(response, movie){
+  movie = JSON.parse(movie);
+  console.log(movie);
+  db.get(movie["cardID"]).then((doc)=>{
+    if( movie["name"] != undefined){
+      doc["name"] = movie.name;
+    }
+    if( movie["stars"] != undefined){
+      doc["stars"] = movie.stars;
+    }
+    if( movie["comment_title"] != undefined){
+      doc["comment_title"] = movie.comment_title;
+    }
+    if(movie["comment"] != undefined){
+      doc["comment"] = movie.comment;
+    }
+    console.log(doc);
+    return db.put(doc);
+  }).then(function(response) {
+    response.writeHead(200, headerFields);
+    response.write(JSON.stringify({ success: true }));
+    response.end();
+  }).catch(function(error) {
+    response.writeHead(400, headerFields);
+    response.write(JSON.stringify({ success: false }));
+    response.end();
+  });
+}
 
 async function deleteMovie(response, cardID){
     db.get(cardID).then(function (doc) {
@@ -95,6 +123,8 @@ async function basicServer(request, response) {
     await uploadImage(response, options.formData);
   } else if (method == 'DELETE' && pathname.startsWith('/deleteMovie')){
     await deleteMovie(response, options.cardID);
+  } else if (method == 'PUT' && pathname.startsWith('/updateMovie')){
+    await updateMovie(response, options.movie);
   } else {
     response.writeHead(404, headerFields);
     response.write(JSON.stringify({ error: 'Not Found' }));
