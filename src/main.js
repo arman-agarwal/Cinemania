@@ -515,3 +515,7 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
     }); 
     // console.log(response);
 })
+function profileReplace(){
+    let profileButton = document.getElementById("profile");
+    profileButton.innerText = email; //auth.currentUser.email
+  }
