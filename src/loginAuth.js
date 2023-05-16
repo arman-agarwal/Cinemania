@@ -33,28 +33,28 @@ export function init() {
   });
   return auth;
 }
-export function signupUser(auth, email, password) {
-  createUserWithEmailAndPassword(auth, email, password)
+export async function signupUser(auth, email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("created user");
-      console.log("signed in");
-      // console.log(cred.user);
+      return 1;
     })
     .catch((e) => {
       console.log(e);
+      return -1;
     });
 }
 
-export function loginUser(auth, email, password) {
-  signInWithEmailAndPassword(auth, email, password)
+export async function loginUser(auth, email, password) {
+  await signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("signed in");
     })
     .catch((e) => console.log(e));
 }
 
-export function signoutUser(auth) {
-  signOut(auth)
+export async function signoutUser(auth) {
+  await signOut(auth)
     .then(() => {
       console.log("signed out user");
       return 1;

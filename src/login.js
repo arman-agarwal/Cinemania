@@ -11,8 +11,8 @@ window.onload = async () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  auth = loginAuth.init();
-  loginAuth.signoutUser(auth);
+  auth = await loginAuth.init();
+  await loginAuth.signoutUser(auth);
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -23,88 +23,48 @@ window.onload = async () => {
   loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
   let loginButtonList = loginBody.children[0].children[0];
   let signupButtonList = signupBody.children[0].children[0];
-  document.getElementById("googleSign").addEventListener("click",handleGoogleSignIn);
-  loginButtonList.children[4].addEventListener("click", () => {
+  document
+    .getElementById("googleSign")
+    .addEventListener("click", handleGoogleSignIn);
+  document.getElementById("signupButton").addEventListener("click", () => {
     loginPage.removeChild(document.getElementById("replace"));
     loginPage.children[1].insertAdjacentElement("beforebegin", signupBody);
     if (!x) refreshFields();
     x = true;
   });
-
-  signupButtonList.children[6].addEventListener("click", () => {
-    loginPage.removeChild(document.getElementById("replace"));
-    loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
-  });
-  loginButtonList.children[3].addEventListener("click", () => {
-    let temp = loginBody.children[0].children[0].children;
-    let status = loginAuth.loginUser(
+  document.getElementById("submit").addEventListener("click", async () => {
+    console.log("triggered login submit");
+    let status = await loginAuth.loginUser(
       auth,
-      temp[1].children[1].value,
-      temp[2].children[1].value
+      document.getElementById("username"),
+      document.getElementById("password")
     );
-    if ((status = 1)) location.href = "index.html";
+    if (status === 1) location.href = "index.html";
     else alert("error logging in");
   });
-  signupButtonList.children[5].addEventListener("click", () => {
-    if (
-      checkData(
-        signupButtonList.children[3].children[1],
-        signupButtonList.children[4].children[1].value
-      )
-    ) {
-      let email = signupButtonList.children[3].children[1].value;
-      let pass = signupButtonList.children[4].children[1].value;
-      let status = loginAuth.signupUser(auth, email, pass);
-      location.href = "index.html";
-      if ((status = 1)) location.href = "index.html";
-      else alert("error signing up in");
-    }
-  });
 
-
-  loginButtonList.children[5].addEventListener("click",()=>{
-    const resetEmail = document.createElement("div");
-    resetEmail.innerHTML = `<input required type="email" id="email" class="input" placeholder="email" />
+  document.getElementById("forgotPass").addEventListener("click", () => {
+    const resetBox = document.getElementById("resetBox");
+    resetBox.innerHTML = `<input required type="email" id="resetEmail" class="input" placeholder="email" />
     <button type="button" id="resetButton" value="">Submit</button>`;
-    resetEmail.children[1].addEventListener("click",async ()=>{
-      let res = await loginAuth.resetPass(auth, resetEmail.children[0].value);
-
-      console.log(res);
-      if (res == 1){
-        resetEmail.children[2].innerHTML="Email Sent!";
+    resetBox.children[1].addEventListener("click", async () => {
+      let res = await loginAuth.resetPass(auth, resetBox.children[0].value);
+      if (res === 1) {
+        alert("Email Sent!");
         setTimeout(() => {
-          resetEmail.innerHTML="";
-        }, 200);
-      }
-      else{
-        resetEmail.children[2].innerHTML="Error";
+         document.getElementById("resetBox").innerHTML="";
+        }, 300);
+      } else {
+        alert("Error Sending Email");
       }
     });
-    loginButtonList.children[5].children[0].insertAdjacentElement("afterend",resetEmail);
   });
 };
-let spanLetters = document.getElementsByClassName("backLetter");
-let spanTexts = document.getElementById("backText");
-
-spanTexts.addEventListener("mouseover", function () {
-  for (let spanLetter of spanLetters) {
-    spanLetter.classList.remove("active");
-    spanLetter.classList.add("activeG");
-  }
-});
-
-// Add a mouseout event listener to the div element
-spanTexts.addEventListener("mouseout", function () {
-  for (let spanLetter of spanLetters) {
-    spanLetter.classList.remove("activeG");
-    spanLetter.classList.add("active");
-  }
-});
 
 function refreshFields() {
   let lastName = document.getElementById("lastName");
   let firstName = document.getElementById("firstName");
-  if (lastName != null) {
+  if (lastName !== null) {
     lastName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
@@ -113,7 +73,7 @@ function refreshFields() {
       }
     });
   }
-  if (firstName != null) {
+  if (firstName !== null) {
     firstName.addEventListener("keyup", () => {
       if (firstName.value == "" || lastName.value == "") setDefault();
       else {
@@ -122,7 +82,25 @@ function refreshFields() {
       }
     });
   }
-  document.getElementById("googleSign").addEventListener("click", handleGoogleSignIn);
+  document
+    .getElementById("googleSign")
+    .addEventListener("click", handleGoogleSignIn);
+  document.getElementById("loginButton").addEventListener("click", () => {
+    loginPage.removeChild(document.getElementById("replace"));
+    loginPage.children[1].insertAdjacentElement("beforebegin", loginBody);
+  });
+
+  document.getElementById("submit").addEventListener("click", async () => {
+    console.log("triggered signup submit");
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    if (checkData(email, password)) {
+      let status = await loginAuth.signupUser(auth, email, password);
+      if (status === 1) {
+        console.log("logged in new user");
+      } else alert("error signing up");
+    }
+  });
 }
 
 function setDefault() {
@@ -132,7 +110,6 @@ function setDefault() {
 function checkStrength(password) {
   let firstName = document.getElementById("firstName");
   let lastName = document.getElementById("lastName");
-  let username = document.getElementById("username");
   if (
     "string" !== typeof password ||
     password.length < 5 ||
@@ -150,7 +127,7 @@ function checkStrength(password) {
 
 function checkData(email, password) {
   let regex = /\S+@\S+\.\S+$/;
-  if (!regex.test(email.value)) {
+  if (!regex.test(email)) {
     alert("invalid email");
     return false;
   }
@@ -160,6 +137,36 @@ function checkData(email, password) {
   }
   return true;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+let spanLetters = document.getElementsByClassName("backLetter");
+let spanTexts = document.getElementById("backText");
+
+spanTexts.addEventListener("mouseover", function () {
+  for (let spanLetter of spanLetters) {
+    spanLetter.classList.remove("active");
+    spanLetter.classList.add("activeG");
+  }
+});
+
+// Add a mouseout event listener to the div element
+spanTexts.addEventListener("mouseout", function () {
+  for (let spanLetter of spanLetters) {
+    spanLetter.classList.remove("activeG");
+    spanLetter.classList.add("active");
+  }
+});
 
 //dark Mode code
 const light = document.getElementById("lightButton");
@@ -185,7 +192,7 @@ dark.addEventListener("click", function () {
 });
 
 async function handleGoogleSignIn() {
-  const result = await loginAuth.google(auth).catch(e=>-1);
-  if(result==-1)alert("error");
+  const result = await loginAuth.google(auth).catch((e) => -1);
+  if (result === -1) alert("error");
   else location.href = "index.html";
 }
