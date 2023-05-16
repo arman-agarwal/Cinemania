@@ -5,6 +5,13 @@ const main = () => {
     for(let spanText of spanTexts){
         spanText.classList.add("active")
     }
+    let name = sessionStorage.getItem('name');
+    let email = sessionStorage.getItem('email');
+    // function openProfile() {
+    //     var popup = document.getElementById("myPopup");
+    //     popup.classList.toggle("show");
+    //   }
+    console.log(name,email);
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
     // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable

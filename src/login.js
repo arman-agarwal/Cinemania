@@ -38,7 +38,11 @@ window.onload = async () => {
       document.getElementById("username"),
       document.getElementById("password")
     );
-    if (status === 1) location.href = "index.html";
+    if (status === 1){
+      sessionStorage.setItem('name', auth.currentUser.displayName);
+      sessionStorage.setItem('email', auth.currentUser.email);
+      location.href = "index.html";
+    } 
     else alert("error logging in");
   });
 
@@ -135,18 +139,6 @@ function checkData(email, password) {
   }
   return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 let spanLetters = document.getElementsByClassName("backLetter");
 let spanTexts = document.getElementById("backText");
