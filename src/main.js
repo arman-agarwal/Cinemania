@@ -517,5 +517,5 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
 })
 function profileReplace(){
     let profileButton = document.getElementById("profile");
-    profileButton.innerText = email; //auth.currentUser.email
+    profileButton.innerText = email; 
   }
