@@ -576,5 +576,5 @@ function closeForm() {
 
 //EventListener for logout
 document.getElementById("Logout").addEventListener("click", () => {
-  loginAuth.signoutUser();
+  window.location.href = "loginPage.html";
 });
