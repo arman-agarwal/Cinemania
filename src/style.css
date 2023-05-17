@@ -391,6 +391,7 @@ body.dark-mode {
 /*CSS to allign the text for Sign Up */
 #titleRowSignUp {
   display: flex;
+  background-color: #a2ab87;
   flex-direction: column;
   justify-content: center;
   align-items: center;
