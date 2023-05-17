@@ -369,3 +369,21 @@ body.dark-mode {
   margin-top: 50px;
   margin-right: 30px;
 }
+
+/* The popup form */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 240px;
+  bottom: 240px;
+  right: 580px;
+  left:460px;
+  border: 6px solid teal;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}

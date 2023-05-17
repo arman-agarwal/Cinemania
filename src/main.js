@@ -2,13 +2,17 @@ import * as crud from './api_methods.js';
 import * as keyFuncs from '../env.js';
 
 let email = sessionStorage.getItem('email');
+let name = sessionStorage.getItem('name');
+let uid = sessionStorage.getItem('uid');
+console.log(email, name, uid);
+
 
 const main = () => {
     let spanTexts = document.getElementsByClassName("backLetter");
     for(let spanText of spanTexts){
         spanText.classList.add("active")
     }
-    console.log(name,email);
+    console.log(email, name, uid);
     // getting the cardsdiv element, in which we will be adding the elements
     const cardsDiv = document.getElementById("cardsListDiv");
     // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable
@@ -513,8 +517,24 @@ document.getElementById("addIMDbMovie").addEventListener("click", async function
     // console.log(response);
 })
 
-document.getElementById("profile").addEventListener("click", profileReplace);
-function profileReplace(){
-    let profileButton = document.getElementById("profile");
-    profileButton.innerText = email;
+document.getElementById("profile").addEventListener("click", openForm);
+document.getElementById("close").addEventListener("click", closeForm);
+// function profileReplace(){
+//     let profileButton = document.getElementById("profile");
+//     profileButton.innerText = email;
+//   }
+
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("email").innerText = email;
+    
   }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+// function profileReplace() {
+//     let popup = document.getElementById("profile");
+//     popup.classList.toggle("show");
+//   }

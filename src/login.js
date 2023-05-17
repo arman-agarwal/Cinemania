@@ -40,6 +40,8 @@ window.onload = async () => {
     );
     if (status === 1){
       sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
+      sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
+      sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
       location.href = "index.html";
     } 
     else alert("error logging in");
@@ -102,6 +104,8 @@ function refreshFields() {
       if (status === 1) {
         location.href = "index.html";
         sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
+        sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
+        sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
         console.log("logged in new user");
       } else alert("error signing up");
     }
@@ -189,6 +193,8 @@ async function handleGoogleSignIn() {
   if (result === -1) alert("error");
   else{
     sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
+    sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
+    sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
     location.href = "index.html";
   } 
 }
