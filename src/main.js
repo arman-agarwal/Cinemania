@@ -1,10 +1,13 @@
 import * as crud from "./api_methods.js";
 import * as keyFuncs from "../env.js";
+import loginAuth from "./loginAuth.js";
 
 let email = sessionStorage.getItem("email");
 let name = sessionStorage.getItem("name");
 let uid = sessionStorage.getItem("uid");
-console.log(email, name, uid);
+let Name = sessionStorage.getItem("name");
+let names = loginAuth.getUserData(uid)["name"];
+console.log(email, name, uid, Name,names);
 
 const main = () => {
 

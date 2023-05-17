@@ -108,18 +108,12 @@ export class loginAuth {
 
   async addData(inName, inEmail, inUid) {
     try {
-      if (
-        (await getDocs(
-          query(collection(this.db, "users"), where("uid", "==", inUid))
-        ).size) === 0
-      ) {
         const ref = await setDoc(doc(this.db, "users", "" + inUid), {
           name: inName,
           email: inEmail,
           uid: inUid,
         });
         console.log(`written ${inName}`);
-      }
     } catch (e) {
       alert(`error writing data${e}`);
     }

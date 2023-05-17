@@ -375,9 +375,9 @@ body.dark-mode {
   display: none;
   position: fixed;
   top: 240px;
-  bottom: 240px;
+  bottom: 327px;
   right: 580px;
-  left: 460px;
+  left: 560px;
   border: 6px solid teal;
   z-index: 9;
 }
