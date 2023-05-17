@@ -374,6 +374,7 @@ body.dark-mode {
 .form-popup {
   display: none;
   position: fixed;
+  list-style-type: none;
   top: 240px;
   bottom: 327px;
   right: 580px;
@@ -383,6 +384,7 @@ body.dark-mode {
 }
 
 .form-container {
+  list-style-type: none;
   max-width: 300px;
   padding: 10px;
   background-color: white;

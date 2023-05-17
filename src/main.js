@@ -2,18 +2,13 @@ import * as crud from "./api_methods.js";
 import * as keyFuncs from "../env.js";
 import loginAuth from "./loginAuth.js";
 
-let email = sessionStorage.getItem("email");
-let name = sessionStorage.getItem("name");
 let uid = sessionStorage.getItem("uid");
-let Name = sessionStorage.getItem("name");
-let names = loginAuth.getUserData(uid)["name"];
-console.log(email, name, uid, Name,names);
 
 const main = () => {
 
-  if(!sessionStorage.getItem("login")){
-    window.location.href = 'loginPage.html';
-  };
+  // if(!sessionStorage.getItem("login")){
+  //   window.location.href = 'loginPage.html';
+  // };
 
   let spanTexts = document.getElementsByClassName("backLetter");
   for (let spanText of spanTexts) {
@@ -568,9 +563,11 @@ document.getElementById("close").addEventListener("click", closeForm);
 //     profileButton.innerText = email;
 //   }
 
-function openForm() {
+async function openForm() {
+  let data = await loginAuth.getUserData(uid);
   document.getElementById("myForm").style.display = "block";
-  document.getElementById("email").innerText = email;
+  document.getElementById("email").innerText = data["email"];
+  document.getElementById("name").innerText = data["name"];
 }
 
 function closeForm() {

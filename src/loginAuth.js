@@ -43,17 +43,16 @@ export class loginAuth {
     });
   }
 
-  signupUser(firstname, lastname, email, password) {
-    return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((cred) => {
-        console.log("created user");
-        this.addData(firstname + " " + lastname, email, cred.user.uid);
-        return 1;
-      })
-      .catch((e) => {
-        console.log(e);
-        return -1;
-      });
+  async signupUser(firstname, lastname, email, password) {
+    try{
+      let res = await createUserWithEmailAndPassword(this.auth, email, password);
+      console.log("created user");
+      await this.addData(firstname+" "+lastname,email,res.user.uid);
+      return 1;
+    }catch(e){
+      console.log(e);
+      return -1;
+    }
   }
 
   async loginUser(email, password) {
