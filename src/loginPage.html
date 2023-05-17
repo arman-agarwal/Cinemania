@@ -53,10 +53,18 @@
               <span class="backLetter">A</span>
             </div>
           </a>
+          <button id="scrollButton">Scroll to Login</button>
         </div>
-        <button id="scrollButton">Scroll to Login</button>
       </div>
       <div></div>
     </div>
+    <script>
+      // JavaScript to handle scrolling to the login section
+      const scrollButton = document.getElementById("scrollButton");
+      scrollButton.addEventListener("click", () => {
+        const loginSection = document.getElementById("loginSection");
+        loginSection.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
   </body>
 </html>
