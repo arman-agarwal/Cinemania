@@ -518,15 +518,3 @@ function profileReplace(){
     let profileButton = document.getElementById("profile");
     profileButton.innerText = email;
   }
-
-//   function profileReplace() {
-//     let popup = document.getElementById("profile");
-//     popup.classList.toggle("show");
-//   }
-//   function openForm() {
-//     document.getElementById("myForm").style.display = "block";
-//   }
-  
-//   function closeForm() {
-//     document.getElementById("myForm").style.display = "none";
-//   }

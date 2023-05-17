@@ -27,7 +27,7 @@ export function init() {
     if (user != null) {
       console.log("logged in");
     } else {
-      console.log("no user");
+      console.log("no user found");
     }
   });
   return auth;
@@ -35,7 +35,7 @@ export function init() {
 export async function signupUser(auth, email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log("created user");
+      console.log("created new user");
       return 1;
     })
     .catch((e) => {
@@ -55,7 +55,7 @@ export async function loginUser(auth, email, password) {
 export async function signoutUser(auth) {
   await signOut(auth)
     .then(() => {
-      console.log("signed out user");
+      console.log("signed out the user");
       return 1;
     })
     .catch((e) => -1);
