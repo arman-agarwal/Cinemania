@@ -81,7 +81,7 @@ export class loginAuth {
     const provider = await new GoogleAuthProvider();
     let res = await signInWithPopup(this.auth, provider);
     console.log(res.user.uid);
-    this.addData(res.user.displayName, res.user.email, res.user.uid);
+    await this.addData(res.user.displayName, res.user.email, res.user.uid);
     return res;
   }
 
