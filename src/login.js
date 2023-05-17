@@ -1,4 +1,4 @@
-import * as loginAuth from "./loginAuth.js";
+import loginAuth from "./loginAuth.js";
 let auth;
 let loginPage = document.getElementById("loginPage");
 let loginBody = document.createElement("div");
@@ -11,8 +11,7 @@ window.onload = async () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  auth = await loginAuth.init();
-  await loginAuth.signoutUser(auth);
+  await loginAuth.signoutUser();
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -33,13 +32,14 @@ window.onload = async () => {
     x = true;
   });
   document.getElementById("submit").addEventListener("click", async () => {
+    console.log(document.getElementById("username").value);
+    console.log(document.getElementById("password").value);
     let status = await loginAuth.loginUser(
-      auth,
-      document.getElementById("username"),
-      document.getElementById("password")
+      document.getElementById("username").value,
+      document.getElementById("password").value
     );
     if (status === 1){
-      sessionStorage.setItem('email', auth.currentUser.email);
+      sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
       location.href = "index.html";
     } 
     else alert("error logging in");
@@ -95,11 +95,13 @@ function refreshFields() {
   document.getElementById("submit").addEventListener("click", async () => {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
     if (checkData(email, password)) {
-      let status = await loginAuth.signupUser(auth, email, password);
+      let status = await loginAuth.signupUser(firstName, lastName, email, password);
       if (status === 1) {
         location.href = "index.html";
-        sessionStorage.setItem('email', auth.currentUser.email);
+        sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
         console.log("logged in new user");
       } else alert("error signing up");
     }
@@ -186,7 +188,7 @@ async function handleGoogleSignIn() {
   const result = await loginAuth.google(auth).catch((e) => -1);
   if (result === -1) alert("error");
   else{
-    sessionStorage.setItem('email', auth.currentUser.email);
+    sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
     location.href = "index.html";
   } 
 }
