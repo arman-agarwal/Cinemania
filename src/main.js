@@ -6,9 +6,9 @@ let uid = sessionStorage.getItem("uid");
 
 const main = () => {
 
-  // if(!sessionStorage.getItem("login")){
-  //   window.location.href = 'loginPage.html';
-  // };
+  if(!sessionStorage.getItem("login")){
+    window.location.href = 'loginPage.html';
+  };
 
   let spanTexts = document.getElementsByClassName("backLetter");
   for (let spanText of spanTexts) {

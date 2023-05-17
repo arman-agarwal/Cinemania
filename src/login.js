@@ -111,9 +111,10 @@ function refreshFields() {
         sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
         sessionStorage.setItem("name", loginAuth.auth.currentUser.name);
         sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+        sessionStorage.setItem("login", true);
         console.log("logged in new user");
         location.href = "index.html";
-      } else alert("error signing up");
+      } else alert("Error Signing up");
     }
   });
 }
@@ -201,6 +202,7 @@ async function handleGoogleSignIn() {
     sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
     sessionStorage.setItem("name", loginAuth.auth.currentUser.name);
     sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+    sessionStorage.setItem("login", true);
     location.href = "index.html";
   }
 }
