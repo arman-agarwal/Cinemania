@@ -388,8 +388,8 @@ body.dark-mode {
   background-color: white;
 }
 
-/*CSS to allign the text */
-#titleRow {
+/*CSS to allign the text for Sign Up */
+#titleRowSignUp {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -397,8 +397,8 @@ body.dark-mode {
   height: 100vh;
   position: relative;
 }
-/* CSS to position the logo arrow at the bottom right */
-#logo {
+/* CSS to position the logo arrow at the bottom right for Sign Up page */
+#logoSignUp {
   position: absolute;
   bottom: 225px;
   border: solid rgb(0, 0, 0);
