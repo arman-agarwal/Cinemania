@@ -9,7 +9,16 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-import { getFirestore, collection, addDoc,setDoc,doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js' 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  query,
+  where,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
 export class loginAuth {
   // user authentication code
@@ -20,7 +29,7 @@ export class loginAuth {
       projectId: "cinemania-89b4f",
       storageBucket: "cinemania-89b4f.appspot.com",
       messagingSenderId: "754757248247",
-      appId: "1:754757248247:web:fb860fc0dca3e09108dff2"
+      appId: "1:754757248247:web:fb860fc0dca3e09108dff2",
     };
 
     this.firebaseApp = initializeApp(firebaseConfig);
@@ -39,7 +48,7 @@ export class loginAuth {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((cred) => {
         console.log("created user");
-        this.addData(firstname,lastname,email,cred.user.uid);
+        this.addData(firstname + " " + lastname, email, cred.user.uid);
         return 1;
       })
       .catch((e) => {
@@ -71,7 +80,10 @@ export class loginAuth {
 
   async google() {
     const provider = await new GoogleAuthProvider();
-    return await signInWithPopup(this.auth, provider);
+    let res = await signInWithPopup(this.auth, provider);
+    console.log(res.user.uid);
+    this.addData(res.user.displayName, res.user.email, res.user.uid);
+    return res;
   }
 
   async resetPass(email) {
@@ -80,23 +92,37 @@ export class loginAuth {
     return res;
   }
 
-  getUserData(uid) {
-
+  async getUserData(uid) {
+    console.log(uid);
+    try {
+      let userData = await getDocs(
+        query(collection(this.db, "users"),where("uid","==",uid))
+      );
+      if (userData.size === 0) alert("user with given uid does not exist");
+      return userData.docs[0].data();
+    } catch (e) {
+      console.log(e);
+      return -1;
+    }
   }
 
-  async addData(firstname, lastname, inEmail, inUid){
-    try{
-    const ref = await setDoc(doc(this.db, "users",(""+inUid)),{
-      first:firstname,
-      last:lastname,
-      email:inEmail,
-      uid:inUid,
-    });
-    console.log(`written ${firstname}`);
-  }catch(e){
-    alert(`error writing data${e}`);
-  }
-    
+  async addData(inName, inEmail, inUid) {
+    try {
+      if (
+        (await getDocs(
+          query(collection(this.db, "users"), where("uid", "==", inUid))
+        ).size) === 0
+      ) {
+        const ref = await setDoc(doc(this.db, "users", "" + inUid), {
+          name: inName,
+          email: inEmail,
+          uid: inUid,
+        });
+        console.log(`written ${inName}`);
+      }
+    } catch (e) {
+      alert(`error writing data${e}`);
+    }
   }
 }
 export default new loginAuth();
