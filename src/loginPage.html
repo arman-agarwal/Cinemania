@@ -18,16 +18,25 @@
       integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
       crossorigin="anonymous"
     />
+    <style>
+      /* CSS to center the title */
+      #titleRow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
   </head>
   <body id="loginPage">
     <div id="titleRow">
       <!-- making the logo clikable, when clicked, goes back to the home page -->
-      <img
+      <!-- <img
         class="Homelink"
         id="logo"
         src="./Images/logoTransparent.svg"
         alt="Logo"
-      />
+      /> -->
       <div class="hero">
         <div class="LoginTitle">
           <h1></h1>
@@ -45,6 +54,7 @@
             </div>
           </a>
         </div>
+        <button id="scrollButton">Scroll to Login</button>
       </div>
       <div></div>
     </div>
