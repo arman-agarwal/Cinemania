@@ -12,7 +12,6 @@ window.onload = async () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  await loginAuth.signoutUser();
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
