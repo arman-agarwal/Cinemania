@@ -43,6 +43,7 @@ window.onload = async () => {
       sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
       sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
       sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+      sessionStorage.setItem("login", true);
       location.href = "index.html";
     } else alert("error logging in");
   });

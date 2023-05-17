@@ -7,6 +7,11 @@ let uid = sessionStorage.getItem("uid");
 console.log(email, name, uid);
 
 const main = () => {
+
+  if(!sessionStorage.getItem("login")){
+    window.location.href = 'loginPage.html';
+  };
+
   let spanTexts = document.getElementsByClassName("backLetter");
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
@@ -576,5 +581,6 @@ function closeForm() {
 
 //EventListener for logout
 document.getElementById("Logout").addEventListener("click", () => {
+  sessionStorage.setItem("login", false);
   window.location.href = "loginPage.html";
 });
