@@ -31,7 +31,6 @@ export class loginAuth {
       messagingSenderId: "754757248247",
       appId: "1:754757248247:web:fb860fc0dca3e09108dff2",
     };
-
     this.firebaseApp = initializeApp(firebaseConfig);
     this.auth = getAuth(this.firebaseApp);
     this.db = getFirestore(this.firebaseApp);
@@ -68,6 +67,7 @@ export class loginAuth {
         return -1;
       });
   }
+
 
   async signoutUser() {
     await signOut(this.auth)
