@@ -203,3 +203,8 @@ async function handleGoogleSignIn() {
     location.href = "index.html";
   }
 }
+
+//logout functionality
+document.getElementById("Logout").addEventListener("click", () => {
+  loginAuth.signoutUser();
+});
