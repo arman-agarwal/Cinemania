@@ -22,21 +22,27 @@
       /* CSS to center the title */
       #titleRow {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        position: relative;
+      }
+      /* CSS to position the logo arrow at the bottom right */
+      #logo {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        transform: rotate(45deg);
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        cursor: pointer;
       }
     </style>
   </head>
   <body id="loginPage">
     <div id="titleRow">
-      <!-- making the logo clikable, when clicked, goes back to the home page -->
-      <!-- <img
-        class="Homelink"
-        id="logo"
-        src="./Images/logoTransparent.svg"
-        alt="Logo"
-      /> -->
       <div class="hero">
         <div class="LoginTitle">
           <h1></h1>
@@ -53,16 +59,18 @@
               <span class="backLetter">A</span>
             </div>
           </a>
+        </div>
+        <div class="scrollButtonContainer">
           <button id="scrollButton">Scroll to Login</button>
         </div>
       </div>
-      <div></div>
+      <div id="logo"></div>
     </div>
     <script>
       // JavaScript to handle scrolling to the login section
       const scrollButton = document.getElementById("scrollButton");
       scrollButton.addEventListener("click", () => {
-        const loginSection = document.getElementById("loginSection");
+        const loginSection = document.getElementById("loginPage");
         loginSection.scrollIntoView({ behavior: "smooth" });
       });
     </script>
