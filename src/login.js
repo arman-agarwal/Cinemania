@@ -5,6 +5,7 @@ let loginBody = document.createElement("div");
 loginBody.setAttribute("id", "replace");
 let signupBody = document.createElement("div");
 signupBody.setAttribute("id", "replace");
+
 let x = false;
 window.onload = async () => {
   let spanTexts = document.getElementsByClassName("backLetter");
@@ -38,13 +39,13 @@ window.onload = async () => {
       document.getElementById("username").value,
       document.getElementById("password").value
     );
-    if (status === 1){
-      sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
-      sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
-      sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
+    if (status === 1) {
+      sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
+      sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+      sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+      sessionStorage.setItem("login", true);
       location.href = "index.html";
-    } 
-    else alert("error logging in");
+    } else alert("error logging in");
   });
 
   document.getElementById("forgotPass").addEventListener("click", () => {
@@ -56,7 +57,7 @@ window.onload = async () => {
       if (res === 1) {
         alert("Email Sent!");
         setTimeout(() => {
-         document.getElementById("resetBox").innerHTML="";
+          document.getElementById("resetBox").innerHTML = "";
         }, 300);
       } else {
         alert("Error Sending Email");
@@ -100,12 +101,17 @@ function refreshFields() {
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
     if (checkData(email, password)) {
-      let status = await loginAuth.signupUser(firstName, lastName, email, password);
+      let status = await loginAuth.signupUser(
+        firstName,
+        lastName,
+        email,
+        password
+      );
       if (status === 1) {
         location.href = "index.html";
-        sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
-        sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
-        sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
+        sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
+        sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+        sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
         console.log("logged in new user");
       } else alert("error signing up");
     }
@@ -191,10 +197,15 @@ dark.addEventListener("click", function () {
 async function handleGoogleSignIn() {
   const result = await loginAuth.google(auth).catch((e) => -1);
   if (result === -1) alert("error");
-  else{
-    sessionStorage.setItem('email', loginAuth.auth.currentUser.email);
-    sessionStorage.setItem('name', loginAuth.auth.currentUser.displayName);
-    sessionStorage.setItem('uid', loginAuth.auth.currentUser.uid);
+  else {
+    sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
+    sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+    sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
     location.href = "index.html";
-  } 
+  }
 }
+
+//logout functionality
+document.getElementById("Logout").addEventListener("click", () => {
+  loginAuth.signoutUser();
+});

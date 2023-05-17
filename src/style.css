@@ -30,20 +30,20 @@ body.dark-mode {
   height: 150px;
 }
 
-#cancelEdit{
+#cancelEdit {
   margin-top: 7.5px;
 }
 
-#cancelEditText{
+#cancelEditText {
   padding: 5px;
   color: red;
 }
 
-#cancelEdit:hover #cancelEditText{
+#cancelEdit:hover #cancelEditText {
   font-weight: bold;
 }
 
-#cancelEdit:hover #cancelEditImg{
+#cancelEdit:hover #cancelEditImg {
   transform: scale(1.08);
 }
 
@@ -268,7 +268,7 @@ body.dark-mode {
   color: black;
 }
 
-.dark-mode .loginHead{
+.dark-mode .loginHead {
   color: white;
 }
 .form-entry {
@@ -328,7 +328,7 @@ body.dark-mode {
 #signupButton:hover,
 #forgotPass:hover,
 #googleSign:hover,
-#resetButton :hover{
+#resetButton :hover {
   background-color: rgb(255, 255, 255);
   color: rgb(18, 152, 176);
   border: none;
@@ -352,20 +352,20 @@ body.dark-mode {
 #signupButton,
 #googleSign,
 #submit,
-#forgotPass{
+#forgotPass {
   border-radius: 10%/80%;
 }
 
-#resetButton{
-  width:100px;
+#resetButton {
+  width: 100px;
   border-radius: 20%/80%;
 }
 
-#resetButton:hover{
+#resetButton:hover {
   width: 120px;
 }
 
-#dropdown{
+#dropdown {
   margin-top: 50px;
   margin-right: 30px;
 }
@@ -377,7 +377,7 @@ body.dark-mode {
   top: 240px;
   bottom: 240px;
   right: 580px;
-  left:460px;
+  left: 460px;
   border: 6px solid teal;
   z-index: 9;
 }
@@ -386,4 +386,27 @@ body.dark-mode {
   max-width: 300px;
   padding: 10px;
   background-color: white;
+}
+
+/*CSS to allign the text for Sign Up */
+#titleRowSignUp {
+  display: flex;
+  background-color: #a2ab87;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+/* CSS to position the logo arrow at the bottom right for Sign Up page */
+#logoSignUp {
+  position: absolute;
+  bottom: 225px;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 7px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  cursor: pointer;
 }
