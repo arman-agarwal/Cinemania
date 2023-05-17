@@ -60,18 +60,18 @@
             </div>
           </a>
         </div>
-        <div class="scrollButtonContainer">
-          <button id="scrollButton">Scroll to Login</button>
-        </div>
       </div>
       <div id="logo"></div>
     </div>
     <script>
       // JavaScript to handle scrolling to the login section
       const scrollButton = document.getElementById("scrollButton");
-      scrollButton.addEventListener("click", () => {
-        const loginSection = document.getElementById("loginPage");
-        loginSection.scrollIntoView({ behavior: "smooth" });
+
+      logo.addEventListener("click", () => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
       });
     </script>
   </body>
