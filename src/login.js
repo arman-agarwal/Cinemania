@@ -33,10 +33,12 @@ window.onload = async () => {
     x = true;
   });
   document.getElementById("submit").addEventListener("click", async () => {
+    console.log(document.getElementById("username").value);
+    console.log(document.getElementById("password").value);
     let status = await loginAuth.loginUser(
       auth,
-      document.getElementById("username"),
-      document.getElementById("password")
+      document.getElementById("username").value,
+      document.getElementById("password").value
     );
     if (status === 1){
       sessionStorage.setItem('email', auth.currentUser.email);
