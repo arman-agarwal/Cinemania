@@ -61,18 +61,21 @@
     </div>
 
     <!--Popup Styling-->
-    <div class="form-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>User Profile</h1>
-    
-        <label for="email"><b>Email</b></label>
-        <li><button id ="email" href="#" >Email</a></li>
-    
-        <label for="name"><b>Name</b></label>
-        <li><button id ="name" href="#">Name</a></li>
-        <button type="button" class="btn cancel" id = "close">Close</button>
-      </form>
-    </div> 
+    <center>
+      <div class="form-popup" id="myForm">
+        <form class="form-container">
+          <div style="display: flex; justify-content: space-between;">
+            <h1>User Profile</h1>
+            <button type="button" class="btn cancel" id = "profile-popUp-close"><img src="Images/icons8-close-32.svg"></button>
+          </div> <br>
+          <label for="profile-email-button"><b>Email</b></label>
+          <button id ="profile-email-button">Email</button>
+          <br><br>
+          <label for="profile-name-button"><b>Name</b></label>
+          <button id ="profile-name-button">Name</button>
+        </form>
+      </div>
+  </center>
 
     <!-- Adding the cards that have the posts-->
     <div style="margin-left: 10px; margin-right: 10px" id="cardsListDiv" class="card-container"></div>

@@ -14,7 +14,6 @@ const main = () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  console.log(email, name, uid);
   // getting the cardsdiv element, in which we will be adding the elements
   const cardsDiv = document.getElementById("cardsListDiv");
   // getting the json file, which is a promise, so we convert it to a json file and store it in the data variable
@@ -557,17 +556,14 @@ document
   });
 
 document.getElementById("profile").addEventListener("click", openForm);
-document.getElementById("close").addEventListener("click", closeForm);
-// function profileReplace(){
-//     let profileButton = document.getElementById("profile");
-//     profileButton.innerText = email;
-//   }
+document.getElementById("profile-popUp-close").addEventListener("click", closeForm);
+
 
 async function openForm() {
   let data = await loginAuth.getUserData(uid);
   document.getElementById("myForm").style.display = "block";
-  document.getElementById("email").innerText = data["email"];
-  document.getElementById("name").innerText = data["name"];
+  document.getElementById("profile-email-button").innerText = data["email"];
+  document.getElementById("profile-name-button").innerText = data["name"];
 }
 
 function closeForm() {
