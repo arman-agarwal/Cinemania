@@ -12,7 +12,6 @@ window.onload = async () => {
   for (let spanText of spanTexts) {
     spanText.classList.add("active");
   }
-  await loginAuth.signoutUser();
   await fetch("components/loginForm.html")
     .then((response) => response.text())
     .then((html) => (loginBody.innerHTML = html.trim()));
@@ -41,7 +40,7 @@ window.onload = async () => {
     );
     if (status === 1) {
       sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
-      sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+      sessionStorage.setItem("name", loginAuth.auth.currentUser.name);
       sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
       sessionStorage.setItem("login", true);
       location.href = "index.html";
@@ -108,12 +107,14 @@ function refreshFields() {
         password
       );
       if (status === 1) {
-        location.href = "index.html";
+        
         sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
-        sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+        sessionStorage.setItem("name", loginAuth.auth.currentUser.name);
         sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+        sessionStorage.setItem("login", true);
         console.log("logged in new user");
-      } else alert("error signing up");
+        location.href = "index.html";
+      } else alert("Error Signing up");
     }
   });
 }
@@ -199,8 +200,9 @@ async function handleGoogleSignIn() {
   if (result === -1) alert("error");
   else {
     sessionStorage.setItem("email", loginAuth.auth.currentUser.email);
-    sessionStorage.setItem("name", loginAuth.auth.currentUser.displayName);
+    sessionStorage.setItem("name", loginAuth.auth.currentUser.name);
     sessionStorage.setItem("uid", loginAuth.auth.currentUser.uid);
+    sessionStorage.setItem("login", true);
     location.href = "index.html";
   }
 }

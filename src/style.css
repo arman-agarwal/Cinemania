@@ -16,6 +16,29 @@ body.dark-mode {
 #logo {
   padding: 2px;
 }
+
+#profile-name-button{
+  border: none;
+  pointer-events: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#profile-email-button{
+  border: none;
+  pointer-events: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#myForm{
+  border-color: #a2ab87 ;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .Homelink {
   align-items: center;
   text-decoration: none;
@@ -374,15 +397,17 @@ body.dark-mode {
 .form-popup {
   display: none;
   position: fixed;
+  list-style-type: none;
   top: 240px;
-  bottom: 240px;
+  bottom: 327px;
   right: 580px;
-  left: 460px;
+  left: 560px;
   border: 6px solid teal;
   z-index: 9;
 }
 
 .form-container {
+  list-style-type: none;
   max-width: 300px;
   padding: 10px;
   background-color: white;

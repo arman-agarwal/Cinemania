@@ -43,17 +43,16 @@ export class loginAuth {
     });
   }
 
-  signupUser(firstname, lastname, email, password) {
-    return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((cred) => {
-        console.log("created user");
-        this.addData(firstname + " " + lastname, email, cred.user.uid);
-        return 1;
-      })
-      .catch((e) => {
-        console.log(e);
-        return -1;
-      });
+  async signupUser(firstname, lastname, email, password) {
+    try{
+      let res = await createUserWithEmailAndPassword(this.auth, email, password);
+      console.log("created user");
+      await this.addData(firstname+" "+lastname,email,res.user.uid);
+      return 1;
+    }catch(e){
+      console.log(e);
+      return -1;
+    }
   }
 
   async loginUser(email, password) {
@@ -82,7 +81,7 @@ export class loginAuth {
     const provider = await new GoogleAuthProvider();
     let res = await signInWithPopup(this.auth, provider);
     console.log(res.user.uid);
-    this.addData(res.user.displayName, res.user.email, res.user.uid);
+    await this.addData(res.user.displayName, res.user.email, res.user.uid);
     return res;
   }
 
@@ -108,18 +107,12 @@ export class loginAuth {
 
   async addData(inName, inEmail, inUid) {
     try {
-      if (
-        (await getDocs(
-          query(collection(this.db, "users"), where("uid", "==", inUid))
-        ).size) === 0
-      ) {
         const ref = await setDoc(doc(this.db, "users", "" + inUid), {
           name: inName,
           email: inEmail,
           uid: inUid,
         });
         console.log(`written ${inName}`);
-      }
     } catch (e) {
       alert(`error writing data${e}`);
     }
